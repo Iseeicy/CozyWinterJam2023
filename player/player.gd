@@ -12,6 +12,7 @@ extends Node2D
 @onready var ball_a: PhysicsBody2D = $BallA
 @onready var ball_b: PhysicsBody2D = $BallB
 @onready var grapple_a: Grapple = $GrappleA
+@onready var grapple_b: Grapple = $GrappleB
 
 #
 #	Godot Functions
@@ -22,13 +23,10 @@ func _unhandled_input(event):
 		throw_grapple_a()
 	if event.is_action_released("shoot_hook_a"):
 		unthrow_grapple_a()
-
-
-func _physics_process(delta):
-	if Input.is_action_pressed("shoot_hook_b"):
-		var force = get_global_mouse_position() - ball_a.global_position
-		force = force.normalized()
-		ball_a.apply_central_force(force * 100000 * delta);
+	if event.is_action_pressed("shoot_hook_b"):
+		throw_grapple_b()
+	if event.is_action_released("shoot_hook_b"):
+		unthrow_grapple_b()
 
 #
 #	Functions
@@ -42,3 +40,12 @@ func throw_grapple_a():
 
 func unthrow_grapple_a():
 	grapple_a.unshoot()
+
+func throw_grapple_b():
+	var direction = get_global_mouse_position() - ball_b.global_position
+	direction = direction.normalized()
+	
+	grapple_b.shoot(ball_b.global_position, direction)
+
+func unthrow_grapple_b():
+	grapple_b.unshoot()

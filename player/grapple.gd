@@ -2,6 +2,15 @@ extends RigidBody2D
 class_name Grapple
 
 #
+#	Enum
+#
+
+enum GrappleType {
+	Pull,
+	Swing
+}
+
+#
 #	Exports
 #
 
@@ -12,6 +21,7 @@ signal locked_grapple()
 @export var shoot_impulse: float = 10
 @export var pull_strength: float = 10
 @export var parent_ball: RigidBody2D = null
+@export var grapple_type: GrappleType = GrappleType.Pull
 
 #
 #	Private Variables

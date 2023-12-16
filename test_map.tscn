@@ -241,6 +241,46 @@ stream = ExtResource("11_ypm1d")
 [node name="Lock" type="AudioStreamPlayer2D" parent="Player/GrappleA/Audio"]
 stream = ExtResource("10_lompg")
 
+[node name="GrappleB" type="RigidBody2D" parent="Player" node_paths=PackedStringArray("parent_ball")]
+visible = false
+position = Vector2(40, 0)
+collision_layer = 0
+gravity_scale = 0.0
+continuous_cd = 1
+max_contacts_reported = 1
+contact_monitor = true
+script = ExtResource("6_fqcqx")
+shoot_impulse = 600.0
+pull_strength = 50000.0
+parent_ball = NodePath("../BallB")
+grapple_type = 1
+
+[node name="RopeLine" type="Line2D" parent="Player/GrappleB" node_paths=PackedStringArray("ropeOrigin")]
+texture_repeat = 2
+points = PackedVector2Array(0, -1, 0, 0)
+width = 8.0
+texture = ExtResource("6_mqok8")
+texture_mode = 1
+script = ExtResource("7_80xop")
+ropeOrigin = NodePath("../../BallB")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/GrappleB"]
+shape = SubResource("CircleShape2D_bli73")
+
+[node name="EndSprite" type="Sprite2D" parent="Player/GrappleB"]
+texture = ExtResource("8_l1ww5")
+
+[node name="Audio" type="Node2D" parent="Player/GrappleB" node_paths=PackedStringArray("shoot_sound", "lock_sound")]
+script = ExtResource("10_qdusm")
+shoot_sound = NodePath("../../GrappleA/Audio/Shoot")
+lock_sound = NodePath("../../GrappleA/Audio/Lock")
+
+[node name="Shoot" type="AudioStreamPlayer2D" parent="Player/GrappleB/Audio"]
+stream = ExtResource("11_ypm1d")
+
+[node name="Lock" type="AudioStreamPlayer2D" parent="Player/GrappleB/Audio"]
+stream = ExtResource("10_lompg")
+
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(156, 84)
 zoom = Vector2(3, 3)
@@ -249,3 +289,7 @@ zoom = Vector2(3, 3)
 [connection signal="shot_grapple" from="Player/GrappleA" to="Player/GrappleA/RopeLine" method="_on_grapple_a_shot_grapple"]
 [connection signal="shot_grapple" from="Player/GrappleA" to="Player/GrappleA/Audio" method="_on_grapple_a_shot_grapple"]
 [connection signal="unshot_grapple" from="Player/GrappleA" to="Player/GrappleA/RopeLine" method="_on_grapple_a_unshot_grapple"]
+[connection signal="locked_grapple" from="Player/GrappleB" to="Player/GrappleB/Audio" method="_on_grapple_a_locked_grapple"]
+[connection signal="shot_grapple" from="Player/GrappleB" to="Player/GrappleB/RopeLine" method="_on_grapple_a_shot_grapple"]
+[connection signal="shot_grapple" from="Player/GrappleB" to="Player/GrappleB/Audio" method="_on_grapple_a_shot_grapple"]
+[connection signal="unshot_grapple" from="Player/GrappleB" to="Player/GrappleB/RopeLine" method="_on_grapple_a_unshot_grapple"]
