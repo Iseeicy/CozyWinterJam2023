@@ -21,8 +21,9 @@ var _queue_shoot: bool = false
 var _queue_unshoot: bool = false
 var _target_origin: Vector2 = Vector2.ZERO
 var _target_impulse: Vector2 = Vector2.ZERO
-
 var _monitor_lock: bool = false
+
+var _should_be_visible: bool = false
 
 #
 #	Functions
@@ -41,13 +42,17 @@ func shoot(origin: Vector2, direction: Vector2):
 	_monitor_lock = true
 
 func unshoot():
-	hide()
+	_should_be_visible = false
 	freeze = true
 	sleeping = true
 	_monitor_lock = false
 	_queue_shoot = false
 	unshot_grapple.emit()
 
+
+func _physics_process(_delta):
+	if visible != _should_be_visible:
+		visible = _should_be_visible
 
 func _integrate_forces(state):
 
@@ -80,7 +85,7 @@ func _integrate_forces(state):
 
 
 func _on_shoot() -> void:
-	show()
+	_should_be_visible = true
 	shot_grapple.emit()
 
 func _on_lock() -> void:
