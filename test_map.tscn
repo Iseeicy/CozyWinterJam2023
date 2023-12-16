@@ -1,0 +1,175 @@
+[gd_scene load_steps=7 format=3 uid="uid://brcbj8ipc8t1t"]
+
+[ext_resource type="TileSet" uid="uid://dila20svsy5ke" path="res://tiles/tileset.tres" id="1_or26b"]
+[ext_resource type="Texture2D" uid="uid://blqqtr1tpka0s" path="res://player/ball_a.png" id="2_xq8tk"]
+[ext_resource type="Texture2D" uid="uid://bkxtde3row3om" path="res://player/ball_b.png" id="3_dht0g"]
+[ext_resource type="Texture2D" uid="uid://csc8b76d3i0sb" path="res://player/rope_chunk.png" id="4_dhrkm"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_v4moj"]
+radius = 1.0
+height = 8.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dmc2p"]
+radius = 6.0
+
+[node name="Node2D" type="Node2D"]
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource("1_or26b")
+format = 2
+layer_0/name = "Background"
+layer_0/tile_data = PackedInt32Array(131076, 1, 0, 196612, 1, 0, 262148, 1, 0, 327684, 1, 0, 393220, 1, 0, 458756, 1, 0, 131077, 1, 0, 196613, 1, 0, 262149, 1, 0, 327685, 1, 0, 393221, 1, 0, 458757, 1, 0, 131078, 1, 0, 196614, 1, 0, 262150, 1, 0, 327686, 1, 0, 393222, 1, 0, 458758, 1, 0, 131079, 1, 0, 196615, 1, 0, 262151, 65537, 0, 327687, 65537, 0, 393223, 1, 0, 458759, 1, 0, 131080, 1, 0, 196616, 1, 0, 262152, 65537, 0, 327688, 65537, 0, 393224, 1, 0, 458760, 1, 0, 131081, 1, 0, 196617, 1, 0, 262153, 65537, 0, 327689, 65537, 0, 393225, 1, 0, 458761, 1, 0, 131082, 1, 0, 196618, 1, 0, 262154, 65537, 0, 327690, 65537, 0, 393226, 1, 0, 458762, 1, 0, 131083, 1, 0, 196619, 1, 0, 262155, 65537, 0, 327691, 65537, 0, 393227, 1, 0, 458763, 1, 0, 131084, 1, 0, 196620, 1, 0, 262156, 1, 1, 327692, 1, 1, 393228, 1, 0, 458764, 1, 0, 131085, 1, 0, 196621, 1, 0, 262157, 1, 1, 327693, 1, 1, 393229, 1, 0, 458765, 1, 0, 131086, 1, 0, 196622, 1, 0, 262158, 1, 1, 327694, 1, 1, 393230, 1, 0, 458766, 1, 0, 131087, 1, 0, 196623, 1, 0, 262159, 1, 0, 327695, 1, 0, 393231, 1, 0, 458767, 1, 0)
+layer_1/name = "Foreground"
+layer_1/enabled = true
+layer_1/modulate = Color(1, 1, 1, 1)
+layer_1/y_sort_enabled = false
+layer_1/y_sort_origin = 0
+layer_1/z_index = 0
+layer_1/tile_data = PackedInt32Array(65537, 1, 2, 131081, 327681, 4, 131082, 327681, 4, 131083, 327681, 2, 131084, 327681, 4, 131085, 327681, 2, 131086, 327681, 2, 131087, 393217, 2, 196623, 262145, 3, 262159, 262145, 3, 327695, 393217, 3, 131076, 262145, 2, 196612, 262145, 3, 262148, 262145, 3, 327684, 393217, 3, 131077, 327681, 4, 131078, 327681, 4, 131079, 327681, 4, 131080, 327681, 4, 393220, 262145, 3, 393231, 262145, 3, 458767, 393217, 4, 458766, 327681, 2, 458765, 327681, 4, 458764, 327681, 4, 458763, 327681, 2, 458762, 327681, 4, 458761, 327681, 2, 458760, 327681, 4, 458759, 327681, 2, 458758, 327681, 4, 458757, 327681, 4, 458756, 262145, 4, 327694, 327681, 1, 262158, 327681, 1)
+
+[node name="Player" type="Node2D" parent="."]
+position = Vector2(96, 80)
+metadata/_edit_group_ = true
+
+[node name="Chain" type="Node2D" parent="Player"]
+
+[node name="PinJoint2D" type="PinJoint2D" parent="Player/Chain"]
+position = Vector2(-8, 0)
+node_a = NodePath("../../BallA")
+node_b = NodePath("../RopeChunk")
+
+[node name="RopeChunk" type="RigidBody2D" parent="Player/Chain"]
+position = Vector2(-8, 4)
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Player/Chain/RopeChunk"]
+position = Vector2(0.5, 0)
+rotation = 1.5708
+texture = ExtResource("4_dhrkm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Chain/RopeChunk"]
+shape = SubResource("CapsuleShape2D_v4moj")
+
+[node name="PinJoint2D2" type="PinJoint2D" parent="Player/Chain"]
+position = Vector2(-8, 8)
+node_a = NodePath("../RopeChunk")
+node_b = NodePath("../RopeChunk2")
+
+[node name="RopeChunk2" type="RigidBody2D" parent="Player/Chain"]
+position = Vector2(-4, 8)
+rotation = -1.5708
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Player/Chain/RopeChunk2"]
+position = Vector2(0.5, 0)
+rotation = 1.5708
+texture = ExtResource("4_dhrkm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Chain/RopeChunk2"]
+shape = SubResource("CapsuleShape2D_v4moj")
+
+[node name="PinJoint2D3" type="PinJoint2D" parent="Player/Chain"]
+position = Vector2(0, 8)
+node_a = NodePath("../RopeChunk2")
+node_b = NodePath("../RopeChunk3")
+
+[node name="RopeChunk3" type="RigidBody2D" parent="Player/Chain"]
+position = Vector2(0, 12)
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Player/Chain/RopeChunk3"]
+position = Vector2(0.5, 0)
+rotation = 1.5708
+texture = ExtResource("4_dhrkm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Chain/RopeChunk3"]
+shape = SubResource("CapsuleShape2D_v4moj")
+
+[node name="PinJoint2D4" type="PinJoint2D" parent="Player/Chain"]
+position = Vector2(0, 16)
+node_a = NodePath("../RopeChunk3")
+node_b = NodePath("../RopeChunk4")
+
+[node name="RopeChunk4" type="RigidBody2D" parent="Player/Chain"]
+position = Vector2(4, 16)
+rotation = -1.5708
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Player/Chain/RopeChunk4"]
+position = Vector2(0.5, 0)
+rotation = 1.5708
+texture = ExtResource("4_dhrkm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Chain/RopeChunk4"]
+shape = SubResource("CapsuleShape2D_v4moj")
+
+[node name="PinJoint2D5" type="PinJoint2D" parent="Player/Chain"]
+position = Vector2(8, 16)
+node_a = NodePath("../RopeChunk4")
+node_b = NodePath("../RopeChunk5")
+
+[node name="RopeChunk5" type="RigidBody2D" parent="Player/Chain"]
+position = Vector2(8, 12)
+rotation = 3.14159
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Player/Chain/RopeChunk5"]
+position = Vector2(0.5, 0)
+rotation = 1.5708
+texture = ExtResource("4_dhrkm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Chain/RopeChunk5"]
+shape = SubResource("CapsuleShape2D_v4moj")
+
+[node name="PinJoint2D6" type="PinJoint2D" parent="Player/Chain"]
+position = Vector2(8, 8)
+node_a = NodePath("../RopeChunk5")
+node_b = NodePath("../RopeChunk6")
+
+[node name="RopeChunk6" type="RigidBody2D" parent="Player/Chain"]
+position = Vector2(8, 4)
+rotation = 3.14159
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Player/Chain/RopeChunk6"]
+position = Vector2(0.5, 0)
+rotation = 1.5708
+texture = ExtResource("4_dhrkm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Chain/RopeChunk6"]
+shape = SubResource("CapsuleShape2D_v4moj")
+
+[node name="PinJoint2D7" type="PinJoint2D" parent="Player/Chain"]
+position = Vector2(8, 0)
+node_a = NodePath("../RopeChunk6")
+node_b = NodePath("../../BallB")
+
+[node name="BallA" type="RigidBody2D" parent="Player"]
+position = Vector2(-8, 0)
+gravity_scale = 0.0
+
+[node name="Sprite2D" type="Sprite2D" parent="Player/BallA"]
+texture = ExtResource("2_xq8tk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/BallA"]
+shape = SubResource("CircleShape2D_dmc2p")
+
+[node name="BallB" type="RigidBody2D" parent="Player"]
+position = Vector2(8, 0)
+gravity_scale = 0.0
+
+[node name="Sprite2D" type="Sprite2D" parent="Player/BallB"]
+texture = ExtResource("3_dht0g")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/BallB"]
+shape = SubResource("CircleShape2D_dmc2p")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(156, 84)
+zoom = Vector2(3, 3)
