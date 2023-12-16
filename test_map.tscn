@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://brcbj8ipc8t1t"]
+[gd_scene load_steps=16 format=3 uid="uid://brcbj8ipc8t1t"]
 
 [ext_resource type="TileSet" uid="uid://dila20svsy5ke" path="res://tiles/tileset.tres" id="1_or26b"]
 [ext_resource type="Script" path="res://player/player.gd" id="2_w4f7s"]
@@ -9,7 +9,9 @@
 [ext_resource type="Texture2D" uid="uid://c2l4hto1hxrf8" path="res://player/grapple_chunk.png" id="6_mqok8"]
 [ext_resource type="Script" path="res://player/rope_line.gd" id="7_80xop"]
 [ext_resource type="Texture2D" uid="uid://2aagxf8ip3r2" path="res://player/grapple_end.png" id="8_l1ww5"]
-[ext_resource type="AudioStream" uid="uid://cycn7m4uq8wd4" path="res://player/grapple_shoot_a.ogg" id="9_pqib1"]
+[ext_resource type="AudioStream" uid="uid://cycn7m4uq8wd4" path="res://player/grapple_lock_a.ogg" id="10_lompg"]
+[ext_resource type="Script" path="res://player/grapple_audio.gd" id="10_qdusm"]
+[ext_resource type="AudioStream" uid="uid://ce2fqbjo22hui" path="res://player/grapple_throw_a.ogg" id="11_ypm1d"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_v4moj"]
 radius = 1.0
@@ -222,12 +224,22 @@ shape = SubResource("CircleShape2D_bli73")
 [node name="EndSprite" type="Sprite2D" parent="Player/GrappleA"]
 texture = ExtResource("8_l1ww5")
 
-[node name="GrappleShoot" type="AudioStreamPlayer2D" parent="Player/GrappleA"]
-stream = ExtResource("9_pqib1")
+[node name="Audio" type="Node2D" parent="Player/GrappleA" node_paths=PackedStringArray("shoot_sound", "lock_sound")]
+script = ExtResource("10_qdusm")
+shoot_sound = NodePath("Shoot")
+lock_sound = NodePath("Lock")
+
+[node name="Shoot" type="AudioStreamPlayer2D" parent="Player/GrappleA/Audio"]
+stream = ExtResource("11_ypm1d")
+
+[node name="Lock" type="AudioStreamPlayer2D" parent="Player/GrappleA/Audio"]
+stream = ExtResource("10_lompg")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(156, 84)
 zoom = Vector2(3, 3)
 
+[connection signal="locked_grapple" from="Player/GrappleA" to="Player/GrappleA/Audio" method="_on_grapple_a_locked_grapple"]
 [connection signal="shot_grapple" from="Player/GrappleA" to="Player/GrappleA/RopeLine" method="_on_grapple_a_shot_grapple"]
+[connection signal="shot_grapple" from="Player/GrappleA" to="Player/GrappleA/Audio" method="_on_grapple_a_shot_grapple"]
 [connection signal="unshot_grapple" from="Player/GrappleA" to="Player/GrappleA/RopeLine" method="_on_grapple_a_unshot_grapple"]

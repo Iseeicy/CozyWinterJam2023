@@ -15,8 +15,6 @@ signal locked_grapple()
 #	Private Variables
 #
 
-@onready var shoot_sound: AudioStreamPlayer2D = $GrappleShoot
-
 var _queue_shoot: bool = false
 var _queue_unshoot: bool = false
 var _target_origin: Vector2 = Vector2.ZERO
@@ -30,8 +28,6 @@ var _should_be_visible: bool = false
 #
 
 func shoot(origin: Vector2, direction: Vector2):
-	shoot_sound.play()
-
 	# Cache shoot data so that we can handle it in _integrated_forces
 	_target_origin = origin
 	_target_impulse = direction * shoot_impulse
