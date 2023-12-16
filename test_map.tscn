@@ -178,7 +178,9 @@ node_b = NodePath("../../BallB")
 position = Vector2(-8, 0)
 collision_layer = 2
 collision_mask = 3
+mass = 0.5
 gravity_scale = 0.0
+linear_damp = 10.0
 
 [node name="Sprite2D" type="Sprite2D" parent="Player/BallA"]
 texture = ExtResource("2_xq8tk")
@@ -190,7 +192,9 @@ shape = SubResource("CircleShape2D_dmc2p")
 position = Vector2(8, 0)
 collision_layer = 2
 collision_mask = 3
+mass = 0.5
 gravity_scale = 0.0
+linear_damp = 10.0
 
 [node name="Sprite2D" type="Sprite2D" parent="Player/BallB"]
 texture = ExtResource("3_dht0g")
@@ -198,7 +202,7 @@ texture = ExtResource("3_dht0g")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player/BallB"]
 shape = SubResource("CircleShape2D_dmc2p")
 
-[node name="GrappleA" type="RigidBody2D" parent="Player"]
+[node name="GrappleA" type="RigidBody2D" parent="Player" node_paths=PackedStringArray("parent_ball")]
 visible = false
 position = Vector2(40, 0)
 collision_layer = 0
@@ -208,6 +212,8 @@ max_contacts_reported = 1
 contact_monitor = true
 script = ExtResource("6_fqcqx")
 shoot_impulse = 600.0
+pull_strength = 50000.0
+parent_ball = NodePath("../BallA")
 
 [node name="RopeLine" type="Line2D" parent="Player/GrappleA" node_paths=PackedStringArray("ropeOrigin")]
 texture_repeat = 2

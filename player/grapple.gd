@@ -10,18 +10,20 @@ signal unshot_grapple()
 signal locked_grapple()
 
 @export var shoot_impulse: float = 10
+@export var pull_strength: float = 10
+@export var parent_ball: RigidBody2D = null
 
 #
 #	Private Variables
 #
 
 var _queue_shoot: bool = false
-var _queue_unshoot: bool = false
 var _target_origin: Vector2 = Vector2.ZERO
 var _target_impulse: Vector2 = Vector2.ZERO
 var _monitor_lock: bool = false
 
 var _should_be_visible: bool = false
+var _is_locked: bool = false
 
 #
 #	Functions
@@ -36,6 +38,7 @@ func shoot(origin: Vector2, direction: Vector2):
 	sleeping = false
 	_queue_shoot = true
 	_monitor_lock = true
+	_is_locked = false
 
 func unshoot():
 	_should_be_visible = false
@@ -43,12 +46,21 @@ func unshoot():
 	sleeping = true
 	_monitor_lock = false
 	_queue_shoot = false
+	_is_locked = false
 	unshot_grapple.emit()
 
 
-func _physics_process(_delta):
+func _physics_process(delta):
 	if visible != _should_be_visible:
 		visible = _should_be_visible
+
+	if _is_locked:
+		# Get the vector between us and the player ball
+		var direction = global_position - parent_ball.global_position
+		direction = direction.normalized()
+
+		# Draw the player ball towards us!
+		parent_ball.apply_central_force(direction * pull_strength * delta)
 
 func _integrate_forces(state):
 
@@ -86,4 +98,5 @@ func _on_shoot() -> void:
 
 func _on_lock() -> void:
 	freeze = true
+	_is_locked = true
 	locked_grapple.emit()
