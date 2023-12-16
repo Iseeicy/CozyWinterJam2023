@@ -228,3 +228,6 @@ stream = ExtResource("9_pqib1")
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(156, 84)
 zoom = Vector2(3, 3)
+
+[connection signal="shot_grapple" from="Player/GrappleA" to="Player/GrappleA/RopeLine" method="_on_grapple_a_shot_grapple"]
+[connection signal="unshot_grapple" from="Player/GrappleA" to="Player/GrappleA/RopeLine" method="_on_grapple_a_unshot_grapple"]

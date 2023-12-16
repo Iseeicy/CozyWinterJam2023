@@ -20,6 +20,8 @@ extends Node2D
 func _unhandled_input(event):
 	if event.is_action_pressed("shoot_hook_a"):
 		throw_grapple_a()
+	if event.is_action_released("shoot_hook_a"):
+		unthrow_grapple_a()
 
 
 func _physics_process(delta):
@@ -37,3 +39,6 @@ func throw_grapple_a():
 	direction = direction.normalized()
 	
 	grapple_a.shoot(ball_a.global_position, direction)
+
+func unthrow_grapple_a():
+	grapple_a.unshoot()

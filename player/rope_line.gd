@@ -14,5 +14,12 @@ extends Line2D
 func _ready():
 	points.clear()
 
-func _process(_delta):
+func _physics_process(_delta):
 	points[1] = to_local(ropeOrigin.global_position)
+
+
+func _on_grapple_a_shot_grapple():
+	points[1] = Vector2.ZERO
+
+func _on_grapple_a_unshot_grapple():
+	points[1] = Vector2.ZERO

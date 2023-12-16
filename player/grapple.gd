@@ -5,6 +5,10 @@ class_name Grapple
 #	Exports
 #
 
+signal shot_grapple()
+signal unshot_grapple()
+signal locked_grapple()
+
 @export var shoot_impulse: float = 10
 
 #
@@ -14,6 +18,7 @@ class_name Grapple
 @onready var shoot_sound: AudioStreamPlayer2D = $GrappleShoot
 
 var _queue_shoot: bool = false
+var _queue_unshoot: bool = false
 var _target_origin: Vector2 = Vector2.ZERO
 var _target_impulse: Vector2 = Vector2.ZERO
 
@@ -35,6 +40,14 @@ func shoot(origin: Vector2, direction: Vector2):
 	_queue_shoot = true
 	_monitor_lock = true
 
+func unshoot():
+	hide()
+	freeze = true
+	sleeping = true
+	_monitor_lock = false
+	_queue_shoot = false
+	unshot_grapple.emit()
+
 
 func _integrate_forces(state):
 
@@ -49,20 +62,27 @@ func _integrate_forces(state):
 		state.angular_velocity = 0
 		state.apply_impulse(_target_impulse)
 		
-		show()
-		
+		call_deferred("_on_shoot")
 		_queue_shoot = false
 
 	# Handle locking if we hit a wall
-	if _monitor_lock and state.get_contact_count() > 0:
+	elif _monitor_lock and state.get_contact_count() > 0:
+		print("Hit %s" % state.get_contact_collider_object(0))
+		
 		state.linear_velocity = Vector2.ZERO
 		state.angular_velocity = 0
 
+		state.transform.origin = state.get_contact_local_position(0)
 		state.transform.rotated(state.get_contact_local_normal(0).angle() - state.transform.get_rotation())
-		call_deferred("_on_lock")
 
+		call_deferred("_on_lock")
 		_monitor_lock = false
 
-	
+
+func _on_shoot() -> void:
+	show()
+	shot_grapple.emit()
+
 func _on_lock() -> void:
 	freeze = true
+	locked_grapple.emit()
