@@ -27,6 +27,24 @@ project/assembly_name="CozyWinterJam2023"
 
 enabled=PackedStringArray("res://addons/netengine5/net.bobbo.character/plugin.cfg", "res://addons/netengine5/net.bobbo.dialog-graph/plugin.cfg", "res://addons/netengine5/net.bobbo.interactable/plugin.cfg", "res://addons/netengine5/net.bobbo.item/plugin.cfg", "res://addons/netengine5/net.bobbo.knowledge/plugin.cfg", "res://addons/netengine5/net.bobbo.player-controller/plugin.cfg", "res://addons/netengine5/net.bobbo.player-model/plugin.cfg", "res://addons/netengine5/net.bobbo.resource-field/plugin.cfg", "res://addons/netengine5/net.bobbo.state-machine/plugin.cfg", "res://addons/netengine5/net.bobbo.text-reader/plugin.cfg", "res://addons/netengine5/net.bobbo.text-window/plugin.cfg")
 
+[input]
+
+shoot_hook_a={
+"deadzone": 0.5,
+"events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":0,"position":Vector2(0, 0),"global_position":Vector2(0, 0),"factor":1.0,"button_index":1,"canceled":false,"pressed":false,"double_click":false,"script":null)
+]
+}
+shoot_hook_b={
+"deadzone": 0.5,
+"events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":0,"position":Vector2(0, 0),"global_position":Vector2(0, 0),"factor":1.0,"button_index":2,"canceled":false,"pressed":false,"double_click":false,"script":null)
+]
+}
+
+[layer_names]
+
+2d_physics/layer_1="Foreground"
+2d_physics/layer_2="Player"
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
