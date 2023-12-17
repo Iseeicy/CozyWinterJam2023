@@ -1,7 +1,8 @@
-[gd_scene load_steps=17 format=3 uid="uid://brcbj8ipc8t1t"]
+[gd_scene load_steps=21 format=3 uid="uid://brcbj8ipc8t1t"]
 
 [ext_resource type="TileSet" uid="uid://dila20svsy5ke" path="res://tiles/tileset.tres" id="1_or26b"]
 [ext_resource type="PackedScene" uid="uid://j08dctpbcyt4" path="res://player/player.tscn" id="2_rrr81"]
+[ext_resource type="Texture2D" uid="uid://bnxx3kynpakoh" path="res://tiles/snow_flake.png" id="3_l1242"]
 [ext_resource type="Script" path="res://tile_interactor.gd" id="3_s1tv3"]
 [ext_resource type="Script" path="res://tiles/rules/crack_rule.gd" id="4_tpvkr"]
 [ext_resource type="AudioStream" uid="uid://ctkpsi4vsqsep" path="res://addons/netengine5/net.bobbo.text-reader/sounds/jam/eng.ogg" id="4_w7av3"]
@@ -10,6 +11,30 @@
 [ext_resource type="Script" path="res://tiles/rules/snow_rule.gd" id="8_t5hvh"]
 [ext_resource type="Script" path="res://tiles/rules/icicle_rule.gd" id="9_x68l6"]
 [ext_resource type="Script" path="res://tiles/rules/electric_wall_rule.gd" id="10_vgt1b"]
+
+[sub_resource type="Gradient" id="Gradient_o7i6t"]
+offsets = PackedFloat32Array(0.778075, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_gj6b8"]
+gradient = SubResource("Gradient_o7i6t")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_hu4ro"]
+emission_shape = 3
+emission_box_extents = Vector3(200, 1, 1)
+particle_flag_disable_z = true
+gravity = Vector3(0, 98, 0)
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+angle_min = -199.5
+angle_max = 240.0
+scale_min = 0.2
+scale_max = 0.8
+color = Color(1, 1, 1, 0.643137)
+color_ramp = SubResource("GradientTexture1D_gj6b8")
+turbulence_enabled = true
+turbulence_noise_speed = Vector3(10, 5, 2)
+turbulence_influence_min = 0.01
 
 [sub_resource type="Resource" id="Resource_db8f1"]
 script = ExtResource("4_tpvkr")
@@ -58,6 +83,16 @@ layer_2/tile_data = PackedInt32Array(65535, 196611, 3, 131071, 131075, 6, 65536,
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(156, 84)
+
+[node name="Snow" type="GPUParticles2D" parent="Camera2D"]
+position = Vector2(0, -130)
+amount = 100
+process_material = SubResource("ParticleProcessMaterial_hu4ro")
+texture = ExtResource("3_l1242")
+lifetime = 5.0
+trail_lifetime = 0.1
+trail_sections = 2
+trail_section_subdivisions = 2
 
 [node name="TileInteractor" type="Node" parent="." node_paths=PackedStringArray("player", "tile_map")]
 script = ExtResource("3_s1tv3")
