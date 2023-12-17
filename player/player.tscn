@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dyb74ka0l7t1f"]
+[gd_scene load_steps=13 format=3 uid="uid://dyb74ka0l7t1f"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_uotpf"]
 [ext_resource type="PackedScene" uid="uid://cwtiblfoxxa76" path="res://player/player_chain.tscn" id="2_sj4gy"]
@@ -10,9 +10,6 @@
 [ext_resource type="PackedScene" uid="uid://bmuqx1lgxhq2m" path="res://player/player_fall_particles.tscn" id="5_g8rny"]
 [ext_resource type="Texture2D" uid="uid://bkxtde3row3om" path="res://player/ball_b.png" id="5_rj30e"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_dmc2p"]
-radius = 6.0
-
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_75bdf"]
 friction = 0.0
 
@@ -20,8 +17,8 @@ friction = 0.0
 radius = 1.0
 height = 8.0
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_f3tpv"]
-size = Vector2(8, 8)
+[sub_resource type="CircleShape2D" id="CircleShape2D_dmc2p"]
+radius = 6.0
 
 [node name="Player" type="Node2D"]
 script = ExtResource("1_uotpf")
@@ -31,46 +28,6 @@ explode_particle_scene = ExtResource("3_h3m41")
 zap_particles_scene = ExtResource("4_q7q3s")
 fall_particles_scene = ExtResource("5_g8rny")
 metadata/_edit_group_ = true
-
-[node name="BallA" type="RigidBody2D" parent="."]
-position = Vector2(-8, 0)
-collision_layer = 4
-collision_mask = 5
-mass = 0.5
-gravity_scale = 0.0
-continuous_cd = 2
-max_contacts_reported = 2
-contact_monitor = true
-freeze_mode = 1
-linear_damp = 1.0
-
-[node name="Sprite2D" type="Sprite2D" parent="BallA"]
-texture = ExtResource("4_dlcqn")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BallA"]
-shape = SubResource("CircleShape2D_dmc2p")
-
-[node name="BallB" type="RigidBody2D" parent="."]
-position = Vector2(8, 0)
-collision_layer = 4
-collision_mask = 5
-mass = 0.5
-gravity_scale = 0.0
-continuous_cd = 2
-max_contacts_reported = 2
-contact_monitor = true
-freeze_mode = 1
-linear_damp = 1.0
-
-[node name="Sprite2D" type="Sprite2D" parent="BallB"]
-texture = ExtResource("5_rj30e")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BallB"]
-shape = SubResource("CircleShape2D_dmc2p")
-
-[node name="RespawnTimer" type="Timer" parent="."]
-wait_time = 3.0
-one_shot = true
 
 [node name="PlayerChain" type="Node2D" parent="."]
 
@@ -98,9 +55,6 @@ texture = ExtResource("3_ulh7l")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerChain/RopeChunk"]
 shape = SubResource("CapsuleShape2D_v4moj")
-
-[node name="Sprite2D2" type="Sprite2D" parent="PlayerChain/RopeChunk"]
-texture = SubResource("PlaceholderTexture2D_f3tpv")
 
 [node name="PinJoint2D2" type="PinJoint2D" parent="PlayerChain"]
 position = Vector2(-8, 8)
@@ -231,16 +185,54 @@ texture = ExtResource("3_ulh7l")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerChain/RopeChunk6"]
 shape = SubResource("CapsuleShape2D_v4moj")
 
-[node name="Sprite2D2" type="Sprite2D" parent="PlayerChain/RopeChunk6"]
-rotation = -3.14159
-texture = SubResource("PlaceholderTexture2D_f3tpv")
-
 [node name="PinJoint2D7" type="PinJoint2D" parent="PlayerChain"]
 position = Vector2(8, 0)
 node_a = NodePath("../RopeChunk6")
 node_b = NodePath("../../BallB")
 bias = 0.5
 softness = 5.0
+
+[node name="BallA" type="RigidBody2D" parent="."]
+z_index = 1
+position = Vector2(-8, 0)
+collision_layer = 4
+collision_mask = 5
+mass = 0.5
+gravity_scale = 0.0
+continuous_cd = 2
+max_contacts_reported = 2
+contact_monitor = true
+freeze_mode = 1
+linear_damp = 1.0
+
+[node name="Sprite2D" type="Sprite2D" parent="BallA"]
+texture = ExtResource("4_dlcqn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BallA"]
+shape = SubResource("CircleShape2D_dmc2p")
+
+[node name="BallB" type="RigidBody2D" parent="."]
+z_index = 1
+position = Vector2(8, 0)
+collision_layer = 4
+collision_mask = 5
+mass = 0.5
+gravity_scale = 0.0
+continuous_cd = 2
+max_contacts_reported = 2
+contact_monitor = true
+freeze_mode = 1
+linear_damp = 1.0
+
+[node name="Sprite2D" type="Sprite2D" parent="BallB"]
+texture = ExtResource("5_rj30e")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BallB"]
+shape = SubResource("CircleShape2D_dmc2p")
+
+[node name="RespawnTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
 
 [connection signal="body_shape_entered" from="BallA" to="." method="_on_ball_a_body_shape_entered"]
 [connection signal="body_shape_entered" from="BallB" to="." method="_on_ball_b_body_shape_entered"]
