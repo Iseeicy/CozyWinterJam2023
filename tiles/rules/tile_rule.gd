@@ -17,6 +17,7 @@ const ID_PIT: int = 5
 const ID_CRACK: int = 6
 const ID_ELECTRIC_WALL: int = 7
 const ID_ICICLE: int = 8
+const ID_PRESENT: int = 9
 
 #
 #   Private Variables
