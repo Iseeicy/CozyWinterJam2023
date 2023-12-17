@@ -60,3 +60,6 @@ tile_map = NodePath("../TileMap")
 rules = Array[Resource("res://tiles/rules/tile_rule.gd")]([SubResource("Resource_db8f1"), SubResource("Resource_1b2x8"), SubResource("Resource_jaw01"), SubResource("Resource_huhk7"), SubResource("Resource_24poh"), SubResource("Resource_injtg")])
 
 [node name="MainCamera" parent="." instance=ExtResource("11_fmlpp")]
+
+[connection signal="area_entered" from="TileMap/CheckPoint" to="TileMap/CheckPoint" method="_on_area_entered" flags=18]
+[connection signal="body_entered" from="TileMap/CheckPoint" to="TileMap/CheckPoint" method="_on_body_entered" flags=18]

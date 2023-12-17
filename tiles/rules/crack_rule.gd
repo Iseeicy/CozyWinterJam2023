@@ -32,7 +32,7 @@ func enter_tile(tile_map: TileMap, layer: int, position: Vector2i, _body: RigidB
     tile_map.set_cell(
         layer, 
         position, 
-        layer, 
+        ID_PIT, 
         tile_map.get_cell_atlas_coords(layer, position),
         tile_map.get_cell_alternative_tile(layer, position)
     )
