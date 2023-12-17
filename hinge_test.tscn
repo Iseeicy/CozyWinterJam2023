@@ -16,13 +16,12 @@ script/source = "extends Node2D
 
 var _last_swing: SwingJoint = null
 
-func _input(event):
-	if event is InputEventMouseButton:
-		if event.is_pressed():
-			if not _last_swing:
-				place_swanger()
-			else:
-				kill_swanger()
+func _process(delta):
+	if Input.is_action_just_pressed(\"shoot_hook_b\"):
+		if not _last_swing:
+			place_swanger()
+		else:
+			kill_swanger()
 
 func kill_swanger() -> void:
 	_last_swing.disconnect_body()
@@ -31,7 +30,8 @@ func kill_swanger() -> void:
 
 func place_swanger() -> void:
 	_last_swing = swing_scene.instantiate()
-	_last_swing.connect_bodies(global_position, player)
+	get_parent().add_child(_last_swing)
+	_last_swing.connect_bodies(get_global_mouse_position(), player)
 "
 
 [node name="HingeTest" type="Node2D"]
@@ -42,7 +42,7 @@ zoom = Vector2(3, 3)
 [node name="Player" type="RigidBody2D" parent="."]
 position = Vector2(-80, -8)
 gravity_scale = 0.0
-linear_damp = 4.0
+linear_damp = 1.0
 script = ExtResource("2_pxk8n")
 move_force = 100000.0
 metadata/_edit_group_ = true

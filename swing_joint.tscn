@@ -1,15 +1,27 @@
-[gd_scene load_steps=4 format=3 uid="uid://bxji2x0onw1em"]
+[gd_scene load_steps=6 format=3 uid="uid://bxji2x0onw1em"]
 
 [ext_resource type="Script" path="res://swing_joint.gd" id="1_71p0t"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tj03j"]
 radius = 8.0
 
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_o8sgs"]
+size = Vector2(8, 8)
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_7xehv"]
 radius = 8.0
 
+[sub_resource type="GDScript" id="GDScript_ckxkh"]
+script/source = "extends Line2D
+
+@export var groove_joint: GrooveJoint2D = null
+
+func _process(_delta):
+	points[0] = groove_joint.position
+	points[1] = groove_joint.position + (Vector2.DOWN * groove_joint.initial_offset).rotated(groove_joint.global_rotation)
+"
+
 [node name="SwingJoint" type="Node2D"]
-position = Vector2(-80, -32)
 script = ExtResource("1_71p0t")
 metadata/_edit_group_ = true
 
@@ -21,9 +33,15 @@ metadata/_edit_group_ = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Anchor"]
 shape = SubResource("CircleShape2D_tj03j")
 
+[node name="Sprite2D2" type="Sprite2D" parent="Anchor"]
+texture = SubResource("PlaceholderTexture2D_o8sgs")
+
 [node name="PinJoint2D" type="PinJoint2D" parent="."]
 node_a = NodePath("../Anchor")
 node_b = NodePath("../Rotator")
+
+[node name="Sprite2D3" type="Sprite2D" parent="PinJoint2D"]
+texture = SubResource("PlaceholderTexture2D_o8sgs")
 
 [node name="Rotator" type="RigidBody2D" parent="."]
 collision_layer = 0
@@ -33,7 +51,16 @@ metadata/_edit_group_ = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Rotator"]
 shape = SubResource("CircleShape2D_7xehv")
 
+[node name="Sprite2D" type="Sprite2D" parent="Rotator"]
+texture = SubResource("PlaceholderTexture2D_o8sgs")
+
 [node name="GrooveJoint2D" type="GrooveJoint2D" parent="."]
-node_a = NodePath("../Rotator")
-node_b = NodePath("../../RigidBody2D")
 initial_offset = 24.0
+
+[node name="Sprite2D4" type="Sprite2D" parent="GrooveJoint2D"]
+texture = SubResource("PlaceholderTexture2D_o8sgs")
+
+[node name="Line2D" type="Line2D" parent="." node_paths=PackedStringArray("groove_joint")]
+points = PackedVector2Array(0, 0, 0, 0)
+script = SubResource("GDScript_ckxkh")
+groove_joint = NodePath("../GrooveJoint2D")
