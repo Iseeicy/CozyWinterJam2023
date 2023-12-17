@@ -16,6 +16,7 @@ signal killed(which_body: RigidBody2D, type: KillType)
 signal grapple_locked(grapple: Grapple3, point: Vector2, normal: Vector2, collider: Object)
 signal grapple_unlocked(grapple: Grapple3, point: Vector2, normal: Vector2, collider: Object)
 
+@export var player_chain_scene: PackedScene = null
 @export var grapple_scene: PackedScene = null
 @export var explode_particle_scene: PackedScene = null
 @export var zap_particles_scene: PackedScene = null
@@ -25,8 +26,10 @@ signal grapple_unlocked(grapple: Grapple3, point: Vector2, normal: Vector2, coll
 #	Private Variables
 #
 
-@onready var ball_a: RigidBody2D = $BallA
-@onready var ball_b: RigidBody2D = $BallB
+var ball_a: RigidBody2D: 
+	get: return $BallA
+var ball_b: RigidBody2D:
+	get: return $BallB
 @onready var default_friction: float = ball_a.linear_damp
 var grapple_a: Grapple3 = null
 var grapple_b: Grapple3 = null
@@ -88,8 +91,10 @@ func kill(which_body: RigidBody2D, type: KillType) -> void:
 	unthrow_grapple_a()
 	unthrow_grapple_b()
 	
-	ball_a.set_physics_process(false)
-	ball_b.set_physics_process(false)
+	# ball_a.freeze = true
+	# ball_b.freeze = true
+	# ball_a.set_physics_process(false)
+	# ball_b.set_physics_process(false)
 
 	if which_body.visible:
 		if type == KillType.Zap:
@@ -122,15 +127,45 @@ func kill(which_body: RigidBody2D, type: KillType) -> void:
 				particle.queue_free()
 			get_tree().create_timer(4).timeout.connect(kill_particle.bind())
 	which_body.hide()
+	which_body.freeze = true
+	which_body.set_physics_process(false)
 	# ball_a.hide()
 	# ball_b.hide()
 	
-	for node in $Chain.get_children():
+	for node in $PlayerChain.get_children():
 		if node is PinJoint2D:
 			node.queue_free()
 
 	killed.emit(which_body, type)
+	$RespawnTimer.start()
 
+func respawn(spawn_point: Vector2) -> void:
+
+	ball_a.set_physics_process(true)
+	ball_b.set_physics_process(true)
+
+	ball_a.global_position = spawn_point - Vector2(-8, 0)
+	ball_a.global_rotation = 0
+	ball_a.linear_velocity = Vector2.ZERO
+	ball_a.angular_velocity = 0
+
+	ball_b.global_position = spawn_point - Vector2(8, 0)
+	ball_b.global_rotation = 0
+	ball_b.linear_velocity = Vector2.ZERO
+	ball_b.angular_velocity = 0
+
+	$PlayerChain.global_position = spawn_point
+
+	for node in $PlayerChain.get_children():
+		if node is RigidBody2D:
+			node.freeze = false
+
+	ball_a.freeze = false
+	ball_a.show()
+	ball_b.freeze = false
+	ball_b.show()
+	
+	set_process_unhandled_input(true)
 
 func _on_ball_b_body_shape_entered(body_rid:RID, body: Node, _body_shape_index:int, _local_shape_index:int):
 	if not body is TileMap: return
@@ -145,3 +180,6 @@ func _on_grapple_locked(grapple: Grapple3, point: Vector2, normal: Vector2, coll
 
 func _on_grapple_unlocked(grapple: Grapple3, point: Vector2, normal: Vector2, collider: Object):
 	grapple_unlocked.emit(grapple, point, normal, collider)
+
+func _on_respawn_timer_timeout():
+	CheckpointManager.respawn()
