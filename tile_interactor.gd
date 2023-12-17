@@ -4,7 +4,7 @@ extends Node
 @export var tile_map: TileMap = null
 @export var rules: Array[TileRule] = []
 
-func _process(delta: float):
+func _physics_process(delta: float):
 	_process_body(delta, player.ball_a)
 	_process_body(delta, player.ball_b)
 

@@ -1,8 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://brcbj8ipc8t1t"]
+[gd_scene load_steps=7 format=3 uid="uid://brcbj8ipc8t1t"]
 
 [ext_resource type="TileSet" uid="uid://dila20svsy5ke" path="res://tiles/tileset.tres" id="1_or26b"]
 [ext_resource type="PackedScene" uid="uid://j08dctpbcyt4" path="res://player/player.tscn" id="2_rrr81"]
 [ext_resource type="Script" path="res://tile_interactor.gd" id="3_s1tv3"]
+[ext_resource type="Script" path="res://tiles/rules/crack_rule.gd" id="4_tpvkr"]
+[ext_resource type="AudioStream" uid="uid://ctkpsi4vsqsep" path="res://addons/netengine5/net.bobbo.text-reader/sounds/jam/eng.ogg" id="4_w7av3"]
+
+[sub_resource type="Resource" id="Resource_db8f1"]
+script = ExtResource("4_tpvkr")
+time_until_crumble = 0.5
+crumble_start_sound = ExtResource("4_w7av3")
+crumble_complete_sound = ExtResource("4_w7av3")
 
 [node name="Node2D" type="Node2D"]
 
@@ -17,7 +25,7 @@ layer_1/modulate = Color(1, 1, 1, 1)
 layer_1/y_sort_enabled = false
 layer_1/y_sort_origin = 0
 layer_1/z_index = 0
-layer_1/tile_data = PackedInt32Array(589838, 327682, 5, 524302, 262146, 1, 458766, 393218, 2, 589837, 131074, 6, 524301, 2, 3, 458765, 196610, 3, 720905, 393218, 1, 720904, 327682, 6, 720903, 327682, 6, 720902, 196610, 6, 655366, 393218, 2, 720901, 131074, 6, 655365, 196610, 3, 589823, 196610, 3, 655359, 131074, 6, 589824, 327682, 5, 524288, 393218, 2, -65525, 65538, 0, -65524, 327682, 6, -65523, 327682, 0, 13, 393218, 5, 65549, 2, 5, 65550, 393218, 1, 65552, 65538, 0, 65553, 393218, 1)
+layer_1/tile_data = PackedInt32Array(589838, 327682, 5, 524302, 262146, 1, 458766, 393218, 2, 589837, 131074, 6, 524301, 2, 3, 458765, 196610, 3, 720905, 393218, 1, 720904, 327682, 6, 720903, 327682, 6, 720902, 196610, 6, 655366, 393218, 2, 720901, 131074, 6, 655365, 196610, 3, 589823, 196610, 3, 655359, 131074, 6, 589824, 327682, 5, 524288, 393218, 2, -65525, 65538, 0, -65524, 327682, 6, -65523, 327682, 0, 13, 393218, 5, 65549, 2, 5, 65550, 393218, 1, 65552, 65538, 0, 65553, 393218, 1, 7, 196614, 3, 8, 393222, 2, 65544, 327686, 5, 65543, 131078, 6)
 layer_2/name = "Foreground"
 layer_2/enabled = true
 layer_2/modulate = Color(1, 1, 1, 1)
@@ -36,3 +44,4 @@ zoom = Vector2(3, 3)
 script = ExtResource("3_s1tv3")
 player = NodePath("../Player")
 tile_map = NodePath("../TileMap")
+rules = Array[Resource("res://tiles/rules/tile_rule.gd")]([SubResource("Resource_db8f1")])
