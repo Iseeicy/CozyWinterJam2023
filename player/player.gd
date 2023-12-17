@@ -19,6 +19,7 @@ signal grapple_unlocked(grapple: Grapple3, point: Vector2, normal: Vector2, coll
 @export var grapple_scene: PackedScene = null
 @export var explode_particle_scene: PackedScene = null
 @export var zap_particles_scene: PackedScene = null
+@export var fall_particles_scene: PackedScene = null
 
 #
 #	Private Variables
@@ -93,6 +94,16 @@ func kill(which_body: RigidBody2D, type: KillType) -> void:
 	if which_body.visible:
 		if type == KillType.Zap:
 			var particles = zap_particles_scene.instantiate()
+			get_parent().add_child(particles)
+			particles.global_position = which_body.global_position
+			for child in particles.get_children():
+				child.emitting = true
+
+			var kill_particle = func():
+				particles.queue_free()
+			get_tree().create_timer(4).timeout.connect(kill_particle.bind())
+		elif type == KillType.Fall:
+			var particles = fall_particles_scene.instantiate()
 			get_parent().add_child(particles)
 			particles.global_position = which_body.global_position
 			for child in particles.get_children():
