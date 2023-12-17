@@ -8,9 +8,7 @@ class_name SpikeRule
 func get_tile_id() -> int:
     return ID_SPIKES
 
-func hit_tile(_tile_map: TileMap, position: Vector2i, body: PhysicsBody2D, player: BallsPlayer) -> void:
-    print("WHAH")
-    
+func hit_tile(_tile_map: TileMap, position: Vector2i, body: RigidBody2D, player: BallsPlayer) -> void:
     if get_is_handling(position): return
     set_is_handling(position, true)
     

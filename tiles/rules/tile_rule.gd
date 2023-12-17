@@ -31,10 +31,10 @@ var _handling_dict: Dictionary = {}
 func get_tile_id() -> int:
     return -1
 
-func hit_tile(_tile_map: TileMap, _position: Vector2i, _body: PhysicsBody2D, _player: BallsPlayer) -> void:
+func hit_tile(_tile_map: TileMap, _position: Vector2i, _body: RigidBody2D, _player: BallsPlayer) -> void:
     return
 
-func enter_tile(_tile_map: TileMap, _position: Vector2i, _body: PhysicsBody2D, _player: BallsPlayer) -> void:
+func enter_tile(_tile_map: TileMap, _position: Vector2i, _body: RigidBody2D, _player: BallsPlayer) -> void:
     return
 
 #

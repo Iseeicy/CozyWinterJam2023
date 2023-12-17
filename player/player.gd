@@ -11,7 +11,7 @@ enum KillType {
 #
 
 signal tile_collided(tile_map: TileMap, tile_position: Vector2i, ball: PhysicsBody3D)
-signal killed(which_body: PhysicsBody2D, type: KillType)
+signal killed(which_body: RigidBody2D, type: KillType)
 
 @export var grapple_scene: PackedScene = null
 
@@ -19,8 +19,8 @@ signal killed(which_body: PhysicsBody2D, type: KillType)
 #	Private Variables
 #
 
-@onready var ball_a: PhysicsBody2D = $BallA
-@onready var ball_b: PhysicsBody2D = $BallB
+@onready var ball_a: RigidBody2D = $BallA
+@onready var ball_b: RigidBody2D = $BallB
 var grapple_a: Grapple3 = null
 var grapple_b: Grapple3 = null
 
@@ -70,9 +70,22 @@ func unthrow_grapple_b():
 	grapple_b.unshoot()
 	grapple_b = null
 
-func kill(which_body: PhysicsBody2D, type: KillType) -> void:
-	# TODO
-	queue_free()
+func kill(which_body: RigidBody2D, type: KillType) -> void:
+	set_process_unhandled_input(false)
+	unthrow_grapple_a()
+	unthrow_grapple_b()
+	
+	ball_a.set_physics_process(false)
+	ball_b.set_physics_process(false)
+
+	which_body.hide()
+	# ball_a.hide()
+	# ball_b.hide()
+	
+	for node in $Chain.get_children():
+		if node is PinJoint2D:
+			node.queue_free()
+
 	killed.emit(which_body, type)
 
 

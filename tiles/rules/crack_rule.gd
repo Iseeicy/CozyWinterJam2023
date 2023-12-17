@@ -21,7 +21,7 @@ class_name CrackRule
 func get_tile_id() -> int:
     return ID_CRACK
 
-func enter_tile(tile_map: TileMap, position: Vector2i, _body: PhysicsBody2D, _player: BallsPlayer) -> void:
+func enter_tile(tile_map: TileMap, position: Vector2i, _body: RigidBody2D, _player: BallsPlayer) -> void:
     if get_is_handling(position): return
     set_is_handling(position, true)
     

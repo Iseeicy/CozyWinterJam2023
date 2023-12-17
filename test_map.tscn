@@ -10,7 +10,7 @@
 
 [sub_resource type="Resource" id="Resource_db8f1"]
 script = ExtResource("4_tpvkr")
-time_until_crumble = 0.5
+time_until_crumble = null
 crumble_start_sound = ExtResource("4_w7av3")
 crumble_complete_sound = ExtResource("4_w7av3")
 

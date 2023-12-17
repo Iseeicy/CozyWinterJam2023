@@ -18,7 +18,7 @@ class_name PitRule
 func get_tile_id() -> int:
     return ID_PIT
 
-func enter_tile(tile_map: TileMap, position: Vector2i, body: PhysicsBody2D, player: BallsPlayer) -> void:
+func enter_tile(tile_map: TileMap, position: Vector2i, body: RigidBody2D, player: BallsPlayer) -> void:
     if get_is_handling(position): return
     set_is_handling(position, true)
     
