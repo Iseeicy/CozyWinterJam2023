@@ -39,6 +39,7 @@ func throw_grapple_a():
 	grapple_a = grapple_scene.instantiate()
 	get_parent().add_child(grapple_a)
 	grapple_a.parent_ball = ball_a
+	grapple_a.grapple_type = GrappleRope.GrappleType.Pull
 
 	var direction = get_global_mouse_position() - ball_a.global_position
 	direction = direction.normalized()
@@ -59,6 +60,7 @@ func throw_grapple_b():
 	grapple_b = grapple_scene.instantiate()
 	get_parent().add_child(grapple_b)
 	grapple_b.parent_ball = ball_b
+	grapple_b.grapple_type = GrappleRope.GrappleType.Swing
 
 	var direction = get_global_mouse_position() - ball_b.global_position
 	direction = direction.normalized()

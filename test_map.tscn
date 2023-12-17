@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://brcbj8ipc8t1t"]
+[gd_scene load_steps=10 format=3 uid="uid://brcbj8ipc8t1t"]
 
 [ext_resource type="TileSet" uid="uid://dila20svsy5ke" path="res://tiles/tileset.tres" id="1_or26b"]
 [ext_resource type="Script" path="res://player/player.gd" id="2_w4f7s"]
@@ -6,6 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://bkxtde3row3om" path="res://player/ball_b.png" id="3_dht0g"]
 [ext_resource type="PackedScene" uid="uid://dojo7g52cg6wt" path="res://grapple_rope.tscn" id="3_do6if"]
 [ext_resource type="Texture2D" uid="uid://csc8b76d3i0sb" path="res://player/rope_chunk.png" id="4_dhrkm"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_75bdf"]
+friction = 0.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_v4moj"]
 radius = 1.0
@@ -41,10 +44,14 @@ metadata/_edit_group_ = true
 position = Vector2(-8, 0)
 node_a = NodePath("../../BallA")
 node_b = NodePath("../RopeChunk")
+bias = 0.7
+softness = 2.0
 
 [node name="RopeChunk" type="RigidBody2D" parent="Player/Chain"]
 position = Vector2(-8, 4)
 collision_layer = 2
+mass = 0.1
+physics_material_override = SubResource("PhysicsMaterial_75bdf")
 gravity_scale = 0.0
 metadata/_edit_group_ = true
 
@@ -60,11 +67,15 @@ shape = SubResource("CapsuleShape2D_v4moj")
 position = Vector2(-8, 8)
 node_a = NodePath("../RopeChunk")
 node_b = NodePath("../RopeChunk2")
+bias = 0.7
+softness = 2.0
 
 [node name="RopeChunk2" type="RigidBody2D" parent="Player/Chain"]
 position = Vector2(-4, 8)
 rotation = -1.5708
 collision_layer = 2
+mass = 0.1
+physics_material_override = SubResource("PhysicsMaterial_75bdf")
 gravity_scale = 0.0
 metadata/_edit_group_ = true
 
@@ -80,10 +91,14 @@ shape = SubResource("CapsuleShape2D_v4moj")
 position = Vector2(0, 8)
 node_a = NodePath("../RopeChunk2")
 node_b = NodePath("../RopeChunk3")
+bias = 0.7
+softness = 2.0
 
 [node name="RopeChunk3" type="RigidBody2D" parent="Player/Chain"]
 position = Vector2(0, 12)
 collision_layer = 2
+mass = 0.1
+physics_material_override = SubResource("PhysicsMaterial_75bdf")
 gravity_scale = 0.0
 metadata/_edit_group_ = true
 
@@ -99,11 +114,15 @@ shape = SubResource("CapsuleShape2D_v4moj")
 position = Vector2(0, 16)
 node_a = NodePath("../RopeChunk3")
 node_b = NodePath("../RopeChunk4")
+bias = 0.7
+softness = 2.0
 
 [node name="RopeChunk4" type="RigidBody2D" parent="Player/Chain"]
 position = Vector2(4, 16)
 rotation = -1.5708
 collision_layer = 2
+mass = 0.1
+physics_material_override = SubResource("PhysicsMaterial_75bdf")
 gravity_scale = 0.0
 metadata/_edit_group_ = true
 
@@ -119,11 +138,15 @@ shape = SubResource("CapsuleShape2D_v4moj")
 position = Vector2(8, 16)
 node_a = NodePath("../RopeChunk4")
 node_b = NodePath("../RopeChunk5")
+bias = 0.7
+softness = 2.0
 
 [node name="RopeChunk5" type="RigidBody2D" parent="Player/Chain"]
 position = Vector2(8, 12)
 rotation = 3.14159
 collision_layer = 2
+mass = 0.1
+physics_material_override = SubResource("PhysicsMaterial_75bdf")
 gravity_scale = 0.0
 metadata/_edit_group_ = true
 
@@ -139,11 +162,15 @@ shape = SubResource("CapsuleShape2D_v4moj")
 position = Vector2(8, 8)
 node_a = NodePath("../RopeChunk5")
 node_b = NodePath("../RopeChunk6")
+bias = 0.7
+softness = 2.0
 
 [node name="RopeChunk6" type="RigidBody2D" parent="Player/Chain"]
 position = Vector2(8, 4)
 rotation = 3.14159
 collision_layer = 2
+mass = 0.1
+physics_material_override = SubResource("PhysicsMaterial_75bdf")
 gravity_scale = 0.0
 metadata/_edit_group_ = true
 
@@ -159,6 +186,8 @@ shape = SubResource("CapsuleShape2D_v4moj")
 position = Vector2(8, 0)
 node_a = NodePath("../RopeChunk6")
 node_b = NodePath("../../BallB")
+bias = 0.7
+softness = 2.0
 
 [node name="BallA" type="RigidBody2D" parent="Player"]
 position = Vector2(-8, 0)
@@ -166,7 +195,7 @@ collision_layer = 4
 collision_mask = 5
 mass = 0.5
 gravity_scale = 0.0
-linear_damp = 10.0
+linear_damp = 5.0
 
 [node name="Sprite2D" type="Sprite2D" parent="Player/BallA"]
 texture = ExtResource("2_xq8tk")
@@ -180,7 +209,7 @@ collision_layer = 4
 collision_mask = 5
 mass = 0.5
 gravity_scale = 0.0
-linear_damp = 10.0
+linear_damp = 5.0
 
 [node name="Sprite2D" type="Sprite2D" parent="Player/BallB"]
 texture = ExtResource("3_dht0g")

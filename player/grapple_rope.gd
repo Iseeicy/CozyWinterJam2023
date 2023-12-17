@@ -1,9 +1,24 @@
 extends RigidBody2D
 class_name GrappleRope
 
+#
+#	Enum
+#
+
+enum GrappleType {
+	Pull,
+	Swing
+}
+
+#
+#	Exports
+#
+
 signal shot_grapple()
 signal unshot_grapple()
 signal locked_grapple()
+signal link_added(is_locked: bool, link_count: int)
+signal link_removed(is_locked: bool, link_count: int)
 
 @export var shoot_impulse: float = 10
 @export var pull_strength: float = 10
@@ -13,6 +28,11 @@ signal locked_grapple()
 @export var stick_force: float = 10000
 @export var fly_force: float = 10000
 @export var closeness_threshold: float = 10
+@export var grapple_type: GrappleType = GrappleType.Pull
+
+#
+#	Private Variables
+#
 
 const link_length = 8
 var _links: Array[PinJoint2D] = []
@@ -56,12 +76,12 @@ func _physics_process(delta):
 		var cur_stick_force = stick_force if _is_locked else stick_force * 1.0
 		last_link.apply_central_force(aim_direction * cur_stick_force * delta)
 
-	while _links.size() > 0 and _get_last_link_distance() < closeness_threshold:
+	while _links.size() > 0 and _get_last_link_distance() < closeness_threshold and (grapple_type != GrappleType.Swing or not _is_locked):
 		_remove_link()
-	while _get_last_link_distance() - (link_length) > closeness_threshold and (not _is_locked or _get_rope_length() < _get_min_possible_length()):
+	while _get_last_link_distance() - (link_length) > closeness_threshold and (not _is_locked  or _get_rope_length() < _get_min_possible_length() or grapple_type != GrappleType.Pull):
 		_add_link()
 
-	if _is_locked:
+	if _is_locked and grapple_type == GrappleType.Pull:
 		var target_link = _get_last_link()
 		if not target_link: target_link = self
 		
@@ -114,6 +134,23 @@ func _on_shoot() -> void:
 func _on_lock() -> void:
 	freeze = true
 	_is_locked = true
+
+	if grapple_type == GrappleType.Swing:
+		var last_link = _get_last_link()
+		
+		# Create the joint
+		var new_joint: PinJoint2D = PinJoint2D.new()
+		get_parent().add_child(new_joint)
+		new_joint.bias = 0.7
+		new_joint.softness = 2
+		new_joint.global_position = parent_ball.global_position.lerp(last_link.global_position, 0.5)
+
+		# Join the link
+		new_joint.node_a = new_joint.get_path_to(parent_ball)
+		new_joint.node_b = new_joint.get_path_to(last_link)
+		_links.push_back(new_joint)
+
+		
 	locked_grapple.emit()
 
 
@@ -150,6 +187,7 @@ func _add_link():
 	new_joint.node_b = new_joint.get_path_to(new_link)
 
 	_links.push_back(new_joint)
+	link_added.emit(_is_locked, _links.size())
 
 	
 func _remove_link():
@@ -162,6 +200,7 @@ func _remove_link():
 	# Free it up!
 	last_link.get_node(last_link.node_b).queue_free()
 	last_link.queue_free()
+	link_removed.emit(_is_locked, _links.size())
 
 func _get_rope_length() -> float:
 	return link_length + (_links.size() * link_length)
