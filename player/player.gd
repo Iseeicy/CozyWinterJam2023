@@ -1,4 +1,5 @@
 extends Node2D
+class_name BallsPlayer
 
 #
 #	Exports
@@ -52,7 +53,7 @@ func throw_grapple_b():
 	
 	grapple_b = grapple_scene.instantiate()
 	get_parent().add_child(grapple_b)
-	
+
 	grapple_b.shoot(Grapple3.GrappleType.Swing, ball_b, get_global_mouse_position() - ball_b.global_position)
 
 func unthrow_grapple_b():
