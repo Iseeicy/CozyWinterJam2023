@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://brcbj8ipc8t1t"]
+[gd_scene load_steps=13 format=3 uid="uid://brcbj8ipc8t1t"]
 
 [ext_resource type="TileSet" uid="uid://dila20svsy5ke" path="res://tiles/tileset.tres" id="1_or26b"]
 [ext_resource type="PackedScene" uid="uid://j08dctpbcyt4" path="res://player/player.tscn" id="2_rrr81"]
@@ -7,10 +7,11 @@
 [ext_resource type="AudioStream" uid="uid://ctkpsi4vsqsep" path="res://addons/netengine5/net.bobbo.text-reader/sounds/jam/eng.ogg" id="4_w7av3"]
 [ext_resource type="Script" path="res://tiles/rules/spike_rule.gd" id="6_vhkip"]
 [ext_resource type="Script" path="res://tiles/rules/pit_rule.gd" id="7_4cm7s"]
+[ext_resource type="Script" path="res://tiles/rules/snow_rule.gd" id="8_t5hvh"]
 
 [sub_resource type="Resource" id="Resource_db8f1"]
 script = ExtResource("4_tpvkr")
-time_until_crumble = null
+time_until_crumble = 0.5
 crumble_start_sound = ExtResource("4_w7av3")
 crumble_complete_sound = ExtResource("4_w7av3")
 
@@ -19,6 +20,9 @@ script = ExtResource("6_vhkip")
 
 [sub_resource type="Resource" id="Resource_jaw01"]
 script = ExtResource("7_4cm7s")
+
+[sub_resource type="Resource" id="Resource_huhk7"]
+script = ExtResource("8_t5hvh")
 
 [node name="Node2D" type="Node2D"]
 
@@ -52,4 +56,4 @@ zoom = Vector2(3, 3)
 script = ExtResource("3_s1tv3")
 player = NodePath("../Player")
 tile_map = NodePath("../TileMap")
-rules = Array[Resource("res://tiles/rules/tile_rule.gd")]([SubResource("Resource_db8f1"), SubResource("Resource_1b2x8"), SubResource("Resource_jaw01")])
+rules = Array[Resource("res://tiles/rules/tile_rule.gd")]([SubResource("Resource_db8f1"), SubResource("Resource_1b2x8"), SubResource("Resource_jaw01"), SubResource("Resource_huhk7")])

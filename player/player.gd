@@ -21,6 +21,7 @@ signal killed(which_body: RigidBody2D, type: KillType)
 
 @onready var ball_a: RigidBody2D = $BallA
 @onready var ball_b: RigidBody2D = $BallB
+@onready var default_friction: float = ball_a.linear_damp
 var grapple_a: Grapple3 = null
 var grapple_b: Grapple3 = null
 
