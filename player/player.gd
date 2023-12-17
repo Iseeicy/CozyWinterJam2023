@@ -3,7 +3,8 @@ class_name BallsPlayer
 
 enum KillType {
 	Shatter,
-	Fall
+	Fall,
+	Zap
 }
 
 #

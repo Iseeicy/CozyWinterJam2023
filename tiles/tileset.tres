@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=13 format=3 uid="uid://dila20svsy5ke"]
+[gd_resource type="TileSet" load_steps=12 format=3 uid="uid://dila20svsy5ke"]
 
 [ext_resource type="Texture2D" uid="uid://t8iedbonbgcb" path="res://tiles/IceTileset.png" id="1_d10fl"]
 [ext_resource type="Texture2D" uid="uid://sruc0idanec" path="res://tiles/placeholder_tileset.png" id="1_y5f7g"]
@@ -3541,9 +3541,6 @@ texture = ExtResource("2_c4udv")
 6:6/0/terrains_peering_bit/left_side = 6
 6:6/0/terrains_peering_bit/top_side = 6
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mcgks"]
-resource_name = "Icicle"
-
 [resource]
 physics_layer_0/collision_layer = 1
 terrain_set_0/mode = 0
@@ -3564,6 +3561,8 @@ terrain_set_1/terrain_5/name = "Crack"
 terrain_set_1/terrain_5/color = Color(0.14902, 0.14902, 0.14902, 1)
 terrain_set_1/terrain_6/name = "ElectricWall"
 terrain_set_1/terrain_6/color = Color(1, 1, 0, 1)
+terrain_set_1/terrain_7/name = "Icicle"
+terrain_set_1/terrain_7/color = Color(0.384314, 0.67451, 0.831373, 1)
 sources/0 = SubResource("TileSetAtlasSource_54hfa")
 sources/1 = SubResource("TileSetAtlasSource_kogmq")
 sources/2 = SubResource("TileSetAtlasSource_54hfb")
@@ -3572,4 +3571,3 @@ sources/4 = SubResource("TileSetAtlasSource_54hfd")
 sources/5 = SubResource("TileSetAtlasSource_54hfe")
 sources/6 = SubResource("TileSetAtlasSource_54hff")
 sources/7 = SubResource("TileSetAtlasSource_54hfg")
-sources/8 = SubResource("TileSetAtlasSource_mcgks")
