@@ -21,6 +21,7 @@ enum State {
 
 @export var shoot_impulse: float = 500
 @export var pull_strength: float = 10000
+@export var swing_joint_scene: PackedScene = null
 
 #
 #	Private Variables
@@ -31,6 +32,7 @@ var _state: State = State.Shooting
 var _impulse: Vector2 = Vector2.ZERO
 var _ball: PhysicsBody2D = null
 var _grapple_type: GrappleType = GrappleType.Pull 
+var _swing_joint: SwingJoint = null
 
 #
 #	Godot Functions
@@ -68,12 +70,22 @@ func shoot(type: GrappleType, origin_ball: PhysicsBody2D, aim_direction: Vector2
 	_grapple_type = type
 
 func unshoot() -> void:
+	set_physics_process(false)
+
+	if _swing_joint: _swing_joint.queue_free()
 	queue_free()
 
 func lock(point: Vector2, normal: Vector2) -> void:
 	global_position = point
 	global_rotation = normal.rotated(deg_to_rad(180)).angle()
 	_state = State.Locked
+
+	if _grapple_type == GrappleType.Swing:
+		_swing_joint = swing_joint_scene.instantiate()
+		get_parent().add_child(_swing_joint)
+
+		_swing_joint.connect_bodies(point, _ball)
+
 
 #
 #	Private Functions

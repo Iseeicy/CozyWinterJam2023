@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://45aqkmy4ychd"]
+[gd_scene load_steps=6 format=3 uid="uid://45aqkmy4ychd"]
 
 [ext_resource type="Script" path="res://player/grapple_3.gd" id="1_wju0f"]
+[ext_resource type="PackedScene" uid="uid://bxji2x0onw1em" path="res://swing_joint.tscn" id="2_jxxv0"]
 [ext_resource type="Texture2D" uid="uid://2aagxf8ip3r2" path="res://player/grapple_end.png" id="2_qeplt"]
 [ext_resource type="Texture2D" uid="uid://c2l4hto1hxrf8" path="res://player/grapple_chunk.png" id="3_mixww"]
 
@@ -12,6 +13,7 @@ collision_layer = 2
 script = ExtResource("1_wju0f")
 shoot_impulse = 800.0
 pull_strength = 50000.0
+swing_joint_scene = ExtResource("2_jxxv0")
 
 [node name="Line2D" type="Line2D" parent="."]
 z_as_relative = false
