@@ -1099,6 +1099,11 @@ texture = ExtResource("2_c4udv")
 6:6/0/physics_layer_0/angular_velocity = 0.0
 6:6/0/terrains_peering_bit/left_side = 1
 6:6/0/terrains_peering_bit/top_side = 1
+0:6/0 = 0
+0:6/0/terrain_set = 1
+0:6/0/terrain = 1
+0:6/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:6/0/physics_layer_0/angular_velocity = 0.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_54hfc"]
 resource_name = "Wall"
@@ -1613,6 +1618,13 @@ texture = ExtResource("2_c4udv")
 6:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 6:6/0/terrains_peering_bit/left_side = 2
 6:6/0/terrains_peering_bit/top_side = 2
+0:6/0 = 0
+0:6/0/modulate = Color(0.235294, 0.337255, 1, 1)
+0:6/0/terrain_set = 1
+0:6/0/terrain = 2
+0:6/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:6/0/physics_layer_0/angular_velocity = 0.0
+0:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_54hfd"]
 resource_name = "Spikes"
@@ -2127,6 +2139,13 @@ texture = ExtResource("2_c4udv")
 6:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 6:6/0/terrains_peering_bit/left_side = 3
 6:6/0/terrains_peering_bit/top_side = 3
+0:6/0 = 0
+0:6/0/modulate = Color(1, 0, 0, 1)
+0:6/0/terrain_set = 1
+0:6/0/terrain = 3
+0:6/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:6/0/physics_layer_0/angular_velocity = 0.0
+0:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_54hfe"]
 resource_name = "Pit"
@@ -2595,6 +2614,12 @@ texture = ExtResource("2_c4udv")
 6:6/0/physics_layer_0/angular_velocity = 0.0
 6:6/0/terrains_peering_bit/left_side = 4
 6:6/0/terrains_peering_bit/top_side = 4
+0:6/0 = 0
+0:6/0/modulate = Color(0.0470588, 0.0470588, 0.0470588, 1)
+0:6/0/terrain_set = 1
+0:6/0/terrain = 4
+0:6/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:6/0/physics_layer_0/angular_velocity = 0.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_54hff"]
 resource_name = "Crack"
@@ -3063,6 +3088,12 @@ texture = ExtResource("2_c4udv")
 6:6/0/physics_layer_0/angular_velocity = 0.0
 6:6/0/terrains_peering_bit/left_side = 5
 6:6/0/terrains_peering_bit/top_side = 5
+0:6/0 = 0
+0:6/0/modulate = Color(0.196078, 0.196078, 0.196078, 1)
+0:6/0/terrain_set = 1
+0:6/0/terrain = 5
+0:6/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:6/0/physics_layer_0/angular_velocity = 0.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_54hfg"]
 resource_name = "ElectricWall"
@@ -3577,6 +3608,13 @@ texture = ExtResource("2_c4udv")
 6:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 6:6/0/terrains_peering_bit/left_side = 6
 6:6/0/terrains_peering_bit/top_side = 6
+0:6/0 = 0
+0:6/0/modulate = Color(1, 1, 0, 1)
+0:6/0/terrain_set = 1
+0:6/0/terrain = 6
+0:6/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:6/0/physics_layer_0/angular_velocity = 0.0
+0:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_54hfh"]
 resource_name = "Icicle"
