@@ -195,7 +195,7 @@ collision_layer = 4
 collision_mask = 5
 mass = 0.5
 gravity_scale = 0.0
-linear_damp = 5.0
+linear_damp = 1.0
 
 [node name="Sprite2D" type="Sprite2D" parent="Player/BallA"]
 texture = ExtResource("2_xq8tk")
@@ -209,7 +209,7 @@ collision_layer = 4
 collision_mask = 5
 mass = 0.5
 gravity_scale = 0.0
-linear_damp = 5.0
+linear_damp = 1.0
 
 [node name="Sprite2D" type="Sprite2D" parent="Player/BallB"]
 texture = ExtResource("3_dht0g")

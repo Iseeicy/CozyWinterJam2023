@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://c2l4hto1hxrf8" path="res://player/grapple_chunk.png" id="3_mixww"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_plsbg"]
-size = Vector2(5, 8)
+size = Vector2(5, 6)
 
 [node name="Grapple3" type="CharacterBody2D"]
 collision_layer = 2
@@ -19,15 +19,14 @@ swing_joint_scene = ExtResource("2_jxxv0")
 z_as_relative = false
 y_sort_enabled = true
 texture_repeat = 2
-points = PackedVector2Array(-4, 0, 0, 0)
+points = PackedVector2Array(0, 0, 0, 0)
 width = 8.0
 texture = ExtResource("3_mixww")
 texture_mode = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-4, 0)
 texture = ExtResource("2_qeplt")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-2.5, 0)
+position = Vector2(2, 0)
 shape = SubResource("RectangleShape2D_plsbg")
