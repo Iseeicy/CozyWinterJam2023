@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://yec300o05c8y"]
+
+[ext_resource type="Texture2D" uid="uid://dqhq4dfftsqir" path="res://player/ball_shatter_chunk.png" id="1_xv306"]
+
+[sub_resource type="Curve" id="Curve_f1m6x"]
+max_value = 100.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 48.4211), 126.988, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_hq7bm"]
+curve = SubResource("Curve_f1m6x")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_klcm0"]
+particle_flag_disable_z = true
+spread = 180.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 10.0
+initial_velocity_max = 60.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+damping_min = 50.0
+damping_max = 50.0
+damping_curve = SubResource("CurveTexture_hq7bm")
+angle_min = -180.0
+angle_max = 180.0
+
+[node name="PlayerExplode" type="GPUParticles2D"]
+position = Vector2(160, 64)
+emitting = false
+amount = 10
+process_material = SubResource("ParticleProcessMaterial_klcm0")
+texture = ExtResource("1_xv306")
+lifetime = 3.0
+one_shot = true
+explosiveness = 1.0

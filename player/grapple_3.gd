@@ -19,6 +19,9 @@ enum State {
 #	Exports
 #
 
+signal locked(grapple: Grapple3, point: Vector2, normal: Vector2, collider: Object)
+signal unlocked(grapple: Grapple3, point: Vector2, normal: Vector2, collider: Object)
+
 @export var shoot_impulse: float = 500
 @export var pull_strength: float = 10000
 @export var swing_joint_scene: PackedScene = null
@@ -34,6 +37,10 @@ var _ball: PhysicsBody2D = null
 var _grapple_type: GrappleType = GrappleType.Pull 
 var _swing_joint: SwingJoint = null
 
+var _locked_point: Vector2
+var _locked_normal: Vector2
+var _locked_collider: Object
+
 #
 #	Godot Functions
 #
@@ -41,7 +48,7 @@ var _swing_joint: SwingJoint = null
 func _physics_process(delta):
 	if _state == State.Shooting:
 		var collision = move_and_collide(_impulse * delta)
-		if collision: lock(collision.get_position(), collision.get_normal())
+		if collision: lock(collision.get_position(), collision.get_normal(), collision.get_collider())
 	elif _state == State.Locked:
 		if _grapple_type == GrappleType.Pull:
 			_physics_process_grapple_pull(delta)
@@ -73,11 +80,19 @@ func unshoot() -> void:
 	set_physics_process(false)
 
 	if _swing_joint: _swing_joint.queue_free()
+
+	if _state == State.Locked:
+		unlocked.emit(self, _locked_point, _locked_normal, _locked_collider)
+		
 	queue_free()
 
-func lock(point: Vector2, normal: Vector2) -> void:
+func lock(point: Vector2, normal: Vector2, collider: Object) -> void:
 	global_position = point
 	global_rotation = normal.rotated(deg_to_rad(180)).angle()
+
+	_locked_point = point
+	_locked_normal = normal
+	_locked_collider = collider
 	_state = State.Locked
 
 	if _grapple_type == GrappleType.Swing:
@@ -85,6 +100,8 @@ func lock(point: Vector2, normal: Vector2) -> void:
 		get_parent().add_child(_swing_joint)
 
 		_swing_joint.connect_bodies(point, _ball)
+
+	locked.emit(self, point, normal, collider)
 
 
 #
