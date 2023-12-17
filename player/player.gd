@@ -110,6 +110,7 @@ func kill(which_body: RigidBody2D, type: KillType) -> void:
 		elif type == KillType.Fall:
 			var particles = fall_particles_scene.instantiate()
 			get_parent().add_child(particles)
+			print("%s %s" % [particles.global_position, which_body.global_position])
 			particles.global_position = which_body.global_position
 			for child in particles.get_children():
 				child.emitting = true
