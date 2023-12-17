@@ -1,0 +1,88 @@
+[gd_scene load_steps=13 format=3 uid="uid://d3ed5jeerijkj"]
+
+[ext_resource type="Texture2D" uid="uid://dqhq4dfftsqir" path="res://player/ball_shatter_chunk.png" id="1_sqlwm"]
+[ext_resource type="Texture2D" uid="uid://c3hinbqbcc18e" path="res://player/zap_particle_1.png" id="2_lthmq"]
+[ext_resource type="Texture2D" uid="uid://bmmbeq6m8q36i" path="res://player/zap_particle_2.png" id="3_laht5"]
+
+[sub_resource type="Curve" id="Curve_f1m6x"]
+max_value = 100.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 48.4211), 126.988, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_hq7bm"]
+curve = SubResource("Curve_f1m6x")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_53s8x"]
+particle_flag_disable_z = true
+spread = 180.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 10.0
+initial_velocity_max = 20.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+damping_min = 50.0
+damping_max = 50.0
+damping_curve = SubResource("CurveTexture_hq7bm")
+angle_min = -180.0
+angle_max = 180.0
+sub_emitter_keep_velocity = true
+
+[sub_resource type="Gradient" id="Gradient_rjgxo"]
+offsets = PackedFloat32Array(0.508021, 0.700535, 0.855615, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_3jgs7"]
+gradient = SubResource("Gradient_rjgxo")
+
+[sub_resource type="Curve" id="Curve_h01ek"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.111111, 0.442105), 0.0, 0.0, 0, 0, Vector2(0.246914, 1), 0.0, 0.0, 0, 0, Vector2(0.37037, 0.452632), 0.0, 0.0, 0, 0, Vector2(0.503704, 1), 0.0, 0.0, 0, 0, Vector2(0.607407, 0.48421), 0.0, 0.0, 0, 0, Vector2(0.755556, 1), 0.0, 0.0, 0, 0, Vector2(0.871605, 0.431579), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 9
+
+[sub_resource type="CurveTexture" id="CurveTexture_ry34o"]
+curve = SubResource("Curve_h01ek")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_vde44"]
+emission_shape = 2
+emission_sphere_radius = 8.0
+particle_flag_disable_z = true
+direction = Vector3(0, -1, 0)
+spread = 0.0
+gravity = Vector3(0, 2, 0)
+initial_velocity_min = 4.0
+initial_velocity_max = 4.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+angle_min = -10.0
+angle_max = 10.0
+scale_min = 0.5
+scale_curve = SubResource("CurveTexture_ry34o")
+color_ramp = SubResource("GradientTexture1D_3jgs7")
+sub_emitter_keep_velocity = true
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_w8vm0"]
+frames = 2
+frame_0/texture = ExtResource("2_lthmq")
+frame_0/duration = 0.1
+frame_1/texture = ExtResource("3_laht5")
+frame_1/duration = 0.1
+
+[node name="PlayerZapParticles" type="Node2D"]
+
+[node name="PlayerZap" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 10
+process_material = SubResource("ParticleProcessMaterial_53s8x")
+texture = ExtResource("1_sqlwm")
+lifetime = 3.0
+one_shot = true
+explosiveness = 1.0
+
+[node name="PlayerZap2" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 4
+process_material = SubResource("ParticleProcessMaterial_vde44")
+texture = SubResource("AnimatedTexture_w8vm0")
+lifetime = 3.0
+one_shot = true
+speed_scale = 6.0
+explosiveness = 1.0
