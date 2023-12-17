@@ -2,6 +2,7 @@ extends Node
 
 signal player_spawned(player: BallsPlayer)
 signal player_despawned(player: BallsPlayer)
+signal player_reset()
 
 var _player_scene: PackedScene = preload("res://player/player.tscn")
 
@@ -26,6 +27,7 @@ func respawn():
 		_current_player = null
 	
 	_spawn_player()
+	player_reset.emit()
 
 func flag_new_checkpoint(checkpoint: Checkpoint) -> void:
 	if _current_checkpoint == checkpoint: return

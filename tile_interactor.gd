@@ -11,6 +11,7 @@ extends Node
 func _ready():
 	CheckpointManager.player_spawned.connect(_on_player_spawned.bind())
 	CheckpointManager.player_despawned.connect(_on_player_despawned.bind())
+	CheckpointManager.player_reset.connect(_on_player_reset.bind())
 
 func _physics_process(delta: float):
 	if not player: return
@@ -93,3 +94,7 @@ func _on_player_spawned(new_player: BallsPlayer):
 
 func _on_player_despawned(_new_player: BallsPlayer):
 	player = null
+
+func _on_player_reset():
+	for rule in rules:
+		rule.reset()
