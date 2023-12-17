@@ -1,9 +1,10 @@
-[gd_resource type="TileSet" load_steps=14 format=3 uid="uid://dila20svsy5ke"]
+[gd_resource type="TileSet" load_steps=16 format=3 uid="uid://dila20svsy5ke"]
 
 [ext_resource type="Texture2D" uid="uid://t8iedbonbgcb" path="res://tiles/IceTileset.png" id="1_d10fl"]
 [ext_resource type="Texture2D" uid="uid://sruc0idanec" path="res://tiles/placeholder_tileset.png" id="1_y5f7g"]
 [ext_resource type="Texture2D" uid="uid://k305dwwar8di" path="res://tiles/SnowTileset.png" id="2_c4udv"]
 [ext_resource type="Texture2D" uid="uid://j1g0xmm0h4d4" path="res://tiles/IcicleTileset.png" id="4_s7y2o"]
+[ext_resource type="Texture2D" uid="uid://dnk0s0m4ycynf" path="res://tiles/present_grey.png" id="5_hahkb"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_54hfa"]
 resource_name = "Ice"
@@ -4016,6 +4017,74 @@ texture = ExtResource("4_s7y2o")
 0:6/0/physics_layer_0/angular_velocity = 0.0
 0:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vkwo4"]
+resource_name = "Present"
+texture = ExtResource("5_hahkb")
+0:0/animation_frame_0/duration = 0.2
+0:0/animation_frame_1/duration = 0.2
+0:0/0 = 0
+0:0/0/modulate = Color(1, 0, 0, 1)
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+0:0/0/custom_data_0 = "red_present"
+2:0/animation_frame_0/duration = 0.2
+2:0/animation_frame_1/duration = 0.2
+2:0/0 = 0
+2:0/0/modulate = Color(0, 1, 0, 1)
+2:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:0/0/physics_layer_0/angular_velocity = 0.0
+2:0/0/custom_data_0 = "green_present"
+0:1/animation_frame_0/duration = 0.2
+0:1/animation_frame_1/duration = 0.2
+0:1/0 = 0
+0:1/0/modulate = Color(0, 0, 1, 1)
+0:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:1/0/physics_layer_0/angular_velocity = 0.0
+0:1/0/custom_data_0 = "blue_present"
+2:1/animation_frame_0/duration = 0.2
+2:1/animation_frame_1/duration = 0.2
+2:1/0 = 0
+2:1/0/modulate = Color(1, 1, 0, 1)
+2:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:1/0/physics_layer_0/angular_velocity = 0.0
+2:1/0/custom_data_0 = "yellow_present"
+0:2/animation_frame_0/duration = 0.2
+0:2/animation_frame_1/duration = 0.2
+0:2/0 = 0
+0:2/0/modulate = Color(1, 0, 1, 1)
+0:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:2/0/physics_layer_0/angular_velocity = 0.0
+0:2/0/custom_data_0 = "magenta_present"
+2:2/animation_frame_0/duration = 0.2
+2:2/animation_frame_1/duration = 0.2
+2:2/0 = 0
+2:2/0/modulate = Color(0, 1, 1, 1)
+2:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:2/0/physics_layer_0/angular_velocity = 0.0
+2:2/0/custom_data_0 = "cyan_present"
+0:3/animation_frame_0/duration = 0.2
+0:3/animation_frame_1/duration = 0.2
+0:3/0 = 0
+0:3/0/modulate = Color(0.270588, 1, 0.878431, 1)
+0:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:3/0/physics_layer_0/angular_velocity = 0.0
+0:3/0/custom_data_0 = "mint_present"
+2:3/animation_frame_0/duration = 0.2
+2:3/animation_frame_1/duration = 0.2
+2:3/0 = 0
+2:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:3/0/physics_layer_0/angular_velocity = 0.0
+0:4/animation_frame_0/duration = 0.2
+0:4/animation_frame_1/duration = 0.2
+0:4/0 = 0
+0:4/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:4/0/physics_layer_0/angular_velocity = 0.0
+2:4/animation_frame_0/duration = 0.2
+2:4/animation_frame_1/duration = 0.2
+2:4/0 = 0
+2:4/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:4/0/physics_layer_0/angular_velocity = 0.0
+
 [resource]
 physics_layer_0/collision_layer = 1
 terrain_set_0/mode = 0
@@ -4038,6 +4107,8 @@ terrain_set_1/terrain_6/name = "ElectricWall"
 terrain_set_1/terrain_6/color = Color(1, 1, 0, 1)
 terrain_set_1/terrain_7/name = "Icicle"
 terrain_set_1/terrain_7/color = Color(0.384314, 0.67451, 0.831373, 1)
+custom_data_layer_0/name = "currency_type"
+custom_data_layer_0/type = 4
 sources/0 = SubResource("TileSetAtlasSource_54hfa")
 sources/1 = SubResource("TileSetAtlasSource_kogmq")
 sources/2 = SubResource("TileSetAtlasSource_54hfb")
@@ -4047,3 +4118,4 @@ sources/5 = SubResource("TileSetAtlasSource_54hfe")
 sources/6 = SubResource("TileSetAtlasSource_54hff")
 sources/7 = SubResource("TileSetAtlasSource_54hfg")
 sources/8 = SubResource("TileSetAtlasSource_54hfh")
+sources/9 = SubResource("TileSetAtlasSource_vkwo4")
