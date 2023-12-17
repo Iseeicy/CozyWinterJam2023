@@ -12,6 +12,8 @@ enum KillType {
 
 signal tile_collided(tile_map: TileMap, tile_position: Vector2i, ball: PhysicsBody3D)
 signal killed(which_body: RigidBody2D, type: KillType)
+signal grapple_locked(grapple: Grapple3, point: Vector2, normal: Vector2, collider: Object)
+signal grapple_unlocked(grapple: Grapple3, point: Vector2, normal: Vector2, collider: Object)
 
 @export var grapple_scene: PackedScene = null
 
@@ -48,6 +50,7 @@ func throw_grapple_a():
 	
 	grapple_a = grapple_scene.instantiate()
 	get_parent().add_child(grapple_a)
+	grapple_a.locked.connect(_on_grapple_locked.bind())
 	
 	grapple_a.shoot(Grapple3.GrappleType.Pull, ball_a, get_global_mouse_position() - ball_a.global_position)
 
@@ -62,6 +65,7 @@ func throw_grapple_b():
 	
 	grapple_b = grapple_scene.instantiate()
 	get_parent().add_child(grapple_b)
+	grapple_b.locked.connect(_on_grapple_locked.bind())
 
 	grapple_b.shoot(Grapple3.GrappleType.Swing, ball_b, get_global_mouse_position() - ball_b.global_position)
 
@@ -70,6 +74,10 @@ func unthrow_grapple_b():
 
 	grapple_b.unshoot()
 	grapple_b = null
+
+func unthrow_grapple(grapple: Grapple3):
+	if grapple == grapple_a: unthrow_grapple_a()
+	if grapple == grapple_b: unthrow_grapple_b()
 
 func kill(which_body: RigidBody2D, type: KillType) -> void:
 	set_process_unhandled_input(false)
@@ -97,3 +105,9 @@ func _on_ball_b_body_shape_entered(body_rid:RID, body: Node, _body_shape_index:i
 func _on_ball_a_body_shape_entered(body_rid:RID, body: Node, _body_shape_index:int, _local_shape_index:int):
 	if not body is TileMap: return
 	tile_collided.emit(body, body.get_coords_for_body_rid(body_rid), ball_a)
+
+func _on_grapple_locked(grapple: Grapple3, point: Vector2, normal: Vector2, collider: Object):
+	grapple_locked.emit(grapple, point, normal, collider)
+
+func _on_grapple_unlocked(grapple: Grapple3, point: Vector2, normal: Vector2, collider: Object):
+	grapple_unlocked.emit(grapple, point, normal, collider)
