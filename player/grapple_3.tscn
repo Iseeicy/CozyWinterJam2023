@@ -12,6 +12,7 @@ size = Vector2(5, 6)
 collision_layer = 2
 script = ExtResource("1_wju0f")
 shoot_impulse = 800.0
+pull_strength = 20000.0
 swing_joint_scene = ExtResource("2_ejsti")
 
 [node name="Line2D" type="Line2D" parent="."]
