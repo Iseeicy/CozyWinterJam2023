@@ -19,5 +19,5 @@ func hit_tile(_tile_map: TileMap, _layer: int, position: Vector2i, body: RigidBo
     if get_is_handling(position): return
     set_is_handling(position, true)
     
-    player.kill(body, BallsPlayer.KillType.Shatter)
+    player.call_deferred("kill", body, BallsPlayer.KillType.Shatter)
     set_is_handling(position, false)

@@ -109,8 +109,3 @@ script = ExtResource("4_gq56x")
 player = NodePath("../Player")
 tile_map = NodePath("../TileMap")
 rules = Array[Resource("res://tiles/rules/tile_rule.gd")]([SubResource("Resource_db8f1"), SubResource("Resource_1b2x8"), SubResource("Resource_jaw01"), SubResource("Resource_huhk7"), SubResource("Resource_24poh"), SubResource("Resource_injtg"), SubResource("Resource_ths2v")])
-
-[connection signal="area_entered" from="TileMap/CheckPoint" to="TileMap/CheckPoint" method="_on_area_entered" flags=18]
-[connection signal="body_entered" from="TileMap/CheckPoint" to="TileMap/CheckPoint" method="_on_body_entered" flags=18]
-[connection signal="area_entered" from="TileMap/@Area2D@389048" to="TileMap/@Area2D@389048" method="_on_area_entered" flags=18]
-[connection signal="body_entered" from="TileMap/@Area2D@389048" to="TileMap/@Area2D@389048" method="_on_body_entered" flags=18]
