@@ -1,20 +1,11 @@
-[gd_scene load_steps=20 format=3 uid="uid://brcbj8ipc8t1t"]
+[gd_scene load_steps=9 format=3 uid="uid://brcbj8ipc8t1t"]
 
 [ext_resource type="TileSet" uid="uid://dila20svsy5ke" path="res://tiles/tileset.tres" id="1_or26b"]
 [ext_resource type="Script" path="res://player/player.gd" id="2_w4f7s"]
 [ext_resource type="Texture2D" uid="uid://blqqtr1tpka0s" path="res://player/ball_a.png" id="2_xq8tk"]
 [ext_resource type="Texture2D" uid="uid://bkxtde3row3om" path="res://player/ball_b.png" id="3_dht0g"]
+[ext_resource type="PackedScene" uid="uid://dojo7g52cg6wt" path="res://grapple_rope.tscn" id="3_do6if"]
 [ext_resource type="Texture2D" uid="uid://csc8b76d3i0sb" path="res://player/rope_chunk.png" id="4_dhrkm"]
-[ext_resource type="Script" path="res://player/grapple.gd" id="6_fqcqx"]
-[ext_resource type="Texture2D" uid="uid://c2l4hto1hxrf8" path="res://player/grapple_chunk.png" id="6_mqok8"]
-[ext_resource type="Script" path="res://player/rope_line.gd" id="7_80xop"]
-[ext_resource type="Texture2D" uid="uid://2aagxf8ip3r2" path="res://player/grapple_end.png" id="8_l1ww5"]
-[ext_resource type="AudioStream" uid="uid://cycn7m4uq8wd4" path="res://player/grapple_lock_a.ogg" id="10_lompg"]
-[ext_resource type="Script" path="res://player/grapple_audio.gd" id="10_qdusm"]
-[ext_resource type="Texture2D" uid="uid://2q3iasx6rm8u" path="res://icon.svg" id="11_v76i2"]
-[ext_resource type="AudioStream" uid="uid://ce2fqbjo22hui" path="res://player/grapple_throw_a.ogg" id="11_ypm1d"]
-[ext_resource type="Script" path="res://rope_test.gd" id="14_r8sss"]
-[ext_resource type="PackedScene" uid="uid://bylx2vo4mxyvb" path="res://rope_chunk.tscn" id="15_ov4ue"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_v4moj"]
 radius = 1.0
@@ -22,12 +13,6 @@ height = 8.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dmc2p"]
 radius = 6.0
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_bli73"]
-radius = 4.0
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_ye61n"]
-radius = 7.0
 
 [node name="Node2D" type="Node2D"]
 
@@ -47,6 +32,7 @@ layer_1/tile_data = PackedInt32Array(65535, 65537, 2, 131071, 65537, 4, 65536, 1
 [node name="Player" type="Node2D" parent="."]
 position = Vector2(96, 80)
 script = ExtResource("2_w4f7s")
+grapple_scene = ExtResource("3_do6if")
 metadata/_edit_group_ = true
 
 [node name="Chain" type="Node2D" parent="Player"]
@@ -59,7 +45,6 @@ node_b = NodePath("../RopeChunk")
 [node name="RopeChunk" type="RigidBody2D" parent="Player/Chain"]
 position = Vector2(-8, 4)
 collision_layer = 2
-collision_mask = 3
 gravity_scale = 0.0
 metadata/_edit_group_ = true
 
@@ -80,7 +65,6 @@ node_b = NodePath("../RopeChunk2")
 position = Vector2(-4, 8)
 rotation = -1.5708
 collision_layer = 2
-collision_mask = 3
 gravity_scale = 0.0
 metadata/_edit_group_ = true
 
@@ -100,7 +84,6 @@ node_b = NodePath("../RopeChunk3")
 [node name="RopeChunk3" type="RigidBody2D" parent="Player/Chain"]
 position = Vector2(0, 12)
 collision_layer = 2
-collision_mask = 3
 gravity_scale = 0.0
 metadata/_edit_group_ = true
 
@@ -121,7 +104,6 @@ node_b = NodePath("../RopeChunk4")
 position = Vector2(4, 16)
 rotation = -1.5708
 collision_layer = 2
-collision_mask = 3
 gravity_scale = 0.0
 metadata/_edit_group_ = true
 
@@ -142,7 +124,6 @@ node_b = NodePath("../RopeChunk5")
 position = Vector2(8, 12)
 rotation = 3.14159
 collision_layer = 2
-collision_mask = 3
 gravity_scale = 0.0
 metadata/_edit_group_ = true
 
@@ -163,7 +144,6 @@ node_b = NodePath("../RopeChunk6")
 position = Vector2(8, 4)
 rotation = 3.14159
 collision_layer = 2
-collision_mask = 3
 gravity_scale = 0.0
 metadata/_edit_group_ = true
 
@@ -182,8 +162,8 @@ node_b = NodePath("../../BallB")
 
 [node name="BallA" type="RigidBody2D" parent="Player"]
 position = Vector2(-8, 0)
-collision_layer = 2
-collision_mask = 3
+collision_layer = 4
+collision_mask = 5
 mass = 0.5
 gravity_scale = 0.0
 linear_damp = 10.0
@@ -196,8 +176,8 @@ shape = SubResource("CircleShape2D_dmc2p")
 
 [node name="BallB" type="RigidBody2D" parent="Player"]
 position = Vector2(8, 0)
-collision_layer = 2
-collision_mask = 3
+collision_layer = 4
+collision_mask = 5
 mass = 0.5
 gravity_scale = 0.0
 linear_damp = 10.0
@@ -208,126 +188,6 @@ texture = ExtResource("3_dht0g")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player/BallB"]
 shape = SubResource("CircleShape2D_dmc2p")
 
-[node name="GrappleA" type="RigidBody2D" parent="Player" node_paths=PackedStringArray("parent_ball")]
-visible = false
-position = Vector2(40, 0)
-collision_layer = 0
-gravity_scale = 0.0
-continuous_cd = 1
-max_contacts_reported = 1
-contact_monitor = true
-script = ExtResource("6_fqcqx")
-shoot_impulse = 600.0
-pull_strength = 50000.0
-parent_ball = NodePath("../BallA")
-
-[node name="RopeLine" type="Line2D" parent="Player/GrappleA" node_paths=PackedStringArray("ropeOrigin")]
-texture_repeat = 2
-points = PackedVector2Array(0, -1, 0, 0)
-width = 8.0
-texture = ExtResource("6_mqok8")
-texture_mode = 1
-script = ExtResource("7_80xop")
-ropeOrigin = NodePath("../../BallA")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/GrappleA"]
-shape = SubResource("CircleShape2D_bli73")
-
-[node name="EndSprite" type="Sprite2D" parent="Player/GrappleA"]
-texture = ExtResource("8_l1ww5")
-
-[node name="Audio" type="Node2D" parent="Player/GrappleA" node_paths=PackedStringArray("shoot_sound", "lock_sound")]
-script = ExtResource("10_qdusm")
-shoot_sound = NodePath("Shoot")
-lock_sound = NodePath("Lock")
-
-[node name="Shoot" type="AudioStreamPlayer2D" parent="Player/GrappleA/Audio"]
-stream = ExtResource("11_ypm1d")
-
-[node name="Lock" type="AudioStreamPlayer2D" parent="Player/GrappleA/Audio"]
-stream = ExtResource("10_lompg")
-
-[node name="GrappleB" type="RigidBody2D" parent="Player" node_paths=PackedStringArray("parent_ball")]
-visible = false
-position = Vector2(40, 0)
-collision_layer = 0
-gravity_scale = 0.0
-continuous_cd = 1
-max_contacts_reported = 1
-contact_monitor = true
-script = ExtResource("6_fqcqx")
-shoot_impulse = 600.0
-pull_strength = 50000.0
-parent_ball = NodePath("../BallB")
-grapple_type = 1
-
-[node name="RopeLine" type="Line2D" parent="Player/GrappleB" node_paths=PackedStringArray("ropeOrigin")]
-texture_repeat = 2
-points = PackedVector2Array(0, -1, 0, 0)
-width = 8.0
-texture = ExtResource("6_mqok8")
-texture_mode = 1
-script = ExtResource("7_80xop")
-ropeOrigin = NodePath("../../BallB")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/GrappleB"]
-shape = SubResource("CircleShape2D_bli73")
-
-[node name="EndSprite" type="Sprite2D" parent="Player/GrappleB"]
-texture = ExtResource("8_l1ww5")
-
-[node name="Audio" type="Node2D" parent="Player/GrappleB" node_paths=PackedStringArray("shoot_sound", "lock_sound")]
-script = ExtResource("10_qdusm")
-shoot_sound = NodePath("../../GrappleA/Audio/Shoot")
-lock_sound = NodePath("../../GrappleA/Audio/Lock")
-
-[node name="Shoot" type="AudioStreamPlayer2D" parent="Player/GrappleB/Audio"]
-stream = ExtResource("11_ypm1d")
-
-[node name="Lock" type="AudioStreamPlayer2D" parent="Player/GrappleB/Audio"]
-stream = ExtResource("10_lompg")
-
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(156, 84)
 zoom = Vector2(3, 3)
-
-[node name="RopeTest" type="Node2D" parent="."]
-position = Vector2(44, 40)
-
-[node name="Origin" type="StaticBody2D" parent="RopeTest"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RopeTest/Origin"]
-shape = SubResource("CircleShape2D_ye61n")
-
-[node name="Sprite2D" type="Sprite2D" parent="RopeTest/Origin"]
-scale = Vector2(0.115068, 0.115068)
-texture = ExtResource("11_v76i2")
-
-[node name="End" type="RigidBody2D" parent="RopeTest" node_paths=PackedStringArray("origin_node")]
-position = Vector2(180, 44)
-collision_layer = 2
-gravity_scale = 0.0
-continuous_cd = 2
-linear_damp = 20.0
-script = ExtResource("14_r8sss")
-origin_node = NodePath("../Origin")
-link_scene = ExtResource("15_ov4ue")
-stick_force = 100000.0
-closeness_threshold = 12.0
-target_link_count = 5
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RopeTest/End"]
-shape = SubResource("CircleShape2D_ye61n")
-
-[node name="Sprite2D" type="Sprite2D" parent="RopeTest/End"]
-scale = Vector2(0.115068, 0.115068)
-texture = ExtResource("11_v76i2")
-
-[connection signal="locked_grapple" from="Player/GrappleA" to="Player/GrappleA/Audio" method="_on_grapple_a_locked_grapple"]
-[connection signal="shot_grapple" from="Player/GrappleA" to="Player/GrappleA/RopeLine" method="_on_grapple_a_shot_grapple"]
-[connection signal="shot_grapple" from="Player/GrappleA" to="Player/GrappleA/Audio" method="_on_grapple_a_shot_grapple"]
-[connection signal="unshot_grapple" from="Player/GrappleA" to="Player/GrappleA/RopeLine" method="_on_grapple_a_unshot_grapple"]
-[connection signal="locked_grapple" from="Player/GrappleB" to="Player/GrappleB/Audio" method="_on_grapple_a_locked_grapple"]
-[connection signal="shot_grapple" from="Player/GrappleB" to="Player/GrappleB/RopeLine" method="_on_grapple_a_shot_grapple"]
-[connection signal="shot_grapple" from="Player/GrappleB" to="Player/GrappleB/Audio" method="_on_grapple_a_shot_grapple"]
-[connection signal="unshot_grapple" from="Player/GrappleB" to="Player/GrappleB/RopeLine" method="_on_grapple_a_unshot_grapple"]
