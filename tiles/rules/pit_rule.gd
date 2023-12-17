@@ -18,7 +18,7 @@ class_name PitRule
 func get_tile_id() -> int:
     return ID_PIT
 
-func enter_tile(tile_map: TileMap, position: Vector2i, body: RigidBody2D, player: BallsPlayer) -> void:
+func enter_tile(tile_map: TileMap, layer: int, position: Vector2i, body: RigidBody2D, player: BallsPlayer) -> void:
     if get_is_handling(position): return
     set_is_handling(position, true)
     
@@ -28,11 +28,11 @@ func enter_tile(tile_map: TileMap, position: Vector2i, body: RigidBody2D, player
     
     play_oneshot_at_tile(tile_map, position, fall_complete_sound)
     tile_map.set_cell(
-        TileRule.LAYER_GROUND, 
+        layer, 
         position, 
         TileRule.ID_PIT, 
-        tile_map.get_cell_atlas_coords(TileRule.LAYER_GROUND, position),
-        tile_map.get_cell_alternative_tile(TileRule.LAYER_GROUND, position)
+        tile_map.get_cell_atlas_coords(layer, position),
+        tile_map.get_cell_alternative_tile(layer, position)
     )
 
     player.kill(body, BallsPlayer.KillType.Fall)

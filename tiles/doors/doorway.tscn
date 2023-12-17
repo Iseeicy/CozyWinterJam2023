@@ -1,0 +1,57 @@
+[gd_scene load_steps=9 format=3 uid="uid://cvxmq3cnyiif7"]
+
+[ext_resource type="Script" path="res://tiles/doors/doorway.gd" id="1_4qirs"]
+[ext_resource type="Texture2D" uid="uid://bo34heah6wisd" path="res://tiles/doorway_anim.png" id="1_6uddf"]
+[ext_resource type="Texture2D" uid="uid://d11jhius7j4kj" path="res://tiles/doors/sign_back.png" id="3_vp4x4"]
+[ext_resource type="Texture2D" uid="uid://dwqvtxqbai5im" path="res://tiles/doors/sign_front.png" id="4_rvdls"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7j6wa"]
+atlas = ExtResource("1_6uddf")
+region = Rect2(0, 0, 48, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yaujd"]
+atlas = ExtResource("1_6uddf")
+region = Rect2(0, 16, 48, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mgvja"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7j6wa")
+}],
+"loop": true,
+"name": &"closed",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yaujd")
+}],
+"loop": true,
+"name": &"open",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8plg1"]
+size = Vector2(48, 16)
+
+[node name="Doorway" type="Node2D" node_paths=PackedStringArray("collider")]
+script = ExtResource("1_4qirs")
+collider = NodePath("StaticBody2D/CollisionShape2D")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_mgvja")
+animation = &"closed"
+autoplay = "closed"
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("RectangleShape2D_8plg1")
+
+[node name="SignSprite" type="Sprite2D" parent="."]
+position = Vector2(32, 4)
+texture = ExtResource("3_vp4x4")
+
+[node name="PresentType" type="Sprite2D" parent="SignSprite"]
+texture = ExtResource("4_rvdls")
