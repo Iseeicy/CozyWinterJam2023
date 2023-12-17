@@ -23,10 +23,16 @@ func _process_body(_delta: float, body: Node2D) -> void:
 	# Figure out what tile the body is on
 	var overlapped_tile = tile_map.local_to_map(tile_map.to_local(body.global_position))
 	var tile_id = tile_map.get_cell_source_id(TileRule.LAYER_GROUND, overlapped_tile)
+	var last_id = body.get_meta("last_id", -1)
+	var last_tile_pos = body.get_meta("last_tile_pos", overlapped_tile)
 
 	# If this body wasn't last on this tile, then call the rules for this tile
-	if body.get_meta("last_id", -1)	!= tile_id:
+	if last_id	!= tile_id:
+		for rule in _get_rules_for_id(last_id):
+			rule.exit_tile(tile_map, last_tile_pos, body, player)
+		
 		body.set_meta("last_id", tile_id)
+		body.set_meta("last_tile_pos", overlapped_tile)
 
 		for rule in _get_rules_for_id(tile_id):
 			rule.enter_tile(tile_map, overlapped_tile, body, player)

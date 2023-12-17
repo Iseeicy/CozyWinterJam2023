@@ -37,6 +37,9 @@ func hit_tile(_tile_map: TileMap, _position: Vector2i, _body: RigidBody2D, _play
 func enter_tile(_tile_map: TileMap, _position: Vector2i, _body: RigidBody2D, _player: BallsPlayer) -> void:
     return
 
+func exit_tile(_tile_map: TileMap, _position: Vector2i, _body: RigidBody2D, _player: BallsPlayer) -> void:
+    return
+
 #
 #   Functions
 #
