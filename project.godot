@@ -51,6 +51,7 @@ shoot_hook_b={
 
 2d_physics/layer_1="Foreground"
 2d_physics/layer_2="Player"
+2d_physics/layer_16="Camera"
 
 [rendering]
 
