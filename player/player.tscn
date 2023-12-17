@@ -179,6 +179,9 @@ collision_layer = 4
 collision_mask = 5
 mass = 0.5
 gravity_scale = 0.0
+continuous_cd = 2
+max_contacts_reported = 2
+contact_monitor = true
 linear_damp = 1.0
 
 [node name="Sprite2D" type="Sprite2D" parent="BallA"]
@@ -193,6 +196,9 @@ collision_layer = 4
 collision_mask = 5
 mass = 0.5
 gravity_scale = 0.0
+continuous_cd = 2
+max_contacts_reported = 2
+contact_monitor = true
 linear_damp = 1.0
 
 [node name="Sprite2D" type="Sprite2D" parent="BallB"]
@@ -200,3 +206,6 @@ texture = ExtResource("5_rj30e")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BallB"]
 shape = SubResource("CircleShape2D_dmc2p")
+
+[connection signal="body_entered" from="BallA" to="." method="_on_ball_a_body_entered"]
+[connection signal="body_entered" from="BallB" to="." method="_on_ball_b_body_entered"]

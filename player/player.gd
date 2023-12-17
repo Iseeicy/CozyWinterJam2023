@@ -1,9 +1,17 @@
 extends Node2D
 class_name BallsPlayer
 
+enum KillType {
+	Shatter,
+	Fall
+}
+
 #
 #	Exports
 #
+
+signal tile_collided(tile_map: TileMap, ball: PhysicsBody3D)
+signal killed(which_body: PhysicsBody2D, type: KillType)
 
 @export var grapple_scene: PackedScene = null
 
@@ -61,3 +69,20 @@ func unthrow_grapple_b():
 
 	grapple_b.unshoot()
 	grapple_b = null
+
+func kill(which_body: PhysicsBody2D, type: KillType) -> void:
+	# TODO
+	queue_free()
+	killed.emit(which_body, type)
+
+
+func _on_ball_b_body_entered(body: Node):
+	if not body is TileMap: return
+	
+	tile_collided.emit(body, ball_b)
+
+func _on_ball_a_body_entered(body: Node):
+	if not body is TileMap: return
+
+	tile_collided.emit(body, ball_a)
+
