@@ -9,6 +9,10 @@ var groove_joint: GrooveJoint2D:
 	get:
 		return $GrooveJoint2D
 
+var anchor: StaticBody2D:
+	get:
+		return $Anchor
+
 var rotator: RigidBody2D:
 	get:
 		return $Rotator
@@ -16,10 +20,15 @@ var rotator: RigidBody2D:
 func connect_bodies(origin_point: Vector2, swing_body: PhysicsBody2D) -> void:
 	var aim_direction = (swing_body.global_position - origin_point)
 
-	global_position = origin_point
-	rotator.look_at(swing_body.global_position)
+	anchor.global_position = origin_point
+	rotator.global_position = origin_point
+	pin_joint.global_position = origin_point
+	groove_joint.global_position = origin_point
+
+	groove_joint.global_rotation = aim_direction.rotated(deg_to_rad(-90)).angle()
 	groove_joint.length = aim_direction.length() + 1
-	groove_joint.initial_offset = groove_joint.length
+	groove_joint.initial_offset = aim_direction.length()
+	groove_joint.node_a = groove_joint.get_path_to(rotator)
 	groove_joint.node_b = groove_joint.get_path_to(swing_body)
 
 func disconnect_body() -> void:
