@@ -1,9 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://j08dctpbcyt4"]
+[gd_scene load_steps=12 format=3 uid="uid://j08dctpbcyt4"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_uotpf"]
 [ext_resource type="PackedScene" uid="uid://45aqkmy4ychd" path="res://player/grapple_3.tscn" id="2_xx7ut"]
+[ext_resource type="PackedScene" uid="uid://yec300o05c8y" path="res://player/player_explode.tscn" id="3_h3m41"]
 [ext_resource type="Texture2D" uid="uid://csc8b76d3i0sb" path="res://player/rope_chunk.png" id="3_ulh7l"]
 [ext_resource type="Texture2D" uid="uid://blqqtr1tpka0s" path="res://player/ball_a.png" id="4_dlcqn"]
+[ext_resource type="PackedScene" uid="uid://d3ed5jeerijkj" path="res://player/player_zap_particles.tscn" id="4_q7q3s"]
+[ext_resource type="PackedScene" uid="uid://bmuqx1lgxhq2m" path="res://player/player_fall_particles.tscn" id="5_g8rny"]
 [ext_resource type="Texture2D" uid="uid://bkxtde3row3om" path="res://player/ball_b.png" id="5_rj30e"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_75bdf"]
@@ -17,9 +20,11 @@ height = 8.0
 radius = 6.0
 
 [node name="Player" type="Node2D"]
-position = Vector2(96, 80)
 script = ExtResource("1_uotpf")
 grapple_scene = ExtResource("2_xx7ut")
+explode_particle_scene = ExtResource("3_h3m41")
+zap_particles_scene = ExtResource("4_q7q3s")
+fall_particles_scene = ExtResource("5_g8rny")
 metadata/_edit_group_ = true
 
 [node name="Chain" type="Node2D" parent="."]
@@ -179,7 +184,10 @@ collision_layer = 4
 collision_mask = 5
 mass = 0.5
 gravity_scale = 0.0
-linear_damp = 0.1
+continuous_cd = 2
+max_contacts_reported = 2
+contact_monitor = true
+linear_damp = 1.0
 
 [node name="Sprite2D" type="Sprite2D" parent="BallA"]
 texture = ExtResource("4_dlcqn")
@@ -193,10 +201,16 @@ collision_layer = 4
 collision_mask = 5
 mass = 0.5
 gravity_scale = 0.0
-linear_damp = 0.1
+continuous_cd = 2
+max_contacts_reported = 2
+contact_monitor = true
+linear_damp = 1.0
 
 [node name="Sprite2D" type="Sprite2D" parent="BallB"]
 texture = ExtResource("5_rj30e")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BallB"]
 shape = SubResource("CircleShape2D_dmc2p")
+
+[connection signal="body_shape_entered" from="BallA" to="." method="_on_ball_a_body_shape_entered"]
+[connection signal="body_shape_entered" from="BallB" to="." method="_on_ball_b_body_shape_entered"]
