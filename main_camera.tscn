@@ -1,0 +1,58 @@
+[gd_scene load_steps=7 format=3 uid="uid://c6glfm0fwaos8"]
+
+[ext_resource type="Script" path="res://main_camera.gd" id="1_xgfky"]
+[ext_resource type="Texture2D" uid="uid://bnxx3kynpakoh" path="res://tiles/snow_flake.png" id="2_jmdym"]
+
+[sub_resource type="Gradient" id="Gradient_o7i6t"]
+offsets = PackedFloat32Array(0.778075, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_gj6b8"]
+gradient = SubResource("Gradient_o7i6t")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_hu4ro"]
+emission_shape = 3
+emission_box_extents = Vector3(200, 1, 1)
+particle_flag_disable_z = true
+gravity = Vector3(0, 98, 0)
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+angle_min = -199.5
+angle_max = 240.0
+scale_min = 0.2
+scale_max = 0.8
+color = Color(1, 1, 1, 0.643137)
+color_ramp = SubResource("GradientTexture1D_gj6b8")
+turbulence_enabled = true
+turbulence_noise_speed = Vector3(10, 5, 2)
+turbulence_influence_min = 0.01
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_eiiit"]
+radius = 8.0
+
+[node name="MainCamera" type="Camera2D" node_paths=PackedStringArray("player")]
+zoom = Vector2(3, 3)
+position_smoothing_enabled = true
+script = ExtResource("1_xgfky")
+player = NodePath("")
+
+[node name="Snow" type="GPUParticles2D" parent="."]
+position = Vector2(0, -130)
+amount = 100
+process_material = SubResource("ParticleProcessMaterial_hu4ro")
+texture = ExtResource("2_jmdym")
+lifetime = 5.0
+trail_lifetime = 0.1
+trail_sections = 2
+trail_section_subdivisions = 2
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 32768
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_eiiit")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]

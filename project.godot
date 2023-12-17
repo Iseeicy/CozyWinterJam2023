@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="CozyWinterJam2023"
-run/main_scene="res://test_map.tscn"
+run/main_scene="res://main_level.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -19,6 +19,12 @@ config/icon="res://icon.svg"
 
 KnowledgeDB="*res://addons/netengine5/net.bobbo.knowledge/autoload/knowledge_db.tscn"
 GraphNodeDB="*res://addons/netengine5/net.bobbo.dialog-graph/autoload/graph_node_db.tscn"
+
+[display]
+
+window/size/viewport_height=672
+window/stretch/mode="viewport"
+window/stretch/aspect="expand"
 
 [dotnet]
 
@@ -45,6 +51,7 @@ shoot_hook_b={
 
 2d_physics/layer_1="Foreground"
 2d_physics/layer_2="Player"
+2d_physics/layer_16="Camera"
 
 [rendering]
 

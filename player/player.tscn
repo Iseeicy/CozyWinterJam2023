@@ -1,0 +1,216 @@
+[gd_scene load_steps=12 format=3 uid="uid://j08dctpbcyt4"]
+
+[ext_resource type="Script" path="res://player/player.gd" id="1_uotpf"]
+[ext_resource type="PackedScene" uid="uid://45aqkmy4ychd" path="res://player/grapple_3.tscn" id="2_xx7ut"]
+[ext_resource type="PackedScene" uid="uid://yec300o05c8y" path="res://player/player_explode.tscn" id="3_h3m41"]
+[ext_resource type="Texture2D" uid="uid://csc8b76d3i0sb" path="res://player/rope_chunk.png" id="3_ulh7l"]
+[ext_resource type="Texture2D" uid="uid://blqqtr1tpka0s" path="res://player/ball_a.png" id="4_dlcqn"]
+[ext_resource type="PackedScene" uid="uid://d3ed5jeerijkj" path="res://player/player_zap_particles.tscn" id="4_q7q3s"]
+[ext_resource type="PackedScene" uid="uid://bmuqx1lgxhq2m" path="res://player/player_fall_particles.tscn" id="5_g8rny"]
+[ext_resource type="Texture2D" uid="uid://bkxtde3row3om" path="res://player/ball_b.png" id="5_rj30e"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_75bdf"]
+friction = 0.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_v4moj"]
+radius = 1.0
+height = 8.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dmc2p"]
+radius = 6.0
+
+[node name="Player" type="Node2D"]
+script = ExtResource("1_uotpf")
+grapple_scene = ExtResource("2_xx7ut")
+explode_particle_scene = ExtResource("3_h3m41")
+zap_particles_scene = ExtResource("4_q7q3s")
+fall_particles_scene = ExtResource("5_g8rny")
+metadata/_edit_group_ = true
+
+[node name="Chain" type="Node2D" parent="."]
+
+[node name="PinJoint2D" type="PinJoint2D" parent="Chain"]
+position = Vector2(-8, 0)
+node_a = NodePath("../../BallA")
+node_b = NodePath("../RopeChunk")
+bias = 0.5
+softness = 5.0
+
+[node name="RopeChunk" type="RigidBody2D" parent="Chain"]
+position = Vector2(-8, 4)
+collision_layer = 2
+mass = 0.1
+physics_material_override = SubResource("PhysicsMaterial_75bdf")
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Chain/RopeChunk"]
+position = Vector2(0.5, 0)
+rotation = 1.5708
+texture = ExtResource("3_ulh7l")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Chain/RopeChunk"]
+shape = SubResource("CapsuleShape2D_v4moj")
+
+[node name="PinJoint2D2" type="PinJoint2D" parent="Chain"]
+position = Vector2(-8, 8)
+node_a = NodePath("../RopeChunk")
+node_b = NodePath("../RopeChunk2")
+bias = 0.5
+softness = 5.0
+
+[node name="RopeChunk2" type="RigidBody2D" parent="Chain"]
+position = Vector2(-4, 8)
+rotation = -1.5708
+collision_layer = 2
+mass = 0.1
+physics_material_override = SubResource("PhysicsMaterial_75bdf")
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Chain/RopeChunk2"]
+position = Vector2(0.5, 0)
+rotation = 1.5708
+texture = ExtResource("3_ulh7l")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Chain/RopeChunk2"]
+shape = SubResource("CapsuleShape2D_v4moj")
+
+[node name="PinJoint2D3" type="PinJoint2D" parent="Chain"]
+position = Vector2(0, 8)
+node_a = NodePath("../RopeChunk2")
+node_b = NodePath("../RopeChunk3")
+bias = 0.5
+softness = 5.0
+
+[node name="RopeChunk3" type="RigidBody2D" parent="Chain"]
+position = Vector2(0, 12)
+collision_layer = 2
+mass = 0.1
+physics_material_override = SubResource("PhysicsMaterial_75bdf")
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Chain/RopeChunk3"]
+position = Vector2(0.5, 0)
+rotation = 1.5708
+texture = ExtResource("3_ulh7l")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Chain/RopeChunk3"]
+shape = SubResource("CapsuleShape2D_v4moj")
+
+[node name="PinJoint2D4" type="PinJoint2D" parent="Chain"]
+position = Vector2(0, 16)
+node_a = NodePath("../RopeChunk3")
+node_b = NodePath("../RopeChunk4")
+bias = 0.5
+softness = 5.0
+
+[node name="RopeChunk4" type="RigidBody2D" parent="Chain"]
+position = Vector2(4, 16)
+rotation = -1.5708
+collision_layer = 2
+mass = 0.1
+physics_material_override = SubResource("PhysicsMaterial_75bdf")
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Chain/RopeChunk4"]
+position = Vector2(0.5, 0)
+rotation = 1.5708
+texture = ExtResource("3_ulh7l")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Chain/RopeChunk4"]
+shape = SubResource("CapsuleShape2D_v4moj")
+
+[node name="PinJoint2D5" type="PinJoint2D" parent="Chain"]
+position = Vector2(8, 16)
+node_a = NodePath("../RopeChunk4")
+node_b = NodePath("../RopeChunk5")
+bias = 0.5
+softness = 5.0
+
+[node name="RopeChunk5" type="RigidBody2D" parent="Chain"]
+position = Vector2(8, 12)
+rotation = 3.14159
+collision_layer = 2
+mass = 0.1
+physics_material_override = SubResource("PhysicsMaterial_75bdf")
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Chain/RopeChunk5"]
+position = Vector2(0.5, 0)
+rotation = 1.5708
+texture = ExtResource("3_ulh7l")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Chain/RopeChunk5"]
+shape = SubResource("CapsuleShape2D_v4moj")
+
+[node name="PinJoint2D6" type="PinJoint2D" parent="Chain"]
+position = Vector2(8, 8)
+node_a = NodePath("../RopeChunk5")
+node_b = NodePath("../RopeChunk6")
+bias = 0.5
+softness = 5.0
+
+[node name="RopeChunk6" type="RigidBody2D" parent="Chain"]
+position = Vector2(8, 4)
+rotation = 3.14159
+collision_layer = 2
+mass = 0.1
+physics_material_override = SubResource("PhysicsMaterial_75bdf")
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Chain/RopeChunk6"]
+position = Vector2(0.5, 0)
+rotation = 1.5708
+texture = ExtResource("3_ulh7l")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Chain/RopeChunk6"]
+shape = SubResource("CapsuleShape2D_v4moj")
+
+[node name="PinJoint2D7" type="PinJoint2D" parent="Chain"]
+position = Vector2(8, 0)
+node_a = NodePath("../RopeChunk6")
+node_b = NodePath("../../BallB")
+bias = 0.5
+softness = 5.0
+
+[node name="BallA" type="RigidBody2D" parent="."]
+position = Vector2(-8, 0)
+collision_layer = 4
+collision_mask = 5
+mass = 0.5
+gravity_scale = 0.0
+continuous_cd = 2
+max_contacts_reported = 2
+contact_monitor = true
+linear_damp = 1.0
+
+[node name="Sprite2D" type="Sprite2D" parent="BallA"]
+texture = ExtResource("4_dlcqn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BallA"]
+shape = SubResource("CircleShape2D_dmc2p")
+
+[node name="BallB" type="RigidBody2D" parent="."]
+position = Vector2(8, 0)
+collision_layer = 4
+collision_mask = 5
+mass = 0.5
+gravity_scale = 0.0
+continuous_cd = 2
+max_contacts_reported = 2
+contact_monitor = true
+linear_damp = 1.0
+
+[node name="Sprite2D" type="Sprite2D" parent="BallB"]
+texture = ExtResource("5_rj30e")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BallB"]
+shape = SubResource("CircleShape2D_dmc2p")
+
+[connection signal="body_shape_entered" from="BallA" to="." method="_on_ball_a_body_shape_entered"]
+[connection signal="body_shape_entered" from="BallB" to="." method="_on_ball_b_body_shape_entered"]
