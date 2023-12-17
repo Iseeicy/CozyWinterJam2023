@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://bxji2x0onw1em"]
 
-[ext_resource type="Script" path="res://swing_joint.gd" id="1_71p0t"]
+[ext_resource type="Script" path="res://player/swing_joint.gd" id="1_pf2ad"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tj03j"]
 radius = 8.0
@@ -9,8 +9,7 @@ radius = 8.0
 radius = 8.0
 
 [node name="SwingJoint" type="Node2D"]
-position = Vector2(-80, -32)
-script = ExtResource("1_71p0t")
+script = ExtResource("1_pf2ad")
 metadata/_edit_group_ = true
 
 [node name="Anchor" type="StaticBody2D" parent="."]
@@ -34,6 +33,4 @@ metadata/_edit_group_ = true
 shape = SubResource("CircleShape2D_7xehv")
 
 [node name="GrooveJoint2D" type="GrooveJoint2D" parent="."]
-node_a = NodePath("../Rotator")
-node_b = NodePath("../../RigidBody2D")
 initial_offset = 24.0
