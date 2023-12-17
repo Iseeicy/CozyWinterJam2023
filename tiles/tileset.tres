@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=32 format=3 uid="uid://dila20svsy5ke"]
+[gd_resource type="TileSet" load_steps=34 format=3 uid="uid://dila20svsy5ke"]
 
 [ext_resource type="Texture2D" uid="uid://t8iedbonbgcb" path="res://tiles/IceTileset.png" id="1_d10fl"]
 [ext_resource type="Texture2D" uid="uid://sruc0idanec" path="res://tiles/placeholder_tileset.png" id="1_y5f7g"]
@@ -11,10 +11,10 @@
 [ext_resource type="PackedScene" uid="uid://by5cg75qolhp3" path="res://tiles/doors/cyan_present_door.tscn" id="7_wlu01"]
 [ext_resource type="PackedScene" uid="uid://cxrqlvdfabkof" path="res://tiles/doors/magenta_present_door.tscn" id="8_v68qq"]
 [ext_resource type="PackedScene" uid="uid://1gttfrmb27oj" path="res://tiles/doors/end_doorway.tscn" id="9_8iapk"]
+[ext_resource type="PackedScene" uid="uid://yf81cefj0arc" path="res://tiles/checkpoint/checkpoint.tscn" id="10_1f7jl"]
 [ext_resource type="Texture2D" uid="uid://dkjqm6ghmnjvh" path="res://tiles/IceSpikes.png" id="11_7ailq"]
 [ext_resource type="Texture2D" uid="uid://bm6xv07voopwg" path="res://tiles/HoleTile.png" id="12_4ecvw"]
 [ext_resource type="Texture2D" uid="uid://clhd3wsdrtnu6" path="res://tiles/CrackTile.png" id="13_7k3mt"]
-[ext_resource type="PackedScene" uid="uid://yf81cefj0arc" path="res://tiles/checkpoint/checkpoint.tscn" id="10_1f7jl"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_m6ue1"]
 tile_data = PackedInt32Array(0, 12, 0, 1, 65548, 0, 2, 131084, 0)
