@@ -4,7 +4,6 @@
 
 [node name="GreenPresentDoor" instance=ExtResource("1_63j0i")]
 currency_type = "green_present"
-required_currency = 2
 
 [node name="PresentType" parent="SignSprite" index="0"]
 modulate = Color(0, 1, 0, 1)
