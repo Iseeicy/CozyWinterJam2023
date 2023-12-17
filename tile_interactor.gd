@@ -9,13 +9,24 @@ extends Node
 #
 
 func _ready():
+	CheckpointManager.player_spawned.connect(_on_player_spawned.bind())
+	CheckpointManager.player_despawned.connect(_on_player_despawned.bind())
+
+func _physics_process(delta: float):
+	if not player: return
+	
+	_process_body(delta, player.ball_a)
+	_process_body(delta, player.ball_b)
+
+#
+#	Public Functions
+#
+
+func connect_player(new_player: BallsPlayer):
+	player = new_player
 	player.tile_collided.connect(_on_tile_collided.bind())
 	player.grapple_locked.connect(_on_grapple_locked.bind())
 	player.grapple_unlocked.connect(_on_grapple_unlocked.bind())
-
-func _physics_process(delta: float):
-	_process_body(delta, player.ball_a)
-	_process_body(delta, player.ball_b)
 
 #
 #	Private Functions
@@ -76,3 +87,9 @@ func _on_grapple_unlocked(grapple: Grapple3, point: Vector2, normal: Vector2, _c
 
 		for rule in _get_rules_for_id(tile_id):
 			rule.grapple_unlocked_tile(tile_map, layer, overlapped_tile, grapple, point, normal, player)
+
+func _on_player_spawned(new_player: BallsPlayer):
+	connect_player(new_player)
+
+func _on_player_despawned(_new_player: BallsPlayer):
+	player = null
