@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=30 format=3 uid="uid://dila20svsy5ke"]
+[gd_resource type="TileSet" load_steps=32 format=3 uid="uid://dila20svsy5ke"]
 
 [ext_resource type="Texture2D" uid="uid://t8iedbonbgcb" path="res://tiles/IceTileset.png" id="1_d10fl"]
 [ext_resource type="Texture2D" uid="uid://sruc0idanec" path="res://tiles/placeholder_tileset.png" id="1_y5f7g"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://by5cg75qolhp3" path="res://tiles/doors/cyan_present_door.tscn" id="7_wlu01"]
 [ext_resource type="PackedScene" uid="uid://cxrqlvdfabkof" path="res://tiles/doors/magenta_present_door.tscn" id="8_v68qq"]
 [ext_resource type="PackedScene" uid="uid://1gttfrmb27oj" path="res://tiles/doors/end_doorway.tscn" id="9_8iapk"]
+[ext_resource type="PackedScene" uid="uid://yf81cefj0arc" path="res://tiles/checkpoint/checkpoint.tscn" id="10_1f7jl"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_m6ue1"]
 tile_data = PackedInt32Array(0, 12, 0, 1, 65548, 0, 2, 131084, 0)
@@ -677,6 +678,10 @@ scenes/6/scene = ExtResource("6_kjc6h")
 scenes/7/scene = ExtResource("7_wlu01")
 scenes/8/scene = ExtResource("8_v68qq")
 scenes/9/scene = ExtResource("9_8iapk")
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_xwt8d"]
+resource_name = "Checkpoints"
+scenes/1/scene = ExtResource("10_1f7jl")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_54hfb"]
 resource_name = "Snow"
@@ -4193,6 +4198,7 @@ sources/7 = SubResource("TileSetAtlasSource_54hfg")
 sources/8 = SubResource("TileSetAtlasSource_54hfh")
 sources/9 = SubResource("TileSetAtlasSource_vkwo4")
 sources/13 = SubResource("TileSetScenesCollectionSource_qsa81")
+sources/14 = SubResource("TileSetScenesCollectionSource_xwt8d")
 pattern_0 = SubResource("TileMapPattern_m6ue1")
 pattern_1 = SubResource("TileMapPattern_nbq61")
 pattern_2 = SubResource("TileMapPattern_sj7xw")
