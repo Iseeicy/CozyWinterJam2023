@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://brcbj8ipc8t1t"]
+[gd_scene load_steps=20 format=3 uid="uid://brcbj8ipc8t1t"]
 
 [ext_resource type="TileSet" uid="uid://dila20svsy5ke" path="res://tiles/tileset.tres" id="1_or26b"]
 [ext_resource type="Script" path="res://player/player.gd" id="2_w4f7s"]
@@ -11,7 +11,10 @@
 [ext_resource type="Texture2D" uid="uid://2aagxf8ip3r2" path="res://player/grapple_end.png" id="8_l1ww5"]
 [ext_resource type="AudioStream" uid="uid://cycn7m4uq8wd4" path="res://player/grapple_lock_a.ogg" id="10_lompg"]
 [ext_resource type="Script" path="res://player/grapple_audio.gd" id="10_qdusm"]
+[ext_resource type="Texture2D" uid="uid://2q3iasx6rm8u" path="res://icon.svg" id="11_v76i2"]
 [ext_resource type="AudioStream" uid="uid://ce2fqbjo22hui" path="res://player/grapple_throw_a.ogg" id="11_ypm1d"]
+[ext_resource type="Script" path="res://rope_test.gd" id="14_r8sss"]
+[ext_resource type="PackedScene" uid="uid://bylx2vo4mxyvb" path="res://rope_chunk.tscn" id="15_ov4ue"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_v4moj"]
 radius = 1.0
@@ -22,6 +25,9 @@ radius = 6.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bli73"]
 radius = 4.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ye61n"]
+radius = 7.0
 
 [node name="Node2D" type="Node2D"]
 
@@ -284,6 +290,38 @@ stream = ExtResource("10_lompg")
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(156, 84)
 zoom = Vector2(3, 3)
+
+[node name="RopeTest" type="Node2D" parent="."]
+position = Vector2(44, 40)
+
+[node name="Origin" type="StaticBody2D" parent="RopeTest"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RopeTest/Origin"]
+shape = SubResource("CircleShape2D_ye61n")
+
+[node name="Sprite2D" type="Sprite2D" parent="RopeTest/Origin"]
+scale = Vector2(0.115068, 0.115068)
+texture = ExtResource("11_v76i2")
+
+[node name="End" type="RigidBody2D" parent="RopeTest" node_paths=PackedStringArray("origin_node")]
+position = Vector2(180, 44)
+collision_layer = 2
+gravity_scale = 0.0
+continuous_cd = 2
+linear_damp = 20.0
+script = ExtResource("14_r8sss")
+origin_node = NodePath("../Origin")
+link_scene = ExtResource("15_ov4ue")
+stick_force = 100000.0
+closeness_threshold = 12.0
+target_link_count = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RopeTest/End"]
+shape = SubResource("CircleShape2D_ye61n")
+
+[node name="Sprite2D" type="Sprite2D" parent="RopeTest/End"]
+scale = Vector2(0.115068, 0.115068)
+texture = ExtResource("11_v76i2")
 
 [connection signal="locked_grapple" from="Player/GrappleA" to="Player/GrappleA/Audio" method="_on_grapple_a_locked_grapple"]
 [connection signal="shot_grapple" from="Player/GrappleA" to="Player/GrappleA/RopeLine" method="_on_grapple_a_shot_grapple"]

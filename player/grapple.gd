@@ -31,6 +31,7 @@ var _queue_shoot: bool = false
 var _target_origin: Vector2 = Vector2.ZERO
 var _target_impulse: Vector2 = Vector2.ZERO
 var _monitor_lock: bool = false
+var _lock_start_length: float = 0
 
 var _should_be_visible: bool = false
 var _is_locked: bool = false
@@ -43,7 +44,7 @@ func shoot(origin: Vector2, direction: Vector2):
 	# Cache shoot data so that we can handle it in _integrated_forces
 	_target_origin = origin
 	_target_impulse = direction * shoot_impulse
-	
+
 	freeze = false
 	sleeping = false
 	_queue_shoot = true
@@ -65,12 +66,21 @@ func _physics_process(delta):
 		visible = _should_be_visible
 
 	if _is_locked:
-		# Get the vector between us and the player ball
-		var direction = global_position - parent_ball.global_position
-		direction = direction.normalized()
+		if grapple_type == GrappleType.Pull:
+			_physics_process_grapple_pull(delta)
+		elif grapple_type == GrappleType.Swing:
+			_physics_process_grapple_swing(delta)
 
-		# Draw the player ball towards us!
-		parent_ball.apply_central_force(direction * pull_strength * delta)
+func _physics_process_grapple_pull(delta):
+	# Get the vector between us and the player ball
+	var direction = global_position - parent_ball.global_position
+	direction = direction.normalized()
+
+	# Draw the player ball towards us!
+	parent_ball.apply_central_force(direction * pull_strength * delta)
+
+func _physics_process_grapple_swing(_delta):
+	return
 
 func _integrate_forces(state):
 
@@ -97,6 +107,7 @@ func _integrate_forces(state):
 
 		state.transform.origin = state.get_contact_local_position(0)
 		state.transform.rotated(state.get_contact_local_normal(0).angle() - state.transform.get_rotation())
+		_lock_start_length = (state.transform.origin - _target_origin).length()
 
 		call_deferred("_on_lock")
 		_monitor_lock = false
