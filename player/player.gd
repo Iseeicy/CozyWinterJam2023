@@ -10,7 +10,7 @@ enum KillType {
 #	Exports
 #
 
-signal tile_collided(tile_map: TileMap, ball: PhysicsBody3D)
+signal tile_collided(tile_map: TileMap, tile_position: Vector2i, ball: PhysicsBody3D)
 signal killed(which_body: PhysicsBody2D, type: KillType)
 
 @export var grapple_scene: PackedScene = null
@@ -76,13 +76,10 @@ func kill(which_body: PhysicsBody2D, type: KillType) -> void:
 	killed.emit(which_body, type)
 
 
-func _on_ball_b_body_entered(body: Node):
+func _on_ball_b_body_shape_entered(body_rid:RID, body: Node, _body_shape_index:int, _local_shape_index:int):
 	if not body is TileMap: return
-	
-	tile_collided.emit(body, ball_b)
+	tile_collided.emit(body, body.get_coords_for_body_rid(body_rid), ball_b)
 
-func _on_ball_a_body_entered(body: Node):
+func _on_ball_a_body_shape_entered(body_rid:RID, body: Node, _body_shape_index:int, _local_shape_index:int):
 	if not body is TileMap: return
-
-	tile_collided.emit(body, ball_a)
-
+	tile_collided.emit(body, body.get_coords_for_body_rid(body_rid), ball_a)

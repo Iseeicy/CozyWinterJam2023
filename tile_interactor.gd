@@ -42,10 +42,9 @@ func _get_rules_for_id(id: int) -> Array[TileRule]:
 #	Signals
 #
 
-func _on_tile_collided(_hit_tile_map: TileMap, body: PhysicsBody2D) -> void:
+func _on_tile_collided(hit_tile_map: TileMap, tile_position: Vector2i, body: PhysicsBody2D) -> void:
 	# Figure out what tile the body hit
-	var overlapped_tile = _hit_tile_map.local_to_map(_hit_tile_map.to_local(body.global_position))
-	var tile_id = _hit_tile_map.get_cell_source_id(TileRule.LAYER_GROUND, overlapped_tile)
+	var tile_id = hit_tile_map.get_cell_source_id(TileRule.LAYER_FOREGROUND, tile_position)
 
 	for rule in _get_rules_for_id(tile_id):
-		rule.hit_tile(_hit_tile_map, overlapped_tile, body, player)
+		rule.hit_tile(hit_tile_map, tile_position, body, player)

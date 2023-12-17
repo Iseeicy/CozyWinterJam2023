@@ -9,6 +9,8 @@ func get_tile_id() -> int:
     return ID_SPIKES
 
 func hit_tile(_tile_map: TileMap, position: Vector2i, body: PhysicsBody2D, player: BallsPlayer) -> void:
+    print("WHAH")
+    
     if get_is_handling(position): return
     set_is_handling(position, true)
     

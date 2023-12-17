@@ -7,7 +7,7 @@ class_name TileRule
 
 const LAYER_BACKGROUND: int = 0
 const LAYER_GROUND: int = 1
-const LAYER_FOREGROUND: int = 1
+const LAYER_FOREGROUND: int = 2
 
 const ID_ICE: int = 0
 const ID_SNOW: int = 2

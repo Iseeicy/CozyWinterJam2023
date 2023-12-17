@@ -207,5 +207,5 @@ texture = ExtResource("5_rj30e")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BallB"]
 shape = SubResource("CircleShape2D_dmc2p")
 
-[connection signal="body_entered" from="BallA" to="." method="_on_ball_a_body_entered"]
-[connection signal="body_entered" from="BallB" to="." method="_on_ball_b_body_entered"]
+[connection signal="body_shape_entered" from="BallA" to="." method="_on_ball_a_body_shape_entered"]
+[connection signal="body_shape_entered" from="BallB" to="." method="_on_ball_b_body_shape_entered"]
