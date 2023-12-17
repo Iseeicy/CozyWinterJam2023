@@ -48,6 +48,9 @@ func grapple_locked_tile(_tile_map: TileMap, _layer: int, _position: Vector2i, _
 func grapple_unlocked_tile(_tile_map: TileMap, _layer: int, _position: Vector2i, _grapple: Grapple3, _point: Vector2, _normal: Vector2, _player: BallsPlayer) -> void:
     return
 
+func reset() -> void:
+    return
+
 #
 #   Functions
 #
