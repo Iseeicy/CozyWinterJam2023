@@ -21,7 +21,7 @@ class_name CrackRule
 func get_tile_id() -> int:
     return ID_CRACK
 
-func enter_tile(tile_map: TileMap, position: Vector2i, _body: RigidBody2D, _player: BallsPlayer) -> void:
+func enter_tile(tile_map: TileMap, layer: int, position: Vector2i, _body: RigidBody2D, _player: BallsPlayer) -> void:
     if get_is_handling(position): return
     set_is_handling(position, true)
     
@@ -30,11 +30,11 @@ func enter_tile(tile_map: TileMap, position: Vector2i, _body: RigidBody2D, _play
     
     play_oneshot_at_tile(tile_map, position, crumble_complete_sound)
     tile_map.set_cell(
-        TileRule.LAYER_GROUND, 
+        layer, 
         position, 
-        TileRule.ID_PIT, 
-        tile_map.get_cell_atlas_coords(TileRule.LAYER_GROUND, position),
-        tile_map.get_cell_alternative_tile(TileRule.LAYER_GROUND, position)
+        layer, 
+        tile_map.get_cell_atlas_coords(layer, position),
+        tile_map.get_cell_alternative_tile(layer, position)
     )
 
     set_is_handling(position, false)

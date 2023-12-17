@@ -33,19 +33,19 @@ var _handling_dict: Dictionary = {}
 func get_tile_id() -> int:
     return -1
 
-func hit_tile(_tile_map: TileMap, _position: Vector2i, _body: RigidBody2D, _player: BallsPlayer) -> void:
+func hit_tile(_tile_map: TileMap, _layer: int, _position: Vector2i, _body: RigidBody2D, _player: BallsPlayer) -> void:
     return
 
-func enter_tile(_tile_map: TileMap, _position: Vector2i, _body: RigidBody2D, _player: BallsPlayer) -> void:
+func enter_tile(_tile_map: TileMap, _layer: int, _position: Vector2i, _body: RigidBody2D, _player: BallsPlayer) -> void:
     return
 
-func exit_tile(_tile_map: TileMap, _position: Vector2i, _body: RigidBody2D, _player: BallsPlayer) -> void:
+func exit_tile(_tile_map: TileMap, _layer: int, _position: Vector2i, _body: RigidBody2D, _player: BallsPlayer) -> void:
     return
 
-func grapple_locked_tile(_tile_map: TileMap, _position: Vector2i, _grapple: Grapple3, _point: Vector2, _normal: Vector2, _player: BallsPlayer) -> void:
+func grapple_locked_tile(_tile_map: TileMap, _layer: int, _position: Vector2i, _grapple: Grapple3, _point: Vector2, _normal: Vector2, _player: BallsPlayer) -> void:
     return
 
-func grapple_unlocked_tile(_tile_map: TileMap, _position: Vector2i, _grapple: Grapple3, _point: Vector2, _normal: Vector2, _player: BallsPlayer) -> void:
+func grapple_unlocked_tile(_tile_map: TileMap, _layer: int, _position: Vector2i, _grapple: Grapple3, _point: Vector2, _normal: Vector2, _player: BallsPlayer) -> void:
     return
 
 #
