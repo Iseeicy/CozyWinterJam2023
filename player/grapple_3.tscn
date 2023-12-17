@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://45aqkmy4ychd"]
+
+[ext_resource type="Script" path="res://player/grapple_3.gd" id="1_wju0f"]
+[ext_resource type="Texture2D" uid="uid://2aagxf8ip3r2" path="res://player/grapple_end.png" id="2_qeplt"]
+[ext_resource type="Texture2D" uid="uid://c2l4hto1hxrf8" path="res://player/grapple_chunk.png" id="3_mixww"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_plsbg"]
+size = Vector2(5, 8)
+
+[node name="Grapple3" type="CharacterBody2D"]
+collision_layer = 2
+script = ExtResource("1_wju0f")
+shoot_impulse = 800.0
+pull_strength = 50000.0
+
+[node name="Line2D" type="Line2D" parent="."]
+z_as_relative = false
+y_sort_enabled = true
+texture_repeat = 2
+points = PackedVector2Array(-4, 0, 0, 0)
+width = 8.0
+texture = ExtResource("3_mixww")
+texture_mode = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-4, 0)
+texture = ExtResource("2_qeplt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-2.5, 0)
+shape = SubResource("RectangleShape2D_plsbg")

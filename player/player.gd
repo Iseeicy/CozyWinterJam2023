@@ -12,8 +12,8 @@ extends Node2D
 
 @onready var ball_a: PhysicsBody2D = $BallA
 @onready var ball_b: PhysicsBody2D = $BallB
-var grapple_a: GrappleRope = null
-var grapple_b: GrappleRope = null
+var grapple_a: Grapple3 = null
+var grapple_b: Grapple3 = null
 
 #
 #	Godot Functions
@@ -38,15 +38,8 @@ func throw_grapple_a():
 	
 	grapple_a = grapple_scene.instantiate()
 	get_parent().add_child(grapple_a)
-	grapple_a.parent_ball = ball_a
-	grapple_a.grapple_type = GrappleRope.GrappleType.Pull
-
-	var direction = get_global_mouse_position() - ball_a.global_position
-	direction = direction.normalized()
 	
-	grapple_a.global_position = ball_a.global_position
-	grapple_a.global_rotation = direction.angle()
-	grapple_a.shoot(ball_a.global_position, direction)
+	grapple_a.shoot(Grapple3.GrappleType.Pull, ball_a, get_global_mouse_position() - ball_a.global_position)
 
 func unthrow_grapple_a():
 	if not grapple_a: return
@@ -59,15 +52,8 @@ func throw_grapple_b():
 	
 	grapple_b = grapple_scene.instantiate()
 	get_parent().add_child(grapple_b)
-	grapple_b.parent_ball = ball_b
-	grapple_b.grapple_type = GrappleRope.GrappleType.Swing
-
-	var direction = get_global_mouse_position() - ball_b.global_position
-	direction = direction.normalized()
 	
-	grapple_b.global_position = ball_b.global_position
-	grapple_b.global_rotation = direction.angle()
-	grapple_b.shoot(ball_b.global_position, direction)
+	grapple_b.shoot(Grapple3.GrappleType.Swing, ball_b, get_global_mouse_position() - ball_b.global_position)
 
 func unthrow_grapple_b():
 	if not grapple_b: return
