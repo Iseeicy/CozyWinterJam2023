@@ -53,3 +53,11 @@ func set_type(type: String):
 		$AnimatedSprite2D.modulate = Color.YELLOW
 	elif type.contains("magenta"):
 		$AnimatedSprite2D.modulate = Color.MAGENTA
+	elif type.contains("mint"):
+		$AnimatedSprite2D.modulate = Color.html("45ffb1")
+	elif type.contains("orange"):
+		$AnimatedSprite2D.modulate = Color.html("ff9429")
+	elif type.contains("pink"):
+		$AnimatedSprite2D.modulate = Color.html("ff3ba7")
+	elif type.contains("charcoal"):
+		$AnimatedSprite2D.modulate = Color.html("616161")
