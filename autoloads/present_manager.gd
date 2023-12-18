@@ -12,6 +12,15 @@ signal added_present(type: String)
 #
 
 var _collection: Dictionary = {}
+var _player: BallsPlayer = null
+
+#
+#	Godot Functions
+#
+
+func _ready():
+	# TODO
+	return
 
 #
 #	Public Functions
