@@ -19,8 +19,8 @@ var _player: BallsPlayer = null
 #
 
 func _ready():
-	# TODO
-	return
+	CheckpointManager.player_spawned.connect(_on_player_spawned.bind())
+	CheckpointManager.player_despawned.connect(_on_player_despawned.bind())
 
 #
 #	Public Functions
@@ -39,3 +39,13 @@ func reset() -> void:
 
 func get_collected() -> Dictionary:
 	return _collection
+
+#
+#	Signals
+#
+
+func _on_player_spawned(player: BallsPlayer) -> void:
+	_player = player
+
+func _on_player_despawned(__player: BallsPlayer) -> void:
+	_player = null
