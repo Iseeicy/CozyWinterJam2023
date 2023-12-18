@@ -1,6 +1,6 @@
 [gd_resource type="TileSet" load_steps=35 format=3 uid="uid://dila20svsy5ke"]
 
-[ext_resource type="Texture2D" uid="uid://b7xf42ld2wk3p" path="res://tiles/IceTile.png" id="1_rncdf"]
+[ext_resource type="Texture2D" uid="uid://b7xf42ld2wk3p" path="res://tiles/IceTileset.png" id="1_rncdf"]
 [ext_resource type="Texture2D" uid="uid://sruc0idanec" path="res://tiles/placeholder_tileset.png" id="1_y5f7g"]
 [ext_resource type="Texture2D" uid="uid://k305dwwar8di" path="res://tiles/SnowTileset.png" id="2_c4udv"]
 [ext_resource type="PackedScene" uid="uid://datx4kw3ovnmj" path="res://tiles/doors/green_present_door.tscn" id="4_jw0ao"]
