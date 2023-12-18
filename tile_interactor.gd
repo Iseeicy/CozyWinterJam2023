@@ -39,10 +39,10 @@ func _process_body(_delta: float, body: Node2D) -> void:
 		var overlapped_tile = tile_map.local_to_map(tile_map.to_local(body.global_position))
 		var tile_id = tile_map.get_cell_source_id(layer, overlapped_tile)
 		var last_id = body.get_meta("lay%s_last_id" % layer, -1)
-		var last_tile_pos = body.get_meta("lay%s_last_tile_pos" % layer, overlapped_tile)
+		var last_tile_pos = body.get_meta("lay%s_last_tile_pos" % layer, Vector2i.ZERO)
 
 		# If this body wasn't last on this tile, then call the rules for this tile
-		if last_id	!= tile_id:
+		if last_tile_pos != overlapped_tile:
 			for rule in _get_rules_for_id(last_id):
 				rule.exit_tile(tile_map, layer, last_tile_pos, body, player)
 			
