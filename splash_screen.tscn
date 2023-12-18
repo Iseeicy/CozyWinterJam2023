@@ -1,0 +1,81 @@
+[gd_scene load_steps=3 format=3 uid="uid://sbg70yk34nwu"]
+
+[ext_resource type="AudioStream" uid="uid://dr83vg44l2lkk" path="res://addons/netengine5/net.bobbo.text-reader/sounds/iseeicy/iseeicy.wav" id="1_rpqfe"]
+
+[sub_resource type="GDScript" id="GDScript_5powg"]
+script/source = "extends Control
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	$LogoSplash.hide()
+	
+	$WaitBeforeSplashTimer.start()
+	await $WaitBeforeSplashTimer.timeout
+	
+	$LogoSplash.show()
+	$FanfareSound.play()
+	
+	$DisplaySplashLength.start()
+	await $DisplaySplashLength.timeout
+	
+	$LogoSplash.hide()
+	
+	$WaitAfterSplashTimer.start()
+	await $WaitAfterSplashTimer.timeout
+"
+
+[node name="SplashScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_5powg")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="LogoSplash" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="LogoSplash"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Video Game"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WaitBeforeSplashTimer" type="Timer" parent="."]
+wait_time = 2.0
+
+[node name="DisplaySplashLength" type="Timer" parent="."]
+wait_time = 3.0
+
+[node name="WaitAfterSplashTimer" type="Timer" parent="."]
+wait_time = 2.0
+
+[node name="FanfareSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("1_rpqfe")
