@@ -12,7 +12,8 @@ enum GrappleType {
 
 enum State {
 	Shooting,
-	Locked
+	Locked,
+	MaxLength
 }
 
 #
@@ -24,6 +25,8 @@ signal unlocked(grapple: Grapple3, point: Vector2, normal: Vector2, collider: Ob
 
 @export var shoot_impulse: float = 500
 @export var pull_strength: float = 10000
+@export var max_grapple_length: float = 250
+@export var max_grapple_length_timeout: float = 0.2
 
 #
 #	Private Variables
@@ -46,6 +49,10 @@ var _locked_collider: Object
 
 func _physics_process(delta):
 	if _state == State.Shooting:
+		if (global_position - _ball.global_position).length() > max_grapple_length:
+			hit_max_length()
+			return
+
 		var collision = move_and_collide(_impulse * delta)
 		if collision: lock(collision.get_position(), collision.get_normal(), collision.get_collider())
 	elif _state == State.Locked:
@@ -110,6 +117,11 @@ func lock(point: Vector2, normal: Vector2, collider: Object) -> void:
 
 	locked.emit(self, point, normal, collider)
 
+func hit_max_length():
+	_state = State.MaxLength
+
+	await get_tree().create_timer(max_grapple_length_timeout).timeout
+	_ball.get_parent().unthrow_grapple(self)
 
 #
 #	Private Functions
