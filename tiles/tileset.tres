@@ -1,20 +1,24 @@
-[gd_resource type="TileSet" load_steps=35 format=3 uid="uid://dila20svsy5ke"]
+[gd_resource type="TileSet" load_steps=39 format=3 uid="uid://dila20svsy5ke"]
 
 [ext_resource type="Texture2D" uid="uid://b7xf42ld2wk3p" path="res://tiles/IceTileset.png" id="1_rncdf"]
 [ext_resource type="Texture2D" uid="uid://sruc0idanec" path="res://tiles/placeholder_tileset.png" id="1_y5f7g"]
 [ext_resource type="Texture2D" uid="uid://k305dwwar8di" path="res://tiles/SnowTileset.png" id="2_c4udv"]
+[ext_resource type="PackedScene" uid="uid://77din3vkfa12" path="res://tiles/doors/mint_present_door.tscn" id="3_umetm"]
+[ext_resource type="PackedScene" uid="uid://cup1dcohjod8k" path="res://tiles/doors/pink_present_door.tscn" id="4_4j2ug"]
 [ext_resource type="PackedScene" uid="uid://datx4kw3ovnmj" path="res://tiles/doors/green_present_door.tscn" id="4_jw0ao"]
 [ext_resource type="PackedScene" uid="uid://d3xs6sjqrj8qf" path="res://tiles/doors/red_present_door.tscn" id="4_ot668"]
 [ext_resource type="PackedScene" uid="uid://bm3ypsntq3mgw" path="res://tiles/doors/blue_present_door.tscn" id="5_3n4uq"]
 [ext_resource type="Texture2D" uid="uid://dnk0s0m4ycynf" path="res://tiles/present_grey.png" id="5_hahkb"]
+[ext_resource type="PackedScene" uid="uid://d1yydt2bvfxht" path="res://tiles/doors/charcoal_present_door.tscn" id="5_m6yns"]
 [ext_resource type="PackedScene" uid="uid://bthhga82uv0i0" path="res://tiles/doors/yellow_present_door.tscn" id="6_kjc6h"]
+[ext_resource type="PackedScene" uid="uid://c8wt32dfre2gk" path="res://tiles/doors/orange_present_door.tscn" id="7_bbiyp"]
 [ext_resource type="PackedScene" uid="uid://by5cg75qolhp3" path="res://tiles/doors/cyan_present_door.tscn" id="7_wlu01"]
 [ext_resource type="PackedScene" uid="uid://cxrqlvdfabkof" path="res://tiles/doors/magenta_present_door.tscn" id="8_v68qq"]
 [ext_resource type="PackedScene" uid="uid://1gttfrmb27oj" path="res://tiles/doors/end_doorway.tscn" id="9_8iapk"]
 [ext_resource type="PackedScene" uid="uid://yf81cefj0arc" path="res://tiles/checkpoint/checkpoint.tscn" id="10_1f7jl"]
 [ext_resource type="Texture2D" uid="uid://dkjqm6ghmnjvh" path="res://tiles/IceSpikes.png" id="11_7ailq"]
 [ext_resource type="Texture2D" uid="uid://bm6xv07voopwg" path="res://tiles/HoleTile.png" id="12_4ecvw"]
-[ext_resource type="Texture2D" path="res://tiles/WallTileset.png" id="12_p3jcr"]
+[ext_resource type="Texture2D" uid="uid://esh4v014on75" path="res://tiles/WallTileset.png" id="12_p3jcr"]
 [ext_resource type="Texture2D" uid="uid://clhd3wsdrtnu6" path="res://tiles/CrackTile.png" id="13_7k3mt"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_m6ue1"]
@@ -674,13 +678,17 @@ texture = ExtResource("1_y5f7g")
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_qsa81"]
 resource_name = "Doors"
+scenes/1/scene = ExtResource("3_umetm")
 scenes/2/scene = ExtResource("4_ot668")
+scenes/3/scene = ExtResource("7_bbiyp")
 scenes/4/scene = ExtResource("4_jw0ao")
 scenes/5/scene = ExtResource("5_3n4uq")
 scenes/6/scene = ExtResource("6_kjc6h")
 scenes/7/scene = ExtResource("7_wlu01")
 scenes/8/scene = ExtResource("8_v68qq")
 scenes/9/scene = ExtResource("9_8iapk")
+scenes/10/scene = ExtResource("4_4j2ug")
+scenes/11/scene = ExtResource("5_m6yns")
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_xwt8d"]
 resource_name = "Checkpoints"
@@ -4005,25 +4013,31 @@ texture = ExtResource("5_hahkb")
 0:3/animation_frame_0/duration = 0.2
 0:3/animation_frame_1/duration = 0.2
 0:3/0 = 0
-0:3/0/modulate = Color(0.270588, 1, 0.878431, 1)
+0:3/0/modulate = Color(0.270588, 1, 0.694118, 1)
 0:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:3/0/physics_layer_0/angular_velocity = 0.0
 0:3/0/custom_data_0 = "mint_present"
 2:3/animation_frame_0/duration = 0.2
 2:3/animation_frame_1/duration = 0.2
 2:3/0 = 0
+2:3/0/modulate = Color(1, 0.580392, 0.160784, 1)
 2:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 2:3/0/physics_layer_0/angular_velocity = 0.0
+2:3/0/custom_data_0 = "orange_present"
 0:4/animation_frame_0/duration = 0.2
 0:4/animation_frame_1/duration = 0.2
 0:4/0 = 0
+0:4/0/modulate = Color(1, 0.231373, 0.654902, 1)
 0:4/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:4/0/physics_layer_0/angular_velocity = 0.0
+0:4/0/custom_data_0 = "pink_present"
 2:4/animation_frame_0/duration = 0.2
 2:4/animation_frame_1/duration = 0.2
 2:4/0 = 0
+2:4/0/modulate = Color(0.380392, 0.380392, 0.380392, 1)
 2:4/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 2:4/0/physics_layer_0/angular_velocity = 0.0
+2:4/0/custom_data_0 = "charcoal_present"
 
 [resource]
 physics_layer_0/collision_layer = 1
