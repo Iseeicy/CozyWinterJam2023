@@ -352,6 +352,7 @@ volume_db = -0.22
 autoplay = true
 script = ExtResource("9_ic7yi")
 rigidbody = NodePath("../..")
+volume_mult = 0.25
 pitch_change_speed = 30.0
 volume_change_speed = 50.0
 volume_velocity_curve = SubResource("Curve_taxq6")
@@ -363,19 +364,19 @@ none_threshold = 2.0
 
 [node name="DinkHard" type="AudioStreamPlayer2D" parent="BallA/Audio/Dinks"]
 stream = SubResource("AudioStreamRandomizer_3eel1")
-volume_db = -0.5
+volume_db = -8.0
 
 [node name="DinkMedium" type="AudioStreamPlayer2D" parent="BallA/Audio/Dinks"]
 stream = SubResource("AudioStreamRandomizer_i3v2x")
-volume_db = -0.5
+volume_db = -8.0
 
 [node name="DinkLight" type="AudioStreamPlayer2D" parent="BallA/Audio/Dinks"]
 stream = SubResource("AudioStreamRandomizer_i3f4a")
-volume_db = -0.5
+volume_db = -8.0
 
 [node name="DinkVSoft" type="AudioStreamPlayer2D" parent="BallA/Audio/Dinks"]
 stream = SubResource("AudioStreamRandomizer_h3gnw")
-volume_db = -0.5
+volume_db = -8.0
 
 [node name="Death" type="Node2D" parent="BallA/Audio" node_paths=PackedStringArray("player", "rigidbody")]
 script = ExtResource("38_svupj")
@@ -425,6 +426,7 @@ volume_db = -0.22
 autoplay = true
 script = ExtResource("9_ic7yi")
 rigidbody = NodePath("../..")
+volume_mult = 0.25
 min_pitch = 0.7
 max_pitch = 0.8
 pitch_change_speed = 30.0
@@ -438,22 +440,22 @@ none_threshold = 2.0
 
 [node name="DinkHard" type="AudioStreamPlayer2D" parent="BallB/Audio2/Dinks2"]
 stream = SubResource("AudioStreamRandomizer_3eel1")
-volume_db = -0.5
+volume_db = -8.0
 pitch_scale = 1.1
 
 [node name="DinkMedium" type="AudioStreamPlayer2D" parent="BallB/Audio2/Dinks2"]
 stream = SubResource("AudioStreamRandomizer_i3v2x")
-volume_db = -0.5
+volume_db = -8.0
 pitch_scale = 1.1
 
 [node name="DinkLight" type="AudioStreamPlayer2D" parent="BallB/Audio2/Dinks2"]
 stream = SubResource("AudioStreamRandomizer_i3f4a")
-volume_db = -0.5
+volume_db = -8.0
 pitch_scale = 1.1
 
 [node name="DinkVSoft" type="AudioStreamPlayer2D" parent="BallB/Audio2/Dinks2"]
 stream = SubResource("AudioStreamRandomizer_h3gnw")
-volume_db = -0.5
+volume_db = -8.0
 pitch_scale = 1.1
 
 [node name="Death2" type="Node2D" parent="BallB/Audio2" node_paths=PackedStringArray("player", "rigidbody")]
