@@ -11,8 +11,9 @@ class_name Doorway
 func _ready():
 	PresentManager.collected_updated.connect(_on_present_collection_updated.bind())
 
-func _on_present_collection_updated(collection: Dictionary):
-	_set_open(collection.get(currency_type, 0) >= required_currency)
+func _on_present_collection_updated(held: Dictionary, saved: Dictionary):
+	var count = held.get(currency_type, []).size() + saved.get(currency_type, []).size()
+	call_deferred("_set_open", count >= required_currency)
 
 func _set_open(is_open: bool):
 	animated_sprite.animation = "open" if is_open else "closed"
