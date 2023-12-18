@@ -11,13 +11,14 @@ signal pause_changed(is_paused: bool)
 #
 
 var _is_paused: bool = false
+var _can_pause: bool = true
 
 #
 #	Godot Functions
 #
 
 func _ready():
-	set_paused(false)
+	set_paused(false, true)
 
 func _unhandled_input(event):
 	if event.is_action_pressed("pause"):
@@ -27,10 +28,15 @@ func _unhandled_input(event):
 #	Public Functions
 #
 
-func set_paused(is_paused: bool) -> void:
+func set_paused(is_paused: bool, force: bool = false) -> void:
+	if is_paused and not _can_pause and not force: return
+	
 	_is_paused = is_paused
 	visible = is_paused
 	pause_changed.emit()
+
+func set_can_pause(can_pause: bool) -> void:
+	_can_pause = can_pause
 
 #
 #	Signals
