@@ -78,6 +78,7 @@ func _empty_held_into_saved(checkpoint_node: Node2D):
 	var index = 0
 	for present in _visible_presents:
 		present.deposit(checkpoint_node, index, _visible_presents.size())
+		await checkpoint_node.get_tree().create_timer(0.1).timeout
 		index += 1
 	_visible_presents.clear()
 	collected_updated.emit(get_held_collected(), get_saved_collected())
