@@ -1,6 +1,6 @@
 [gd_resource type="TileSet" load_steps=35 format=3 uid="uid://dila20svsy5ke"]
 
-[ext_resource type="Texture2D" uid="uid://t8iedbonbgcb" path="res://tiles/IceTileset.png" id="1_d10fl"]
+[ext_resource type="Texture2D" uid="uid://b7xf42ld2wk3p" path="res://tiles/IceTile.png" id="1_rncdf"]
 [ext_resource type="Texture2D" uid="uid://sruc0idanec" path="res://tiles/placeholder_tileset.png" id="1_y5f7g"]
 [ext_resource type="Texture2D" uid="uid://k305dwwar8di" path="res://tiles/SnowTileset.png" id="2_c4udv"]
 [ext_resource type="PackedScene" uid="uid://datx4kw3ovnmj" path="res://tiles/doors/green_present_door.tscn" id="4_jw0ao"]
@@ -14,7 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://yf81cefj0arc" path="res://tiles/checkpoint/checkpoint.tscn" id="10_1f7jl"]
 [ext_resource type="Texture2D" uid="uid://dkjqm6ghmnjvh" path="res://tiles/IceSpikes.png" id="11_7ailq"]
 [ext_resource type="Texture2D" uid="uid://bm6xv07voopwg" path="res://tiles/HoleTile.png" id="12_4ecvw"]
-[ext_resource type="Texture2D" uid="uid://esh4v014on75" path="res://tiles/WallTileset.png" id="12_p3jcr"]
+[ext_resource type="Texture2D" path="res://tiles/WallTileset.png" id="12_p3jcr"]
 [ext_resource type="Texture2D" uid="uid://clhd3wsdrtnu6" path="res://tiles/CrackTile.png" id="13_7k3mt"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_m6ue1"]
@@ -37,7 +37,7 @@ tile_data = PackedInt32Array(0, 196620, 2, 1, 262156, 2, 2, 327692, 2)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_54hfa"]
 resource_name = "Ice"
-texture = ExtResource("1_d10fl")
+texture = ExtResource("1_rncdf")
 1:0/0 = 0
 1:0/0/terrain_set = 1
 1:0/0/terrain = 0
