@@ -16,7 +16,7 @@ func _process(delta):
 	if _target_node:
 		if not _deposit_mode:
 			var angle_vec = global_position - _target_node.global_position
-			_target_position = _target_node.global_position + (angle_vec.normalized() * 20)
+			_target_position = _target_node.global_position + (angle_vec.normalized() * 15)
 		else:
 			_target_position = _target_node.global_position + (Vector2.UP.rotated(_rotator) * _rotate_distance)
 			if not _is_dying and (global_position - _target_position).length() < 30:
