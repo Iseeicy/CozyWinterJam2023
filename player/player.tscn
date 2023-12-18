@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://dyb74ka0l7t1f"]
+[gd_scene load_steps=58 format=3 uid="uid://dyb74ka0l7t1f"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_uotpf"]
 [ext_resource type="PackedScene" uid="uid://cwtiblfoxxa76" path="res://player/player_chain.tscn" id="2_sj4gy"]
@@ -38,6 +38,11 @@
 [ext_resource type="AudioStream" uid="uid://dx7qu3ii6wuyj" path="res://sounds/dinks/dink_vsoft_5.ogg" id="35_dxtmf"]
 [ext_resource type="AudioStream" uid="uid://ctbckgowxtygr" path="res://sounds/dinks/dink_vsoft_6.ogg" id="36_0jtxd"]
 [ext_resource type="AudioStream" uid="uid://cl0l42520jls8" path="res://sounds/dinks/dink_vsoft_7.ogg" id="37_7c5jd"]
+[ext_resource type="Script" path="res://player/death_audio.gd" id="38_svupj"]
+[ext_resource type="AudioStream" uid="uid://bep277vx5dm7y" path="res://sounds/ball_shatter.ogg" id="39_8lry4"]
+[ext_resource type="AudioStream" uid="uid://daa6ylcagu83h" path="res://sounds/ball_die_spike.ogg" id="40_482h1"]
+[ext_resource type="AudioStream" uid="uid://cj2tgghlwigpl" path="res://sounds/ball_die_zap.ogg" id="41_ylmg1"]
+[ext_resource type="AudioStream" uid="uid://ccgxtjrny5wqe" path="res://sounds/ball_die_fall.ogg" id="42_l0rhl"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_75bdf"]
 friction = 0.0
@@ -127,6 +132,26 @@ stream_5/stream = ExtResource("36_0jtxd")
 stream_5/weight = 1.0
 stream_6/stream = ExtResource("37_7c5jd")
 stream_6/weight = 1.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_wepx0"]
+streams_count = 1
+stream_0/stream = ExtResource("39_8lry4")
+stream_0/weight = 1.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_sk4ie"]
+streams_count = 1
+stream_0/stream = ExtResource("40_482h1")
+stream_0/weight = 1.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_6twvm"]
+streams_count = 1
+stream_0/stream = ExtResource("41_ylmg1")
+stream_0/weight = 1.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_liyfa"]
+streams_count = 1
+stream_0/stream = ExtResource("42_l0rhl")
+stream_0/weight = 1.0
 
 [node name="Player" type="Node2D"]
 script = ExtResource("1_uotpf")
@@ -352,6 +377,27 @@ volume_db = -0.5
 stream = SubResource("AudioStreamRandomizer_h3gnw")
 volume_db = -0.5
 
+[node name="Death" type="Node2D" parent="BallA/Audio" node_paths=PackedStringArray("player", "rigidbody")]
+script = ExtResource("38_svupj")
+player = NodePath("../../..")
+rigidbody = NodePath("../..")
+
+[node name="Shatter" type="AudioStreamPlayer2D" parent="BallA/Audio/Death"]
+position = Vector2(8, 0)
+stream = SubResource("AudioStreamRandomizer_wepx0")
+
+[node name="Spike" type="AudioStreamPlayer2D" parent="BallA/Audio/Death"]
+position = Vector2(8, 0)
+stream = SubResource("AudioStreamRandomizer_sk4ie")
+
+[node name="Zap" type="AudioStreamPlayer2D" parent="BallA/Audio/Death"]
+position = Vector2(8, 0)
+stream = SubResource("AudioStreamRandomizer_6twvm")
+
+[node name="Fall" type="AudioStreamPlayer2D" parent="BallA/Audio/Death"]
+position = Vector2(8, 0)
+stream = SubResource("AudioStreamRandomizer_liyfa")
+
 [node name="BallB" type="RigidBody2D" parent="."]
 z_index = 1
 position = Vector2(8, 0)
@@ -408,6 +454,31 @@ pitch_scale = 1.1
 [node name="DinkVSoft" type="AudioStreamPlayer2D" parent="BallB/Audio2/Dinks2"]
 stream = SubResource("AudioStreamRandomizer_h3gnw")
 volume_db = -0.5
+pitch_scale = 1.1
+
+[node name="Death2" type="Node2D" parent="BallB/Audio2" node_paths=PackedStringArray("player", "rigidbody")]
+script = ExtResource("38_svupj")
+player = NodePath("../../..")
+rigidbody = NodePath("../..")
+
+[node name="Shatter" type="AudioStreamPlayer2D" parent="BallB/Audio2/Death2"]
+position = Vector2(8, 0)
+stream = SubResource("AudioStreamRandomizer_wepx0")
+pitch_scale = 1.1
+
+[node name="Spike" type="AudioStreamPlayer2D" parent="BallB/Audio2/Death2"]
+position = Vector2(8, 0)
+stream = SubResource("AudioStreamRandomizer_sk4ie")
+pitch_scale = 1.1
+
+[node name="Zap" type="AudioStreamPlayer2D" parent="BallB/Audio2/Death2"]
+position = Vector2(8, 0)
+stream = SubResource("AudioStreamRandomizer_6twvm")
+pitch_scale = 1.1
+
+[node name="Fall" type="AudioStreamPlayer2D" parent="BallB/Audio2/Death2"]
+position = Vector2(8, 0)
+stream = SubResource("AudioStreamRandomizer_liyfa")
 pitch_scale = 1.1
 
 [node name="RespawnTimer" type="Timer" parent="."]
