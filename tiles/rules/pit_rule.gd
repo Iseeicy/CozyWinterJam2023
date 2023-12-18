@@ -22,8 +22,9 @@ func enter_tile(tile_map: TileMap, layer: int, position: Vector2i, body: RigidBo
     if get_is_handling(position): return
     set_is_handling(position, true)
     
+    player.call_deferred("kill", body, BallsPlayer.KillType.Fall)
+
     play_oneshot_at_tile(tile_map, position, fall_start_sound)
-    body.set_physics_process(false)
     await tile_map.get_tree().create_timer(0.5).timeout
     
     play_oneshot_at_tile(tile_map, position, fall_complete_sound)
@@ -35,5 +36,4 @@ func enter_tile(tile_map: TileMap, layer: int, position: Vector2i, body: RigidBo
         tile_map.get_cell_alternative_tile(layer, position)
     )
 
-    player.call_deferred("kill", body, BallsPlayer.KillType.Fall)
     set_is_handling(position, false)
