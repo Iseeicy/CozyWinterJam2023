@@ -10,6 +10,9 @@ var _target_position: Vector2 = Vector2.ZERO
 var _rotator: float = 0
 var _rotate_distance: float = 25
 
+func _ready():
+	$Audio/Pickup.play()
+
 func _process(delta):
 	_rotator += deg_to_rad(200 * delta)
 	
@@ -31,12 +34,16 @@ func deposit(node: Node2D, index: int, total: int):
 	_target_node = node
 	_deposit_mode = true
 	_rotator = deg_to_rad((index as float / total as float) * 360.0)
+	_rotator += deg_to_rad((Time.get_ticks_msec() / 1000.0) * 200)
+	
 	_rotate_distance = 25
 
 func fade_out():
 	_is_dying = true
+	$Audio/Show.play()
 	await get_tree().create_timer(3).timeout
 	_rotate_distance = 0
+	$Audio/Stash.play()
 	await get_tree().create_timer(0.7).timeout
 	queue_free()
 

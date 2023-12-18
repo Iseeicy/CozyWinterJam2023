@@ -1,7 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://dbw2cts28qgdr"]
+[gd_scene load_steps=12 format=3 uid="uid://dbw2cts28qgdr"]
 
 [ext_resource type="Script" path="res://collected_present.gd" id="1_8hagx"]
 [ext_resource type="Texture2D" uid="uid://dnk0s0m4ycynf" path="res://tiles/present_grey.png" id="2_4qvcg"]
+[ext_resource type="AudioStream" uid="uid://cd6af6xhr4e0" path="res://sounds/present_grab.ogg" id="3_vsff3"]
+[ext_resource type="AudioStream" uid="uid://ch6cavuu6s3ir" path="res://sounds/present_show.ogg" id="4_jbfxf"]
+[ext_resource type="AudioStream" uid="uid://do88h335kaqfr" path="res://sounds/present_stash.ogg" id="5_2iag1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_akm8r"]
 atlas = ExtResource("2_4qvcg")
@@ -25,6 +28,21 @@ animations = [{
 "speed": 10.0
 }]
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_argvu"]
+streams_count = 1
+stream_0/stream = ExtResource("3_vsff3")
+stream_0/weight = 1.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_fk132"]
+streams_count = 1
+stream_0/stream = ExtResource("4_jbfxf")
+stream_0/weight = 1.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_cgoak"]
+streams_count = 1
+stream_0/stream = ExtResource("5_2iag1")
+stream_0/weight = 1.0
+
 [node name="CollectedPresent" type="Node2D"]
 script = ExtResource("1_8hagx")
 
@@ -32,3 +50,14 @@ script = ExtResource("1_8hagx")
 sprite_frames = SubResource("SpriteFrames_qo42p")
 autoplay = "default"
 frame_progress = 0.113427
+
+[node name="Audio" type="Node2D" parent="."]
+
+[node name="Pickup" type="AudioStreamPlayer2D" parent="Audio"]
+stream = SubResource("AudioStreamRandomizer_argvu")
+
+[node name="Show" type="AudioStreamPlayer2D" parent="Audio"]
+stream = SubResource("AudioStreamRandomizer_fk132")
+
+[node name="Stash" type="AudioStreamPlayer2D" parent="Audio"]
+stream = SubResource("AudioStreamRandomizer_cgoak")
