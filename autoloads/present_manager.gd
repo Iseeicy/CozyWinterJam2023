@@ -22,6 +22,7 @@ var _visible_presents: Array[CollectedPresent] = []
 #
 
 func _ready():
+	_player = CheckpointManager.get_player()
 	CheckpointManager.player_spawned.connect(_on_player_spawned.bind())
 	CheckpointManager.player_despawned.connect(_on_player_despawned.bind())
 	CheckpointManager.checkpoint_flagged.connect(_on_checkpoint_flagged.bind())

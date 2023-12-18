@@ -5,8 +5,13 @@
 [sub_resource type="GDScript" id="GDScript_5powg"]
 script/source = "extends Control
 
-# Called when the node enters the scene tree for the first time.
+signal completed()
+
 func _ready():
+	if self.owner == self:
+		run()
+	
+func run():
 	$LogoSplash.hide()
 	
 	$WaitBeforeSplashTimer.start()
@@ -22,6 +27,7 @@ func _ready():
 	
 	$WaitAfterSplashTimer.start()
 	await $WaitAfterSplashTimer.timeout
+	completed.emit()
 "
 
 [node name="SplashScreen" type="Control"]
@@ -69,13 +75,11 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="WaitBeforeSplashTimer" type="Timer" parent="."]
-wait_time = 2.0
 
 [node name="DisplaySplashLength" type="Timer" parent="."]
-wait_time = 3.0
 
 [node name="WaitAfterSplashTimer" type="Timer" parent="."]
-wait_time = 2.0
+wait_time = 0.5
 
 [node name="FanfareSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("1_rpqfe")
