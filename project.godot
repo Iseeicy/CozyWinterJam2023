@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 KnowledgeDB="*res://addons/netengine5/net.bobbo.knowledge/autoload/knowledge_db.tscn"
 GraphNodeDB="*res://addons/netengine5/net.bobbo.dialog-graph/autoload/graph_node_db.tscn"
 PresentManager="*res://autoloads/present_manager.gd"
+CheckpointManager="*res://autoloads/checkpoint_manager.gd"
 
 [display]
 

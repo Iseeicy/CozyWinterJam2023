@@ -10,8 +10,12 @@ func _ready():
 	await get_parent().ready
 	_area.reparent(get_parent())
 
+	CheckpointManager.player_spawned.connect(_on_player_spawned.bind())
+	CheckpointManager.player_despawned.connect(_on_player_despawned.bind())
+
 func _physics_process(_delta):
-	var middle = player.ball_a.global_position.lerp(player.ball_b.global_position, 0.5)
+	var middle = Vector2.ZERO
+	if player: middle = player.ball_a.global_position.lerp(player.ball_b.global_position, 0.5)
 	_area.global_position = middle
 	
 	var focus_position = Vector2.ZERO
@@ -32,3 +36,9 @@ func _on_area_2d_area_exited(area: Area2D):
 func _on_area_2d_area_entered(area: Area2D):
 	_directors.push_back(area)
 	print(_directors.size())
+
+func _on_player_spawned(new_player: BallsPlayer):
+	player = (new_player)
+
+func _on_player_despawned(_new_player: BallsPlayer):
+	player = null

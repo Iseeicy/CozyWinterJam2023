@@ -35,5 +35,5 @@ func enter_tile(tile_map: TileMap, layer: int, position: Vector2i, body: RigidBo
         tile_map.get_cell_alternative_tile(layer, position)
     )
 
-    player.kill(body, BallsPlayer.KillType.Fall)
+    player.call_deferred("kill", body, BallsPlayer.KillType.Fall)
     set_is_handling(position, false)
