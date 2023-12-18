@@ -81,6 +81,8 @@ func shoot(type: GrappleType, origin_ball: PhysicsBody2D, aim_direction: Vector2
 
 	_state = State.Shooting
 	_grapple_type = type
+	$Audio/Throw.play()
+	$Audio/Chaining.play()
 
 func unshoot() -> void:
 	set_physics_process(false)
@@ -93,6 +95,7 @@ func unshoot() -> void:
 	if _state == State.Locked:
 		unlocked.emit(self, _locked_point, _locked_normal, _locked_collider)
 		
+	$Audio/Chaining.stop()
 	queue_free()
 
 func lock(point: Vector2, normal: Vector2, collider: Object) -> void:
@@ -115,6 +118,8 @@ func lock(point: Vector2, normal: Vector2, collider: Object) -> void:
 		_swing_joint.node_a = _swing_joint.get_path_to(static_bod)
 		_swing_joint.node_b = _swing_joint.get_path_to(_ball)
 
+	$Audio/Chaining.stop()
+	$Audio/Lock.play()
 	locked.emit(self, point, normal, collider)
 
 func hit_max_length():
