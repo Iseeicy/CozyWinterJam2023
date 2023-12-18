@@ -133,9 +133,10 @@ func kill(which_body: RigidBody2D, type: KillType) -> void:
 	# ball_a.hide()
 	# ball_b.hide()
 	
-	for node in $PlayerChain.get_children():
-		if node is PinJoint2D:
-			node.queue_free()
+	if type != KillType.Fall:
+		for node in $PlayerChain.get_children():
+			if node is PinJoint2D:
+				node.queue_free()
 
 	killed.emit(which_body, type)
 	$RespawnTimer.start()
