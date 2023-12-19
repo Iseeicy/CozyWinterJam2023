@@ -49,130 +49,25 @@
 [ext_resource type="Texture2D" uid="uid://bg760tupesvwj" path="res://cutscenes/intro/placeholder_slide_4.png" id="46_n5qsr"]
 [ext_resource type="PackedScene" uid="uid://bo807ocm0385q" path="res://addons/netengine5/net.bobbo.dialog-graph/dialog_runner/dialog_runner.tscn" id="47_gxkyc"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_pc1f6"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("2_x50fi")
-}, {
-"duration": 1.0,
-"texture": ExtResource("3_hl3fj")
-}, {
-"duration": 1.0,
-"texture": ExtResource("4_lov3y")
-}, {
-"duration": 1.0,
-"texture": ExtResource("5_g52im")
-}, {
-"duration": 1.0,
-"texture": ExtResource("6_tk6nx")
-}, {
-"duration": 1.0,
-"texture": ExtResource("7_3f5tc")
-}, {
-"duration": 1.0,
-"texture": ExtResource("8_bdpvy")
-}, {
-"duration": 1.0,
-"texture": ExtResource("9_05med")
-}, {
-"duration": 1.0,
-"texture": ExtResource("10_1lnhf")
-}, {
-"duration": 1.0,
-"texture": ExtResource("11_fcbrd")
-}, {
-"duration": 1.0,
-"texture": ExtResource("12_mykyy")
-}, {
-"duration": 1.0,
-"texture": ExtResource("13_c8ums")
-}, {
-"duration": 1.0,
-"texture": ExtResource("14_48jdr")
-}, {
-"duration": 1.0,
-"texture": ExtResource("15_3xnim")
-}, {
-"duration": 1.0,
-"texture": ExtResource("16_v671y")
-}, {
-"duration": 1.0,
-"texture": ExtResource("17_ewmdn")
-}, {
-"duration": 1.0,
-"texture": ExtResource("18_5hc71")
-}, {
-"duration": 1.0,
-"texture": ExtResource("19_k172w")
-}, {
-"duration": 1.0,
-"texture": ExtResource("20_obp6b")
-}, {
-"duration": 1.0,
-"texture": ExtResource("21_jpprg")
-}, {
-"duration": 1.0,
-"texture": ExtResource("22_wboov")
-}, {
-"duration": 1.0,
-"texture": ExtResource("23_ve68t")
-}, {
-"duration": 1.0,
-"texture": ExtResource("24_11u6e")
-}, {
-"duration": 1.0,
-"texture": ExtResource("25_qyf75")
-}, {
-"duration": 1.0,
-"texture": ExtResource("26_qt2lt")
-}, {
-"duration": 1.0,
-"texture": ExtResource("27_wcat2")
-}, {
-"duration": 1.0,
-"texture": ExtResource("28_a2h88")
-}, {
-"duration": 1.0,
-"texture": ExtResource("29_agua5")
-}, {
-"duration": 1.0,
-"texture": ExtResource("30_rgiwh")
-}, {
-"duration": 1.0,
-"texture": ExtResource("31_jqn5t")
-}, {
-"duration": 1.0,
-"texture": ExtResource("32_687ay")
-}, {
-"duration": 1.0,
-"texture": ExtResource("33_v1bjq")
-}, {
-"duration": 1.0,
-"texture": ExtResource("34_2umja")
-}, {
-"duration": 1.0,
-"texture": ExtResource("35_k186s")
-}, {
-"duration": 1.0,
-"texture": ExtResource("36_7hlxw")
-}, {
-"duration": 1.0,
-"texture": ExtResource("37_3mym2")
-}, {
-"duration": 1.0,
-"texture": ExtResource("38_5ajn3")
-}, {
-"duration": 1.0,
-"texture": ExtResource("39_iyv5i")
-}, {
-"duration": 1.0,
-"texture": ExtResource("40_c82gn")
-}],
-"loop": true,
-"name": &"default",
-"speed": 12.0
-}]
+[sub_resource type="GDScript" id="GDScript_tgy4x"]
+script/source = "extends TextureRect
+
+@export var frames: Array[Texture2D] = []
+@export var timer: Timer = null
+
+var _current_frame: int = 0
+
+func _exit_tree():
+	print(\"Exit\")
+	_current_frame = 0
+	_on_timer_timeout()
+
+func _on_timer_timeout():
+	texture = frames[_current_frame]
+	
+	if _current_frame + 1 < frames.size():
+		_current_frame = (_current_frame + 1) % frames.size()
+"
 
 [node name="IntroCutscene" type="Control"]
 layout_mode = 3
@@ -194,13 +89,6 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 color = Color(0.0941176, 0.0941176, 0.0941176, 1)
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-visible = false
-position = Vector2(552, 256)
-sprite_frames = SubResource("SpriteFrames_pc1f6")
-autoplay = "default"
-frame_progress = 0.0806175
 
 [node name="MainMargin" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -226,9 +114,20 @@ layout_mode = 2
 editable = false
 scrollable = false
 
-[node name="CutsceneTextWindow" parent="." instance=ExtResource("44_wya7y")]
-visible = false
+[node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 20
+
+[node name="CutsceneTextWindow" parent="MarginContainer" instance=ExtResource("44_wya7y")]
+layout_mode = 2
 
 [node name="Slides" type="Control" parent="."]
 visible = false
@@ -275,6 +174,25 @@ texture = ExtResource("44_2h2tq")
 stretch_mode = 5
 metadata/text = "...but then..."
 
+[node name="Slide5" type="TextureRect" parent="Slides" node_paths=PackedStringArray("timer")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+texture = ExtResource("46_n5qsr")
+stretch_mode = 5
+script = SubResource("GDScript_tgy4x")
+frames = Array[Texture2D]([ExtResource("2_x50fi"), ExtResource("3_hl3fj"), ExtResource("4_lov3y"), ExtResource("5_g52im"), ExtResource("6_tk6nx"), ExtResource("7_3f5tc"), ExtResource("8_bdpvy"), ExtResource("9_05med"), ExtResource("10_1lnhf"), ExtResource("11_fcbrd"), ExtResource("12_mykyy"), ExtResource("13_c8ums"), ExtResource("14_48jdr"), ExtResource("15_3xnim"), ExtResource("16_v671y"), ExtResource("17_ewmdn"), ExtResource("18_5hc71"), ExtResource("19_k172w"), ExtResource("20_obp6b"), ExtResource("21_jpprg"), ExtResource("22_wboov"), ExtResource("23_ve68t"), ExtResource("24_11u6e"), ExtResource("25_qyf75"), ExtResource("26_qt2lt"), ExtResource("27_wcat2"), ExtResource("28_a2h88"), ExtResource("29_agua5"), ExtResource("30_rgiwh"), ExtResource("31_jqn5t"), ExtResource("32_687ay"), ExtResource("33_v1bjq"), ExtResource("34_2umja"), ExtResource("35_k186s"), ExtResource("36_7hlxw"), ExtResource("37_3mym2"), ExtResource("38_5ajn3"), ExtResource("39_iyv5i"), ExtResource("40_c82gn")])
+timer = NodePath("Timer")
+metadata/text = "The JINGLE BALLS will save the day!"
+
+[node name="Timer" type="Timer" parent="Slides/Slide5"]
+wait_time = 0.063
+autostart = true
+
 [node name="Slide3" type="TextureRect" parent="Slides"]
 layout_mode = 1
 anchors_preset = 15
@@ -300,4 +218,7 @@ stretch_mode = 5
 metadata/text = "The JINGLE BALLS will save the day!"
 
 [node name="DialogRunner" parent="." node_paths=PackedStringArray("text_window") instance=ExtResource("47_gxkyc")]
-text_window = NodePath("../CutsceneTextWindow")
+text_window = NodePath("../MarginContainer/CutsceneTextWindow")
+
+[connection signal="timeout" from="Slides/Slide5/Timer" to="Slides/Slide5" method="_on_timer_timeout"]
+[connection signal="transitioned" from="DialogRunner" to="." method="_on_dialog_runner_transitioned"]

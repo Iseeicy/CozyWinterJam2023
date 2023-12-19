@@ -28,13 +28,18 @@ nodes = Array[Dictionary]([{
 }, {
 "_d": ExtResource("2_unt28"),
 "_i": 4,
-"_p": Vector2(1140, -100),
+"_p": Vector2(1440, -100),
 "t": Array[String](["Oh no! How will he deliver presents now???"])
 }, {
 "_d": ExtResource("2_unt28"),
 "_i": 5,
-"_p": Vector2(1440, -100),
+"_p": Vector2(1740, -100),
 "t": Array[String](["the JINGLE BALLS will save the day!"])
+}, {
+"_d": ExtResource("2_unt28"),
+"_i": 6,
+"_p": Vector2(1140, -100),
+"t": Array[String](["!!!"])
 }])
 connections = Array[Dictionary]([{
 "from_id": 0,
@@ -54,11 +59,16 @@ connections = Array[Dictionary]([{
 }, {
 "from_id": 3,
 "from_port": 0,
-"to_id": 4,
+"to_id": 6,
 "to_port": 0
 }, {
 "from_id": 4,
 "from_port": 0,
 "to_id": 5,
+"to_port": 0
+}, {
+"from_id": 6,
+"from_port": 0,
+"to_id": 4,
 "to_port": 0
 }])

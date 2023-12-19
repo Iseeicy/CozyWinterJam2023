@@ -53,7 +53,7 @@ script = ExtResource("3_yd6x2")
 
 [node name="TextSpeaker" type="Node" parent="TextReaderLabel" node_paths=PackedStringArray("audio_origin_node")]
 script = ExtResource("4_0ugvn")
-audio_origin_node = NodePath("@Node@182507")
+audio_origin_node = NodePath("@Node@407486")
 
 [node name="FadeOutTimer" type="Timer" parent="."]
 wait_time = 5.0
