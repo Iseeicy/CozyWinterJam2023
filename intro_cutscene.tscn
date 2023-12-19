@@ -1,0 +1,182 @@
+[gd_scene load_steps=42 format=3 uid="uid://civu7avrxmpnb"]
+
+[ext_resource type="Script" path="res://intro_cutscene.gd" id="1_3f5h6"]
+[ext_resource type="Texture2D" uid="uid://dv35v1b16n20f" path="res://cutscenes/intro/roof/guy_falling_off_roof 2/guy_falling_off_roof 2_00000.png" id="2_x50fi"]
+[ext_resource type="Texture2D" uid="uid://cr8wq18cin8c2" path="res://cutscenes/intro/roof/guy_falling_off_roof 2/guy_falling_off_roof 2_00001.png" id="3_hl3fj"]
+[ext_resource type="Texture2D" uid="uid://n32ok1gqyhe2" path="res://cutscenes/intro/roof/guy_falling_off_roof 2/guy_falling_off_roof 2_00002.png" id="4_lov3y"]
+[ext_resource type="Texture2D" uid="uid://bjt3x8hcvqsyl" path="res://cutscenes/intro/roof/guy_falling_off_roof 2/guy_falling_off_roof 2_00003.png" id="5_g52im"]
+[ext_resource type="Texture2D" uid="uid://ct0x3qeoi1vm6" path="res://cutscenes/intro/roof/guy_falling_off_roof 2/guy_falling_off_roof 2_00004.png" id="6_tk6nx"]
+[ext_resource type="Texture2D" uid="uid://cg5tnd6t2mm26" path="res://cutscenes/intro/roof/guy_falling_off_roof 2/guy_falling_off_roof 2_00005.png" id="7_3f5tc"]
+[ext_resource type="Texture2D" uid="uid://buhbn2gqo5tbl" path="res://cutscenes/intro/roof/guy_falling_off_roof 2/guy_falling_off_roof 2_00006.png" id="8_bdpvy"]
+[ext_resource type="Texture2D" uid="uid://gqki2huvne2" path="res://cutscenes/intro/roof/guy_falling_off_roof 2/guy_falling_off_roof 2_00007.png" id="9_05med"]
+[ext_resource type="Texture2D" uid="uid://df7j5k6neyu7g" path="res://cutscenes/intro/roof/guy_falling_off_roof 2/guy_falling_off_roof 2_00008.png" id="10_1lnhf"]
+[ext_resource type="Texture2D" uid="uid://bunw7namkeecc" path="res://cutscenes/intro/roof/guy_falling_off_roof 2/guy_falling_off_roof 2_00009.png" id="11_fcbrd"]
+[ext_resource type="Texture2D" uid="uid://db1ja4ahrcav8" path="res://cutscenes/intro/roof/guy_falling_off_roof 2/guy_falling_off_roof 2_00010.png" id="12_mykyy"]
+[ext_resource type="Texture2D" uid="uid://b7qfettqoqd5k" path="res://cutscenes/intro/roof/guy_falling_off_roof 2/guy_falling_off_roof 2_00011.png" id="13_c8ums"]
+[ext_resource type="Texture2D" uid="uid://c2igq2yrwn5aq" path="res://cutscenes/intro/roof/guy_falling_off_roof 2/guy_falling_off_roof 2_00012.png" id="14_48jdr"]
+[ext_resource type="Texture2D" uid="uid://edxl5ynbw33h" path="res://cutscenes/intro/roof/guy_falling_off_roof 2/guy_falling_off_roof 2_00013.png" id="15_3xnim"]
+[ext_resource type="Texture2D" uid="uid://btdk6x4yctr2a" path="res://cutscenes/intro/roof/guy_falling_off_roof 2/guy_falling_off_roof 2_00014.png" id="16_v671y"]
+[ext_resource type="Texture2D" uid="uid://baohfvxgv7gye" path="res://cutscenes/intro/roof/guy_falling_off_roof 2/guy_falling_off_roof 2_00015.png" id="17_ewmdn"]
+[ext_resource type="Texture2D" uid="uid://y7ubdf6b82w8" path="res://cutscenes/intro/roof/guy_falling_off_roof 2/guy_falling_off_roof 2_00016.png" id="18_5hc71"]
+[ext_resource type="Texture2D" uid="uid://bxe3hw6vc4f2f" path="res://cutscenes/intro/roof/guy_falling_off_roof 2/guy_falling_off_roof 2_00017.png" id="19_k172w"]
+[ext_resource type="Texture2D" uid="uid://c2suvk7wioohn" path="res://cutscenes/intro/roof/guy_falling_off_roof 2/guy_falling_off_roof 2_00018.png" id="20_obp6b"]
+[ext_resource type="Texture2D" uid="uid://is3fli5liikv" path="res://cutscenes/intro/roof/guy_falling_off_roof 2/guy_falling_off_roof 2_00019.png" id="21_jpprg"]
+[ext_resource type="Texture2D" uid="uid://c2k32jxakfj52" path="res://cutscenes/intro/roof/guy_falling_off_roof 2/guy_falling_off_roof 2_00020.png" id="22_wboov"]
+[ext_resource type="Texture2D" uid="uid://crgj3av0jrxn4" path="res://cutscenes/intro/roof/guy_falling_off_roof 2/guy_falling_off_roof 2_00021.png" id="23_ve68t"]
+[ext_resource type="Texture2D" uid="uid://vg30337ow2ly" path="res://cutscenes/intro/roof/guy_falling_off_roof 2/guy_falling_off_roof 2_00022.png" id="24_11u6e"]
+[ext_resource type="Texture2D" uid="uid://dl75ii7j0gsff" path="res://cutscenes/intro/roof/guy_falling_off_roof 2/guy_falling_off_roof 2_00023.png" id="25_qyf75"]
+[ext_resource type="Texture2D" uid="uid://4mo30gdogqya" path="res://cutscenes/intro/roof/guy_falling_off_roof 2/guy_falling_off_roof 2_00024.png" id="26_qt2lt"]
+[ext_resource type="Texture2D" uid="uid://ym0ml1kg8uj0" path="res://cutscenes/intro/roof/guy_falling_off_roof 2/guy_falling_off_roof 2_00025.png" id="27_wcat2"]
+[ext_resource type="Texture2D" uid="uid://dydlgimk6k5fk" path="res://cutscenes/intro/roof/guy_falling_off_roof 2/guy_falling_off_roof 2_00026.png" id="28_a2h88"]
+[ext_resource type="Texture2D" uid="uid://dyya63usant35" path="res://cutscenes/intro/roof/guy_falling_off_roof 2/guy_falling_off_roof 2_00027.png" id="29_agua5"]
+[ext_resource type="Texture2D" uid="uid://crmtcsxeep4yc" path="res://cutscenes/intro/roof/guy_falling_off_roof 2/guy_falling_off_roof 2_00028.png" id="30_rgiwh"]
+[ext_resource type="Texture2D" uid="uid://biamc4omu330a" path="res://cutscenes/intro/roof/guy_falling_off_roof 2/guy_falling_off_roof 2_00029.png" id="31_jqn5t"]
+[ext_resource type="Texture2D" uid="uid://tc3et2r18abu" path="res://cutscenes/intro/roof/guy_falling_off_roof 2/guy_falling_off_roof 2_00030.png" id="32_687ay"]
+[ext_resource type="Texture2D" uid="uid://o3ckfwn43ee5" path="res://cutscenes/intro/roof/guy_falling_off_roof 2/guy_falling_off_roof 2_00031.png" id="33_v1bjq"]
+[ext_resource type="Texture2D" uid="uid://57tj5qihsehv" path="res://cutscenes/intro/roof/guy_falling_off_roof 2/guy_falling_off_roof 2_00032.png" id="34_2umja"]
+[ext_resource type="Texture2D" uid="uid://c4ss1y18xxaph" path="res://cutscenes/intro/roof/guy_falling_off_roof 2/guy_falling_off_roof 2_00033.png" id="35_k186s"]
+[ext_resource type="Texture2D" uid="uid://c1h21trtt2fpj" path="res://cutscenes/intro/roof/guy_falling_off_roof 2/guy_falling_off_roof 2_00034.png" id="36_7hlxw"]
+[ext_resource type="Texture2D" uid="uid://7kgaotmnvm63" path="res://cutscenes/intro/roof/guy_falling_off_roof 2/guy_falling_off_roof 2_00035.png" id="37_3mym2"]
+[ext_resource type="Texture2D" uid="uid://v8y6q7fu1sai" path="res://cutscenes/intro/roof/guy_falling_off_roof 2/guy_falling_off_roof 2_00036.png" id="38_5ajn3"]
+[ext_resource type="Texture2D" uid="uid://c4owf76jcb1hq" path="res://cutscenes/intro/roof/guy_falling_off_roof 2/guy_falling_off_roof 2_00037.png" id="39_iyv5i"]
+[ext_resource type="Texture2D" uid="uid://dyrlgy8176jhb" path="res://cutscenes/intro/roof/guy_falling_off_roof 2/guy_falling_off_roof 2_00038.png" id="40_c82gn"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pc1f6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_x50fi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_hl3fj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_lov3y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_g52im")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_tk6nx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_3f5tc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_bdpvy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_05med")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_1lnhf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_fcbrd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_mykyy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_c8ums")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_48jdr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_3xnim")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_v671y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_ewmdn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_5hc71")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_k172w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_obp6b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_jpprg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_wboov")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_ve68t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_11u6e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_qyf75")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_qt2lt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_wcat2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_a2h88")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_agua5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("30_rgiwh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("31_jqn5t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("32_687ay")
+}, {
+"duration": 1.0,
+"texture": ExtResource("33_v1bjq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("34_2umja")
+}, {
+"duration": 1.0,
+"texture": ExtResource("35_k186s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("36_7hlxw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("37_3mym2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("38_5ajn3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("39_iyv5i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("40_c82gn")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]
+
+[node name="IntroCutscene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_3f5h6")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(552, 256)
+sprite_frames = SubResource("SpriteFrames_pc1f6")
+autoplay = "default"
+frame_progress = 0.619503
