@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://dswcv711cp8pt"]
+[gd_scene load_steps=27 format=3 uid="uid://dswcv711cp8pt"]
 
 [ext_resource type="TileSet" uid="uid://dila20svsy5ke" path="res://tiles/tileset.tres" id="1_imq23"]
 [ext_resource type="PackedScene" uid="uid://c6glfm0fwaos8" path="res://main_camera.tscn" id="3_484mi"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://tiles/rules/snow_rule.gd" id="9_bvsxq"]
 [ext_resource type="Script" path="res://tiles/rules/icicle_rule.gd" id="10_oqpc5"]
 [ext_resource type="Script" path="res://tiles/rules/electric_wall_rule.gd" id="11_k7qre"]
+[ext_resource type="AudioStream" uid="uid://hv5tmgyyv01d" path="res://sounds/music_3.ogg" id="12_k7gnh"]
 [ext_resource type="Script" path="res://tiles/rules/present_rule.gd" id="12_tm0j0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x3b0b"]
@@ -180,13 +181,19 @@ rules = Array[Resource("res://tiles/rules/tile_rule.gd")]([SubResource("Resource
 
 [node name="MainCamera" parent="." instance=ExtResource("3_484mi")]
 
+[node name="MusicLoop" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("12_k7gnh")
+volume_db = 5.0
+autoplay = true
+bus = &"Music"
+
 [connection signal="area_entered" from="TileMap/CheckPoint" to="TileMap/CheckPoint" method="_on_area_entered" flags=18]
 [connection signal="body_entered" from="TileMap/CheckPoint" to="TileMap/CheckPoint" method="_on_body_entered" flags=18]
-[connection signal="area_entered" from="TileMap/@Area2D@35124" to="TileMap/@Area2D@35124" method="_on_area_entered" flags=18]
-[connection signal="body_entered" from="TileMap/@Area2D@35124" to="TileMap/@Area2D@35124" method="_on_body_entered" flags=18]
-[connection signal="area_entered" from="TileMap/@Area2D@35125" to="TileMap/@Area2D@35125" method="_on_area_entered" flags=18]
-[connection signal="body_entered" from="TileMap/@Area2D@35125" to="TileMap/@Area2D@35125" method="_on_body_entered" flags=18]
-[connection signal="area_entered" from="TileMap/@Area2D@35128" to="TileMap/@Area2D@35128" method="_on_area_entered" flags=18]
-[connection signal="body_entered" from="TileMap/@Area2D@35128" to="TileMap/@Area2D@35128" method="_on_body_entered" flags=18]
-[connection signal="area_entered" from="TileMap/@Area2D@35129" to="TileMap/@Area2D@35129" method="_on_area_entered" flags=18]
-[connection signal="body_entered" from="TileMap/@Area2D@35129" to="TileMap/@Area2D@35129" method="_on_body_entered" flags=18]
+[connection signal="area_entered" from="TileMap/@Area2D@152818" to="TileMap/@Area2D@152818" method="_on_area_entered" flags=18]
+[connection signal="body_entered" from="TileMap/@Area2D@152818" to="TileMap/@Area2D@152818" method="_on_body_entered" flags=18]
+[connection signal="area_entered" from="TileMap/@Area2D@152819" to="TileMap/@Area2D@152819" method="_on_area_entered" flags=18]
+[connection signal="body_entered" from="TileMap/@Area2D@152819" to="TileMap/@Area2D@152819" method="_on_body_entered" flags=18]
+[connection signal="area_entered" from="TileMap/@Area2D@152822" to="TileMap/@Area2D@152822" method="_on_area_entered" flags=18]
+[connection signal="body_entered" from="TileMap/@Area2D@152822" to="TileMap/@Area2D@152822" method="_on_body_entered" flags=18]
+[connection signal="area_entered" from="TileMap/@Area2D@152823" to="TileMap/@Area2D@152823" method="_on_area_entered" flags=18]
+[connection signal="body_entered" from="TileMap/@Area2D@152823" to="TileMap/@Area2D@152823" method="_on_body_entered" flags=18]
