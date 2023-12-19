@@ -124,6 +124,7 @@ theme = ExtResource("2_nor57")
 [node name="TextReaderLabel" parent="VBoxContainer/ContentsContainer/DialogContents/MarginContainer" instance=ExtResource("3_nawgh")]
 layout_mode = 2
 theme = ExtResource("2_nor57")
+theme_override_colors/default_color = Color(0, 0, 0, 1)
 text = "This is basic text for the dialog box!"
 scroll_following = true
 
