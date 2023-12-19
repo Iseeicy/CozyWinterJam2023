@@ -23,6 +23,7 @@ PresentManager="*res://autoloads/present_manager.gd"
 CheckpointManager="*res://autoloads/checkpoint_manager.gd"
 PauseMenu="*res://autoloads/pause_menu.tscn"
 GGS="*res://addons/ggs/classes/global/ggs.tscn"
+AreaTitleManager="*res://autoloads/area_title_manager.tscn"
 
 [display]
 
