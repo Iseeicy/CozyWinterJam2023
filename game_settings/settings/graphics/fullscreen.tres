@@ -1,0 +1,16 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://e0xx67ogg83f"]
+
+[ext_resource type="Script" path="res://game_settings/templates/display/display_fullscreen.gd" id="1_moofs"]
+[ext_resource type="Resource" uid="uid://c0r68m620tohw" path="res://game_settings/settings/graphics/display_size.tres" id="2_1glxv"]
+
+[resource]
+resource_name = "fullscreen"
+script = ExtResource("1_moofs")
+size_setting = ExtResource("2_1glxv")
+current = false
+default = false
+name = "fullscreen"
+category = "graphics"
+value_type = 1
+value_hint = 0
+value_hint_string = ""

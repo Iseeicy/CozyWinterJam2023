@@ -33,6 +33,9 @@ func set_paused(is_paused: bool, force: bool = false) -> void:
 	
 	_is_paused = is_paused
 	visible = is_paused
+	if not _is_paused:
+		$SettingsWindow.hide()
+
 	pause_changed.emit()
 
 func set_can_pause(can_pause: bool) -> void:
@@ -50,3 +53,7 @@ func _on_quit_button_pressed():
 
 func _on_quit_confirmation_dialog_confirmed():
 	get_tree().quit()
+
+
+func _on_settings_button_pressed():
+	$SettingsWindow.show()
