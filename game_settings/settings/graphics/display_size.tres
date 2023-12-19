@@ -1,0 +1,15 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://c0r68m620tohw"]
+
+[ext_resource type="Script" path="res://game_settings/templates/display/display_size.gd" id="1_wvt4y"]
+
+[resource]
+resource_name = "display_size"
+script = ExtResource("1_wvt4y")
+sizes = Array[Vector2]([Vector2(1152, 672), Vector2(1920, 1080)])
+current = 0
+default = 0
+name = "display_size"
+category = "graphics"
+value_type = 2
+value_hint = 2
+value_hint_string = "1152 x 672,1920 x 1080"

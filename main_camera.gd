@@ -10,6 +10,7 @@ func _ready():
 	await get_parent().ready
 	_area.reparent(get_parent())
 
+	player = CheckpointManager.get_player()
 	CheckpointManager.player_spawned.connect(_on_player_spawned.bind())
 	CheckpointManager.player_despawned.connect(_on_player_despawned.bind())
 
