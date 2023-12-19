@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://v54pdid1wys0"]
+[gd_scene load_steps=13 format=3 uid="uid://v54pdid1wys0"]
 
 [ext_resource type="Script" path="res://autoloads/pause_menu.gd" id="1_pd1qv"]
 [ext_resource type="Script" path="res://autoloads/settings_window.gd" id="2_j05bj"]
@@ -9,6 +9,7 @@
 [ext_resource type="Resource" uid="uid://dw5eu4xt6cv8s" path="res://game_settings/settings/audio/is_muted.tres" id="7_h5ajg"]
 [ext_resource type="Script" path="res://game_settings/components/slider/slider.gd" id="8_nvr4g"]
 [ext_resource type="Resource" uid="uid://csk44pa01q7sq" path="res://game_settings/settings/audio/global_volume.tres" id="9_ir6o3"]
+[ext_resource type="Resource" uid="uid://b7te7fe44ofio" path="res://game_settings/settings/audio/music_volume.tres" id="10_5gymu"]
 
 [sub_resource type="Gradient" id="Gradient_aroom"]
 colors = PackedColorArray(0, 0, 0, 0.407843, 0, 0, 0, 0)
@@ -179,6 +180,27 @@ apply_on_change = true
 grab_focus_on_mouse_over = true
 
 [node name="Slider" type="HSlider" parent="SettingsWindow/MarginContainer/VBoxContainer/Section2/GlobalVolumeContainer/Slider"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="MusicVolumeContainer" type="HBoxContainer" parent="SettingsWindow/MarginContainer/VBoxContainer/Section2"]
+layout_mode = 2
+
+[node name="SettingNameLabel" type="Label" parent="SettingsWindow/MarginContainer/VBoxContainer/Section2/MusicVolumeContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 15
+text = "Music Volume"
+
+[node name="Slider" type="MarginContainer" parent="SettingsWindow/MarginContainer/VBoxContainer/Section2/MusicVolumeContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("8_nvr4g")
+setting = ExtResource("10_5gymu")
+apply_on_change = true
+grab_focus_on_mouse_over = true
+
+[node name="Slider" type="HSlider" parent="SettingsWindow/MarginContainer/VBoxContainer/Section2/MusicVolumeContainer/Slider"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_vertical = 4
