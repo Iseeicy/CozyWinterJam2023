@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://p38687skkheh"]
+
+[ext_resource type="Theme" uid="uid://ekn67a0jtwok" path="res://addons/netengine5/net.bobbo.text-window.dreams-of-being/window_theme.tres" id="1_evygi"]
+
+[node name="DOBChoiceButton" type="Button"]
+theme = ExtResource("1_evygi")
+text = "Hello World"

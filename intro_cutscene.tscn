@@ -1,6 +1,7 @@
-[gd_scene load_steps=42 format=3 uid="uid://civu7avrxmpnb"]
+[gd_scene load_steps=50 format=3 uid="uid://civu7avrxmpnb"]
 
 [ext_resource type="Script" path="res://intro_cutscene.gd" id="1_3f5h6"]
+[ext_resource type="Resource" uid="uid://cshlo0xcswqlc" path="res://cutscenes/intro/intro_cutscene.tres" id="2_43t68"]
 [ext_resource type="Texture2D" uid="uid://dv35v1b16n20f" path="res://cutscenes/intro/roof/guy_falling_off_roof 2/guy_falling_off_roof 2_00000.png" id="2_x50fi"]
 [ext_resource type="Texture2D" uid="uid://cr8wq18cin8c2" path="res://cutscenes/intro/roof/guy_falling_off_roof 2/guy_falling_off_roof 2_00001.png" id="3_hl3fj"]
 [ext_resource type="Texture2D" uid="uid://n32ok1gqyhe2" path="res://cutscenes/intro/roof/guy_falling_off_roof 2/guy_falling_off_roof 2_00002.png" id="4_lov3y"]
@@ -40,6 +41,13 @@
 [ext_resource type="Texture2D" uid="uid://v8y6q7fu1sai" path="res://cutscenes/intro/roof/guy_falling_off_roof 2/guy_falling_off_roof 2_00036.png" id="38_5ajn3"]
 [ext_resource type="Texture2D" uid="uid://c4owf76jcb1hq" path="res://cutscenes/intro/roof/guy_falling_off_roof 2/guy_falling_off_roof 2_00037.png" id="39_iyv5i"]
 [ext_resource type="Texture2D" uid="uid://dyrlgy8176jhb" path="res://cutscenes/intro/roof/guy_falling_off_roof 2/guy_falling_off_roof 2_00038.png" id="40_c82gn"]
+[ext_resource type="Texture2D" uid="uid://bvqqunctmmp4s" path="res://cutscenes/intro/placeholder_slide_0.png" id="41_tpm77"]
+[ext_resource type="Texture2D" uid="uid://ngku5qqx5tu8" path="res://cutscenes/intro/placeholder_slide_1.png" id="43_dx2ap"]
+[ext_resource type="Texture2D" uid="uid://dgew0jq3w6x7x" path="res://cutscenes/intro/placeholder_slide_2.png" id="44_2h2tq"]
+[ext_resource type="PackedScene" uid="uid://x3fqkoh7y2ut" path="res://cutscenes/cutscene_text_window/window.tscn" id="44_wya7y"]
+[ext_resource type="Texture2D" uid="uid://bspqwd70bx5ql" path="res://cutscenes/intro/placeholder_slide_3.png" id="45_rog77"]
+[ext_resource type="Texture2D" uid="uid://bg760tupesvwj" path="res://cutscenes/intro/placeholder_slide_4.png" id="46_n5qsr"]
+[ext_resource type="PackedScene" uid="uid://bo807ocm0385q" path="res://addons/netengine5/net.bobbo.dialog-graph/dialog_runner/dialog_runner.tscn" id="47_gxkyc"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_pc1f6"]
 animations = [{
@@ -173,10 +181,123 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 script = ExtResource("1_3f5h6")
+dialog_graph = ExtResource("2_43t68")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+color = Color(0.0941176, 0.0941176, 0.0941176, 1)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+visible = false
 position = Vector2(552, 256)
 sprite_frames = SubResource("SpriteFrames_pc1f6")
 autoplay = "default"
-frame_progress = 0.619503
+frame_progress = 0.0806175
+
+[node name="MainMargin" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 200
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMargin"]
+layout_mode = 2
+
+[node name="SlideParent" type="PanelContainer" parent="MainMargin/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ProgressSlider" type="HSlider" parent="MainMargin/VBoxContainer"]
+layout_mode = 2
+editable = false
+scrollable = false
+
+[node name="CutsceneTextWindow" parent="." instance=ExtResource("44_wya7y")]
+visible = false
+layout_mode = 1
+
+[node name="Slides" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Slide0" type="TextureRect" parent="Slides"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+texture = ExtResource("41_tpm77")
+stretch_mode = 5
+metadata/text = "It was a Christmas night, like any other."
+
+[node name="Slide1" type="TextureRect" parent="Slides"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+texture = ExtResource("43_dx2ap")
+stretch_mode = 5
+metadata/text = "Sant was delivering his presents like normal."
+
+[node name="Slide2" type="TextureRect" parent="Slides"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+texture = ExtResource("44_2h2tq")
+stretch_mode = 5
+metadata/text = "...but then..."
+
+[node name="Slide3" type="TextureRect" parent="Slides"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+texture = ExtResource("45_rog77")
+stretch_mode = 5
+metadata/text = "Oh no! How will he deliver presents now???"
+
+[node name="Slide4" type="TextureRect" parent="Slides"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+texture = ExtResource("46_n5qsr")
+stretch_mode = 5
+metadata/text = "The JINGLE BALLS will save the day!"
+
+[node name="DialogRunner" parent="." node_paths=PackedStringArray("text_window") instance=ExtResource("47_gxkyc")]
+text_window = NodePath("../CutsceneTextWindow")
