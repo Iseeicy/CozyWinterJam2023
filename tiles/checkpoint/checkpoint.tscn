@@ -1,26 +1,21 @@
-[gd_scene load_steps=9 format=3 uid="uid://yf81cefj0arc"]
+[gd_scene load_steps=7 format=3 uid="uid://yf81cefj0arc"]
 
-[ext_resource type="Texture2D" uid="uid://dswu5wgqvtauc" path="res://tiles/checkpoint/flag_down.png" id="1_f11y6"]
 [ext_resource type="Script" path="res://tiles/checkpoint/checkpoint.gd" id="1_x27id"]
-[ext_resource type="Texture2D" uid="uid://yrbgawq08t0k" path="res://tiles/checkpoint/flag_up.png" id="2_xhfx7"]
+[ext_resource type="Texture2D" uid="uid://beq4ou82uti45" path="res://tiles/checkpoint/ChristmasTreeCheckpoint.png" id="2_iy8k8"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_u0d8g"]
-atlas = ExtResource("2_xhfx7")
-region = Rect2(0, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_mclse"]
-atlas = ExtResource("2_xhfx7")
-region = Rect2(32, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_u82tm"]
-atlas = ExtResource("2_xhfx7")
+[sub_resource type="AtlasTexture" id="AtlasTexture_rtk5o"]
+atlas = ExtResource("2_iy8k8")
 region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k7lyd"]
+atlas = ExtResource("2_iy8k8")
+region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_dnb4n"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_f11y6")
+"texture": SubResource("AtlasTexture_rtk5o")
 }],
 "loop": true,
 "name": &"down",
@@ -28,13 +23,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_u0d8g")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_mclse")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_u82tm")
+"texture": SubResource("AtlasTexture_k7lyd")
 }],
 "loop": true,
 "name": &"up",
@@ -53,9 +42,8 @@ script = ExtResource("1_x27id")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -12)
 sprite_frames = SubResource("SpriteFrames_dnb4n")
-animation = &"down"
+animation = &"up"
 autoplay = "down"
-frame_progress = 0.0218892
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_ukpjh")
