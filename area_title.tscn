@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://cgdrvke5ae56g"]
+
+[ext_resource type="Script" path="res://area_title.gd" id="1_0asmq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oimfe"]
+size = Vector2(72, 20)
+
+[node name="AreaTitle" type="Area2D"]
+position = Vector2(56, -24)
+collision_layer = 0
+collision_mask = 4
+monitorable = false
+script = ExtResource("1_0asmq")
+text = "Welcome to the zone!"
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_oimfe")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

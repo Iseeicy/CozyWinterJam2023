@@ -30,11 +30,10 @@ turbulence_influence_min = 0.01
 [sub_resource type="CircleShape2D" id="CircleShape2D_eiiit"]
 radius = 8.0
 
-[node name="MainCamera" type="Camera2D" node_paths=PackedStringArray("player")]
+[node name="MainCamera" type="Camera2D"]
 zoom = Vector2(3, 3)
 position_smoothing_enabled = true
 script = ExtResource("1_xgfky")
-player = NodePath("")
 
 [node name="Snow" type="GPUParticles2D" parent="."]
 position = Vector2(0, -130)
@@ -47,9 +46,8 @@ trail_sections = 2
 trail_section_subdivisions = 2
 
 [node name="Area2D" type="Area2D" parent="."]
-collision_layer = 0
+collision_layer = 65536
 collision_mask = 32768
-monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_eiiit")

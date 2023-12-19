@@ -1,0 +1,65 @@
+[gd_scene load_steps=12 format=3 uid="uid://djbp28pwviyx6"]
+
+[ext_resource type="Script" path="res://autoloads/area_title_manager.gd" id="1_m1ybq"]
+[ext_resource type="Script" path="res://addons/netengine5/net.bobbo.text-reader/examples/text_reader_label.gd" id="2_f8etc"]
+[ext_resource type="Script" path="res://addons/netengine5/net.bobbo.text-reader/text_reader_settings.gd" id="2_p3qkn"]
+[ext_resource type="FontFile" uid="uid://c0rtnk087j4a6" path="res://fonts/terminal-grotesque.ttf" id="2_sxquh"]
+[ext_resource type="AudioStream" uid="uid://u83b0e2spfno" path="res://sounds/area_title_talk.ogg" id="3_bmg7c"]
+[ext_resource type="Script" path="res://addons/netengine5/net.bobbo.text-reader/text_reader.gd" id="3_yd6x2"]
+[ext_resource type="Script" path="res://addons/netengine5/net.bobbo.text-reader/text_speaker.gd" id="4_0ugvn"]
+[ext_resource type="Script" path="res://addons/netengine5/net.bobbo.text-reader/text_sounds.gd" id="4_vt7fo"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_xsvmw"]
+streams_count = 1
+stream_0/stream = ExtResource("3_bmg7c")
+stream_0/weight = 1.0
+
+[sub_resource type="Resource" id="Resource_s3sxh"]
+script = ExtResource("4_vt7fo")
+default = SubResource("AudioStreamRandomizer_xsvmw")
+
+[sub_resource type="Resource" id="Resource_ks2oi"]
+script = ExtResource("2_p3qkn")
+char_show_delay = 0.06
+punctuation_show_delay = 0.4
+sounds = SubResource("Resource_s3sxh")
+
+[node name="AreaTitleManager" type="CanvasLayer"]
+script = ExtResource("1_m1ybq")
+settings = SubResource("Resource_ks2oi")
+
+[node name="TextReaderLabel" type="RichTextLabel" parent="."]
+texture_filter = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -51.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+theme_override_colors/default_color = Color(0.364706, 0.564706, 1, 1)
+theme_override_fonts/normal_font = ExtResource("2_sxquh")
+theme_override_font_sizes/normal_font_size = 100
+bbcode_enabled = true
+fit_content = true
+visible_characters_behavior = 1
+script = ExtResource("2_f8etc")
+
+[node name="TextReader" type="Node" parent="TextReaderLabel"]
+script = ExtResource("3_yd6x2")
+
+[node name="TextSpeaker" type="Node" parent="TextReaderLabel" node_paths=PackedStringArray("audio_origin_node")]
+script = ExtResource("4_0ugvn")
+audio_origin_node = NodePath("@Node@182507")
+
+[node name="FadeOutTimer" type="Timer" parent="."]
+wait_time = 5.0
+
+[connection signal="reading_started" from="TextReaderLabel/TextReader" to="TextReaderLabel/TextSpeaker" method="_on_text_reader_reading_started" flags=18]
+[connection signal="text_changed" from="TextReaderLabel/TextReader" to="TextReaderLabel" method="_on_text_reader_text_changed" flags=18]
+[connection signal="visible_chars_changed" from="TextReaderLabel/TextReader" to="TextReaderLabel" method="_on_text_reader_visible_chars_changed" flags=18]
+[connection signal="visible_chars_changed" from="TextReaderLabel/TextReader" to="TextReaderLabel/TextSpeaker" method="_on_text_reader_visible_chars_changed" flags=18]
+[connection signal="timeout" from="FadeOutTimer" to="." method="_on_fade_out_timer_timeout"]
