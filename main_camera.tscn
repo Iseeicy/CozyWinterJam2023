@@ -4,8 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://bnxx3kynpakoh" path="res://tiles/snow_flake.png" id="2_jmdym"]
 
 [sub_resource type="Gradient" id="Gradient_o7i6t"]
-offsets = PackedFloat32Array(0.778075, 1)
-colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+offsets = PackedFloat32Array(0.179775, 0.778075, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.454902, 1, 1, 1, 0)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_gj6b8"]
 gradient = SubResource("Gradient_o7i6t")
