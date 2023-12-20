@@ -1,6 +1,6 @@
 [gd_scene load_steps=17 format=3 uid="uid://brcbj8ipc8t1t"]
 
-[ext_resource type="TileSet" uid="uid://c4osb5fssgs2q" path="res://tiles/tileset3.tres" id="1_oau23"]
+[ext_resource type="TileSet" path="res://tiles/tileset3.tres" id="1_oau23"]
 [ext_resource type="Script" path="res://tile_interactor.gd" id="3_s1tv3"]
 [ext_resource type="Script" path="res://tiles/rules/crack_rule.gd" id="4_tpvkr"]
 [ext_resource type="AudioStream" uid="uid://ctkpsi4vsqsep" path="res://addons/netengine5/net.bobbo.text-reader/sounds/jam/eng.ogg" id="4_w7av3"]
