@@ -1,6 +1,7 @@
-[gd_scene load_steps=32 format=3 uid="uid://dswcv711cp8pt"]
+[gd_scene load_steps=42 format=3 uid="uid://dswcv711cp8pt"]
 
 [ext_resource type="TileSet" uid="uid://b2fmxt6xo787g" path="res://tiles/tileset3.tres" id="1_bwbqf"]
+[ext_resource type="PackedScene" path="res://area_title.tscn" id="2_f8wi4"]
 [ext_resource type="PackedScene" uid="uid://c6glfm0fwaos8" path="res://main_camera.tscn" id="3_484mi"]
 [ext_resource type="Script" path="res://tile_interactor.gd" id="4_gq56x"]
 [ext_resource type="AudioStream" uid="uid://ctkpsi4vsqsep" path="res://addons/netengine5/net.bobbo.text-reader/sounds/jam/eng.ogg" id="5_ayf3t"]
@@ -48,6 +49,33 @@ size = Vector2(291, 143)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lhsin"]
 size = Vector2(107, 126)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fmuyy"]
+size = Vector2(531, 403)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tckbp"]
+size = Vector2(548, 136)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fa5ce"]
+size = Vector2(197, 257)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1rdet"]
+size = Vector2(75, 58)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j4162"]
+size = Vector2(329, 532)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ygosp"]
+size = Vector2(329, 133)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g6bx6"]
+size = Vector2(288, 135)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jrefj"]
+size = Vector2(511, 238)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pvs0i"]
+size = Vector2(318, 412)
 
 [sub_resource type="Resource" id="Resource_db8f1"]
 script = ExtResource("6_o77dl")
@@ -101,7 +129,7 @@ layer_3/modulate = Color(1, 1, 1, 1)
 layer_3/y_sort_enabled = false
 layer_3/y_sort_origin = 0
 layer_3/z_index = 0
-layer_3/tile_data = PackedInt32Array(-196605, 12, 0, -196604, 65548, 0, -196603, 131084, 0, -196608, 9, 0, -65541, 9, 0, -196614, 9, 0, 131066, 9, 0, 262141, 9, 0, 262150, 9, 0, -1572854, 14, 65536, -983042, 131081, 3, -917493, 131081, 3, -1310710, 13, 196608, -1769462, 131081, 1, -2031604, 131081, 1, -2031608, 131081, 1, -2359286, 131081, 1, -3735542, 14, 65536, -3932150, 131081, 0, -3801092, 131081, 0, -3866600, 131081, 0, -5111782, 131081, 0, -4587523, 131081, 0, -3538901, 14, 65536, -3669960, 9, 1, -3211207, 9, 1, -4915220, 14, 65536, -3145681, 9, 1, -2162633, 9, 1, -5046303, 131081, 2, -4784175, 131081, 2, -5505073, 131081, 2, -5505048, 131081, 2, -3669947, 13, 327680, -4390842, 9, 2, -4915135, 9, 2, -4915143, 9, 2, -4980689, 9, 2, -4521945, 13, 458752, -3801049, 13, 262144, -3407862, 13, 393216, -3080182, 13, 196608, -4653075, 13, 262144, -1048577, 13, 524288, -6946806, 14, 65536, -8847359, 9, 3, -8781809, 9, 3, -7536636, 9, 3, -7536624, 9, 3, -3997627, 14, 65536, -5898230, 14, 65536, -10223612, 131081, 4, -8978422, 13, 65536, -10354678, 13, 720896, -9764854, 14, 65536, -10485750, 13, 131072, -10551286, 13, 196608, -10616822, 13, 393216, -6488054, 13, 655360, -6356988, 9, 4, -10682358, 13, 262144, -10747894, 13, 65536, -10813430, 13, 458752, -10878966, 13, 327680, -10944502, 13, 524288, -11010038, 13, 655360, -5177334, 13, 262144, -5373942, 13, 327680, -5570550, 13, 458752, -5767158, 13, 524288, -2752502, 13, 131072, -327681, 13, 131072, -11599862, 13, 589824)
+layer_3/tile_data = PackedInt32Array(-196605, 12, 0, -196604, 65548, 0, -196603, 131084, 0, -196608, 9, 0, -65541, 9, 0, -196614, 9, 0, 131066, 9, 0, 262141, 9, 0, 262150, 9, 0, -1572854, 14, 65536, -983042, 131081, 3, -917493, 131081, 3, -1310710, 13, 196608, -1769462, 131081, 1, -2031604, 131081, 1, -2031608, 131081, 1, -2359286, 131081, 1, -3735542, 14, 65536, -3932150, 131081, 0, -3801092, 131081, 0, -3866600, 131081, 0, -5111782, 131081, 0, -4587523, 131081, 0, -3538901, 14, 65536, -3669960, 9, 1, -3211207, 9, 1, -4915220, 14, 65536, -3145681, 9, 1, -2162633, 9, 1, -5046303, 131081, 2, -4784175, 131081, 2, -5505073, 131081, 2, -5505048, 131081, 2, -3669947, 13, 327680, -4390842, 9, 2, -4915135, 9, 2, -4915143, 9, 2, -4980689, 9, 2, -4521945, 13, 458752, -3801049, 13, 262144, -3407862, 13, 393216, -3080182, 13, 196608, -4653075, 13, 262144, -1048577, 13, 524288, -6946806, 14, 65536, -8847359, 9, 3, -8781809, 9, 3, -7536636, 9, 3, -7536624, 9, 3, -3997627, 14, 65536, -5898230, 14, 65536, -10223612, 131081, 4, -8978422, 13, 65536, -10354678, 13, 720896, -9764854, 14, 65536, -10485750, 13, 131072, -10551286, 13, 196608, -10616822, 13, 393216, -6488054, 13, 655360, -6356988, 9, 4, -10682358, 13, 262144, -10747894, 13, 65536, -10813430, 13, 458752, -10878966, 13, 327680, -10944502, 13, 524288, -11010038, 13, 655360, -2752502, 13, 131072, -327681, 13, 131072, -11599862, 13, 589824, -5177334, 13, 262144, -5373942, 13, 327680, -5570550, 13, 458752, -5767158, 13, 524288)
 
 [node name="RoomAreas" type="Node2D" parent="TileMap"]
 
@@ -245,6 +273,79 @@ metadata/_edit_group_ = true
 position = Vector2(-74.5, 17)
 shape = SubResource("RectangleShape2D_lhsin")
 
+[node name="AreaTitles" type="Node2D" parent="TileMap"]
+
+[node name="AreaTitle" parent="TileMap/AreaTitles" instance=ExtResource("2_f8wi4")]
+position = Vector2(268, -330)
+text = "Introduction"
+
+[node name="CollisionShape2D" parent="TileMap/AreaTitles/AreaTitle" index="0"]
+position = Vector2(-101.5, -156.5)
+
+[node name="AreaTitle2" parent="TileMap/AreaTitles" instance=ExtResource("2_f8wi4")]
+position = Vector2(142, -843)
+text = "Growing Pains"
+
+[node name="CollisionShape2D" parent="TileMap/AreaTitles/AreaTitle2" index="0"]
+position = Vector2(26.5, -196.5)
+shape = SubResource("RectangleShape2D_fmuyy")
+
+[node name="AreaTitle8" parent="TileMap/AreaTitles" instance=ExtResource("2_f8wi4")]
+position = Vector2(838, -1127)
+text = "Crush Depth"
+
+[node name="CollisionShape2D" parent="TileMap/AreaTitles/AreaTitle8" index="0"]
+position = Vector2(35, -55)
+shape = SubResource("RectangleShape2D_tckbp")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="TileMap/AreaTitles/AreaTitle8"]
+position = Vector2(208.5, 93.5)
+shape = SubResource("RectangleShape2D_fa5ce")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="TileMap/AreaTitles/AreaTitle8"]
+position = Vector2(72.5, 30)
+shape = SubResource("RectangleShape2D_1rdet")
+
+[node name="AreaTitle6" parent="TileMap/AreaTitles" instance=ExtResource("2_f8wi4")]
+position = Vector2(241, -1811)
+text = "Tensegrity"
+
+[node name="CollisionShape2D" parent="TileMap/AreaTitles/AreaTitle6" index="0"]
+position = Vector2(-74.5, -79)
+shape = SubResource("RectangleShape2D_j4162")
+
+[node name="AreaTitle7" parent="TileMap/AreaTitles" instance=ExtResource("2_f8wi4")]
+position = Vector2(247, -2555)
+text = "The Crooked Mile"
+
+[node name="CollisionShape2D" parent="TileMap/AreaTitles/AreaTitle7" index="0"]
+position = Vector2(-74.5, 115.5)
+shape = SubResource("RectangleShape2D_ygosp")
+
+[node name="AreaTitle5" parent="TileMap/AreaTitles" instance=ExtResource("2_f8wi4")]
+position = Vector2(265, -1426)
+text = "Eerie Calm"
+
+[node name="CollisionShape2D" parent="TileMap/AreaTitles/AreaTitle5" index="0"]
+position = Vector2(-95, -65.5)
+shape = SubResource("RectangleShape2D_g6bx6")
+
+[node name="AreaTitle4" parent="TileMap/AreaTitles" instance=ExtResource("2_f8wi4")]
+position = Vector2(-564, -1160)
+text = "The Gaping Maw"
+
+[node name="CollisionShape2D" parent="TileMap/AreaTitles/AreaTitle4" index="0"]
+position = Vector2(36.5, -115)
+shape = SubResource("RectangleShape2D_jrefj")
+
+[node name="AreaTitle3" parent="TileMap/AreaTitles" instance=ExtResource("2_f8wi4")]
+position = Vector2(848, -504)
+text = "Static Shock"
+
+[node name="CollisionShape2D" parent="TileMap/AreaTitles/AreaTitle3" index="0"]
+position = Vector2(-81, -196)
+shape = SubResource("RectangleShape2D_pvs0i")
+
 [node name="TileInteractor" type="Node" parent="." node_paths=PackedStringArray("tile_map")]
 script = ExtResource("4_gq56x")
 tile_map = NodePath("../TileMap")
@@ -258,19 +359,28 @@ volume_db = 5.0
 autoplay = true
 bus = &"Music"
 
-[connection signal="area_entered" from="TileMap/CheckPoint" to="TileMap/CheckPoint" method="_on_area_entered" flags=18]
-[connection signal="body_entered" from="TileMap/CheckPoint" to="TileMap/CheckPoint" method="_on_body_entered" flags=18]
-[connection signal="area_entered" from="TileMap/@Area2D@793420" to="TileMap/@Area2D@793420" method="_on_area_entered" flags=18]
-[connection signal="body_entered" from="TileMap/@Area2D@793420" to="TileMap/@Area2D@793420" method="_on_body_entered" flags=18]
-[connection signal="area_entered" from="TileMap/@Area2D@793425" to="TileMap/@Area2D@793425" method="_on_area_entered" flags=18]
-[connection signal="body_entered" from="TileMap/@Area2D@793425" to="TileMap/@Area2D@793425" method="_on_body_entered" flags=18]
-[connection signal="area_entered" from="TileMap/@Area2D@793429" to="TileMap/@Area2D@793429" method="_on_area_entered" flags=18]
-[connection signal="body_entered" from="TileMap/@Area2D@793429" to="TileMap/@Area2D@793429" method="_on_body_entered" flags=18]
-[connection signal="area_entered" from="TileMap/@Area2D@793431" to="TileMap/@Area2D@793431" method="_on_area_entered" flags=18]
-[connection signal="body_entered" from="TileMap/@Area2D@793431" to="TileMap/@Area2D@793431" method="_on_body_entered" flags=18]
-[connection signal="area_entered" from="TileMap/@Area2D@793434" to="TileMap/@Area2D@793434" method="_on_area_entered" flags=18]
-[connection signal="body_entered" from="TileMap/@Area2D@793434" to="TileMap/@Area2D@793434" method="_on_body_entered" flags=18]
-[connection signal="area_entered" from="TileMap/@Area2D@793435" to="TileMap/@Area2D@793435" method="_on_area_entered" flags=18]
-[connection signal="body_entered" from="TileMap/@Area2D@793435" to="TileMap/@Area2D@793435" method="_on_body_entered" flags=18]
-[connection signal="area_entered" from="TileMap/@Area2D@793439" to="TileMap/@Area2D@793439" method="_on_area_entered" flags=18]
-[connection signal="body_entered" from="TileMap/@Area2D@793439" to="TileMap/@Area2D@793439" method="_on_body_entered" flags=18]
+[connection signal="area_entered" from="TileMap/@Area2D@799110" to="TileMap/@Area2D@799110" method="_on_area_entered" flags=18]
+[connection signal="body_entered" from="TileMap/@Area2D@799110" to="TileMap/@Area2D@799110" method="_on_body_entered" flags=18]
+[connection signal="area_entered" from="TileMap/@Area2D@799111" to="TileMap/@Area2D@799111" method="_on_area_entered" flags=18]
+[connection signal="body_entered" from="TileMap/@Area2D@799111" to="TileMap/@Area2D@799111" method="_on_body_entered" flags=18]
+[connection signal="area_entered" from="TileMap/@Area2D@799116" to="TileMap/@Area2D@799116" method="_on_area_entered" flags=18]
+[connection signal="body_entered" from="TileMap/@Area2D@799116" to="TileMap/@Area2D@799116" method="_on_body_entered" flags=18]
+[connection signal="area_entered" from="TileMap/@Area2D@799120" to="TileMap/@Area2D@799120" method="_on_area_entered" flags=18]
+[connection signal="body_entered" from="TileMap/@Area2D@799120" to="TileMap/@Area2D@799120" method="_on_body_entered" flags=18]
+[connection signal="area_entered" from="TileMap/@Area2D@799122" to="TileMap/@Area2D@799122" method="_on_area_entered" flags=18]
+[connection signal="body_entered" from="TileMap/@Area2D@799122" to="TileMap/@Area2D@799122" method="_on_body_entered" flags=18]
+[connection signal="area_entered" from="TileMap/@Area2D@799125" to="TileMap/@Area2D@799125" method="_on_area_entered" flags=18]
+[connection signal="body_entered" from="TileMap/@Area2D@799125" to="TileMap/@Area2D@799125" method="_on_body_entered" flags=18]
+[connection signal="area_entered" from="TileMap/@Area2D@799126" to="TileMap/@Area2D@799126" method="_on_area_entered" flags=18]
+[connection signal="body_entered" from="TileMap/@Area2D@799126" to="TileMap/@Area2D@799126" method="_on_body_entered" flags=18]
+[connection signal="area_entered" from="TileMap/@Area2D@799130" to="TileMap/@Area2D@799130" method="_on_area_entered" flags=18]
+[connection signal="body_entered" from="TileMap/@Area2D@799130" to="TileMap/@Area2D@799130" method="_on_body_entered" flags=18]
+
+[editable path="TileMap/AreaTitles/AreaTitle"]
+[editable path="TileMap/AreaTitles/AreaTitle2"]
+[editable path="TileMap/AreaTitles/AreaTitle8"]
+[editable path="TileMap/AreaTitles/AreaTitle6"]
+[editable path="TileMap/AreaTitles/AreaTitle7"]
+[editable path="TileMap/AreaTitles/AreaTitle5"]
+[editable path="TileMap/AreaTitles/AreaTitle4"]
+[editable path="TileMap/AreaTitles/AreaTitle3"]
