@@ -22,6 +22,7 @@ signal grapple_unlocked(grapple: Grapple3, point: Vector2, normal: Vector2, coll
 @export var explode_particle_scene: PackedScene = null
 @export var explode_particle_scene_b: PackedScene = null
 @export var zap_particles_scene: PackedScene = null
+@export var zap_particles_scene_b: PackedScene = null
 @export var fall_particles_scene: PackedScene = null
 @export var fall_particles_scene_b: PackedScene = null
 
@@ -105,7 +106,8 @@ func kill(which_body: RigidBody2D, type: KillType) -> void:
 
 	if which_body.visible:
 		if type == KillType.Zap:
-			var particles = zap_particles_scene.instantiate()
+			var scene = zap_particles_scene if which_body == ball_a else zap_particles_scene_b
+			var particles = scene.instantiate()
 			get_parent().add_child(particles)
 			particles.global_position = which_body.global_position
 			for child in particles.get_children():
