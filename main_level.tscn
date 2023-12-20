@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://tiles/rules/snow_rule.gd" id="9_bvsxq"]
 [ext_resource type="Script" path="res://tiles/rules/icicle_rule.gd" id="10_oqpc5"]
 [ext_resource type="Script" path="res://tiles/rules/electric_wall_rule.gd" id="11_k7qre"]
+[ext_resource type="AudioStream" uid="uid://hv5tmgyyv01d" path="res://sounds/music_3.ogg" id="12_k7gnh"]
 [ext_resource type="Script" path="res://tiles/rules/present_rule.gd" id="12_tm0j0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x3b0b"]
@@ -250,6 +251,12 @@ tile_map = NodePath("../TileMap")
 rules = Array[Resource("res://tiles/rules/tile_rule.gd")]([SubResource("Resource_db8f1"), SubResource("Resource_1b2x8"), SubResource("Resource_jaw01"), SubResource("Resource_huhk7"), SubResource("Resource_24poh"), SubResource("Resource_injtg"), SubResource("Resource_ths2v")])
 
 [node name="MainCamera" parent="." instance=ExtResource("3_484mi")]
+
+[node name="MusicLoop" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("12_k7gnh")
+volume_db = 5.0
+autoplay = true
+bus = &"Music"
 
 [connection signal="area_entered" from="TileMap/CheckPoint" to="TileMap/CheckPoint" method="_on_area_entered" flags=18]
 [connection signal="body_entered" from="TileMap/CheckPoint" to="TileMap/CheckPoint" method="_on_body_entered" flags=18]

@@ -5,6 +5,8 @@ signal player_despawned(player: BallsPlayer)
 signal player_reset()
 signal checkpoint_flagged()
 
+var spawn_player_on_start: bool = true
+
 var _player_scene: PackedScene = preload("res://player/player.tscn")
 
 var _current_checkpoint: Checkpoint = null
@@ -12,8 +14,7 @@ var _current_player: BallsPlayer = null
 
 func _ready():
 	await get_tree().root.ready
-	_spawn_player()
-
+	if spawn_player_on_start: _spawn_player()
 
 func _spawn_player():
 	_current_player = _player_scene.instantiate()
@@ -41,3 +42,6 @@ func flag_new_checkpoint(checkpoint: Checkpoint) -> void:
 func get_spawn_point() -> Vector2:
 	if not _current_checkpoint: return Vector2.ZERO
 	return _current_checkpoint.global_position
+
+func get_player() -> BallsPlayer:
+	return _current_player

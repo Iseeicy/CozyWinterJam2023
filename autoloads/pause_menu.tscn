@@ -1,0 +1,212 @@
+[gd_scene load_steps=13 format=3 uid="uid://v54pdid1wys0"]
+
+[ext_resource type="Script" path="res://autoloads/pause_menu.gd" id="1_pd1qv"]
+[ext_resource type="Script" path="res://autoloads/settings_window.gd" id="2_j05bj"]
+[ext_resource type="PackedScene" uid="uid://bhkyf3l4ee800" path="res://game_settings/components/checkbox/checkbox.tscn" id="3_wmiiy"]
+[ext_resource type="Resource" uid="uid://e0xx67ogg83f" path="res://game_settings/settings/graphics/fullscreen.tres" id="4_c0a2c"]
+[ext_resource type="Script" path="res://game_settings/components/option_list/option_list.gd" id="5_syus7"]
+[ext_resource type="Resource" uid="uid://c0r68m620tohw" path="res://game_settings/settings/graphics/display_size.tres" id="6_wij64"]
+[ext_resource type="Resource" uid="uid://dw5eu4xt6cv8s" path="res://game_settings/settings/audio/is_muted.tres" id="7_h5ajg"]
+[ext_resource type="Script" path="res://game_settings/components/slider/slider.gd" id="8_nvr4g"]
+[ext_resource type="Resource" uid="uid://csk44pa01q7sq" path="res://game_settings/settings/audio/global_volume.tres" id="9_ir6o3"]
+[ext_resource type="Resource" uid="uid://b7te7fe44ofio" path="res://game_settings/settings/audio/music_volume.tres" id="10_5gymu"]
+
+[sub_resource type="Gradient" id="Gradient_aroom"]
+colors = PackedColorArray(0, 0, 0, 0.407843, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_0gpe4"]
+gradient = SubResource("Gradient_aroom")
+
+[node name="PauseMenu" type="CanvasLayer"]
+script = ExtResource("1_pd1qv")
+
+[node name="Background" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture1D_0gpe4")
+expand_mode = 1
+
+[node name="Contents" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Label" type="Label" parent="Contents"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 41
+text = "Paused"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Contents"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+alignment = 2
+
+[node name="ResumeButton" type="Button" parent="Contents/VBoxContainer"]
+layout_mode = 2
+text = "Resume"
+
+[node name="SettingsButton" type="Button" parent="Contents/VBoxContainer"]
+layout_mode = 2
+text = "Settings
+"
+
+[node name="Control" type="Control" parent="Contents/VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="QuitButton" type="Button" parent="Contents/VBoxContainer"]
+layout_mode = 2
+text = "Quit"
+
+[node name="QuitConfirmationDialog" type="ConfirmationDialog" parent="."]
+initial_position = 2
+ok_button_text = "Quit"
+dialog_text = "Are you sure you want to quit?"
+cancel_button_text = "Stay"
+
+[node name="SettingsWindow" type="Window" parent="."]
+title = "Settings"
+initial_position = 2
+size = Vector2i(600, 400)
+script = ExtResource("2_j05bj")
+
+[node name="MarginContainer" type="MarginContainer" parent="SettingsWindow"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SettingsWindow/MarginContainer"]
+layout_mode = 2
+
+[node name="Section" type="VBoxContainer" parent="SettingsWindow/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Header" type="Label" parent="SettingsWindow/MarginContainer/VBoxContainer/Section"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Graphics"
+
+[node name="FullscreenContainer" type="HBoxContainer" parent="SettingsWindow/MarginContainer/VBoxContainer/Section"]
+layout_mode = 2
+
+[node name="SettingNameLabel" type="Label" parent="SettingsWindow/MarginContainer/VBoxContainer/Section/FullscreenContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 15
+text = "Fullscreen"
+
+[node name="Checkbox" parent="SettingsWindow/MarginContainer/VBoxContainer/Section/FullscreenContainer" instance=ExtResource("3_wmiiy")]
+layout_mode = 2
+setting = ExtResource("4_c0a2c")
+apply_on_change = true
+grab_focus_on_mouse_over = true
+
+[node name="ResolutionContainer" type="HBoxContainer" parent="SettingsWindow/MarginContainer/VBoxContainer/Section"]
+layout_mode = 2
+
+[node name="SettingNameLabel" type="Label" parent="SettingsWindow/MarginContainer/VBoxContainer/Section/ResolutionContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 15
+text = "Windowed Resolution"
+
+[node name="OptionList" type="MarginContainer" parent="SettingsWindow/MarginContainer/VBoxContainer/Section/ResolutionContainer"]
+layout_mode = 2
+script = ExtResource("5_syus7")
+setting = ExtResource("6_wij64")
+apply_on_change = true
+grab_focus_on_mouse_over = true
+
+[node name="Btn" type="OptionButton" parent="SettingsWindow/MarginContainer/VBoxContainer/Section/ResolutionContainer/OptionList"]
+layout_mode = 2
+item_count = 2
+popup/item_0/text = "1152x672"
+popup/item_0/id = 0
+popup/item_1/text = "1920x1080"
+popup/item_1/id = 1
+
+[node name="Section2" type="VBoxContainer" parent="SettingsWindow/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Header" type="Label" parent="SettingsWindow/MarginContainer/VBoxContainer/Section2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Audio"
+
+[node name="IsMutedContainer" type="HBoxContainer" parent="SettingsWindow/MarginContainer/VBoxContainer/Section2"]
+layout_mode = 2
+
+[node name="SettingNameLabel" type="Label" parent="SettingsWindow/MarginContainer/VBoxContainer/Section2/IsMutedContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 15
+text = "Mute"
+
+[node name="Checkbox" parent="SettingsWindow/MarginContainer/VBoxContainer/Section2/IsMutedContainer" instance=ExtResource("3_wmiiy")]
+layout_mode = 2
+setting = ExtResource("7_h5ajg")
+apply_on_change = true
+grab_focus_on_mouse_over = true
+
+[node name="GlobalVolumeContainer" type="HBoxContainer" parent="SettingsWindow/MarginContainer/VBoxContainer/Section2"]
+layout_mode = 2
+
+[node name="SettingNameLabel" type="Label" parent="SettingsWindow/MarginContainer/VBoxContainer/Section2/GlobalVolumeContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 15
+text = "Global Volume"
+
+[node name="Slider" type="MarginContainer" parent="SettingsWindow/MarginContainer/VBoxContainer/Section2/GlobalVolumeContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("8_nvr4g")
+setting = ExtResource("9_ir6o3")
+apply_on_change = true
+grab_focus_on_mouse_over = true
+
+[node name="Slider" type="HSlider" parent="SettingsWindow/MarginContainer/VBoxContainer/Section2/GlobalVolumeContainer/Slider"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="MusicVolumeContainer" type="HBoxContainer" parent="SettingsWindow/MarginContainer/VBoxContainer/Section2"]
+layout_mode = 2
+
+[node name="SettingNameLabel" type="Label" parent="SettingsWindow/MarginContainer/VBoxContainer/Section2/MusicVolumeContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 15
+text = "Music Volume"
+
+[node name="Slider" type="MarginContainer" parent="SettingsWindow/MarginContainer/VBoxContainer/Section2/MusicVolumeContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("8_nvr4g")
+setting = ExtResource("10_5gymu")
+apply_on_change = true
+grab_focus_on_mouse_over = true
+
+[node name="Slider" type="HSlider" parent="SettingsWindow/MarginContainer/VBoxContainer/Section2/MusicVolumeContainer/Slider"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_vertical = 4
+
+[connection signal="pressed" from="Contents/VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="Contents/VBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="Contents/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="confirmed" from="QuitConfirmationDialog" to="." method="_on_quit_confirmation_dialog_confirmed"]
+[connection signal="close_requested" from="SettingsWindow" to="SettingsWindow" method="_on_close_requested"]

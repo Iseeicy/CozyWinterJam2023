@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="CozyWinterJam2023"
-run/main_scene="res://main_level.tscn"
+run/main_scene="res://game_entry.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -21,20 +21,28 @@ KnowledgeDB="*res://addons/netengine5/net.bobbo.knowledge/autoload/knowledge_db.
 GraphNodeDB="*res://addons/netengine5/net.bobbo.dialog-graph/autoload/graph_node_db.tscn"
 PresentManager="*res://autoloads/present_manager.gd"
 CheckpointManager="*res://autoloads/checkpoint_manager.gd"
+PauseMenu="*res://autoloads/pause_menu.tscn"
+GGS="*res://addons/ggs/classes/global/ggs.tscn"
+AreaTitleManager="*res://autoloads/area_title_manager.tscn"
 
 [display]
 
 window/size/viewport_height=672
-window/stretch/mode="viewport"
+window/size/resizable=false
+window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 
 [dotnet]
 
 project/assembly_name="CozyWinterJam2023"
 
+[editor]
+
+export/convert_text_resources_to_binary=false
+
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/netengine5/net.bobbo.character/plugin.cfg", "res://addons/netengine5/net.bobbo.dialog-graph/plugin.cfg", "res://addons/netengine5/net.bobbo.interactable/plugin.cfg", "res://addons/netengine5/net.bobbo.item/plugin.cfg", "res://addons/netengine5/net.bobbo.knowledge/plugin.cfg", "res://addons/netengine5/net.bobbo.player-controller/plugin.cfg", "res://addons/netengine5/net.bobbo.player-model/plugin.cfg", "res://addons/netengine5/net.bobbo.resource-field/plugin.cfg", "res://addons/netengine5/net.bobbo.state-machine/plugin.cfg", "res://addons/netengine5/net.bobbo.text-reader/plugin.cfg", "res://addons/netengine5/net.bobbo.text-window/plugin.cfg")
+enabled=PackedStringArray("res://addons/ggs/plugin.cfg", "res://addons/netengine5/net.bobbo.character/plugin.cfg", "res://addons/netengine5/net.bobbo.dialog-graph/plugin.cfg", "res://addons/netengine5/net.bobbo.interactable/plugin.cfg", "res://addons/netengine5/net.bobbo.item/plugin.cfg", "res://addons/netengine5/net.bobbo.knowledge/plugin.cfg", "res://addons/netengine5/net.bobbo.player-controller/plugin.cfg", "res://addons/netengine5/net.bobbo.player-model/plugin.cfg", "res://addons/netengine5/net.bobbo.resource-field/plugin.cfg", "res://addons/netengine5/net.bobbo.state-machine/plugin.cfg", "res://addons/netengine5/net.bobbo.text-reader/plugin.cfg", "res://addons/netengine5/net.bobbo.text-window/plugin.cfg")
 
 [input]
 
@@ -46,6 +54,11 @@ shoot_hook_a={
 shoot_hook_b={
 "deadzone": 0.5,
 "events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":0,"position":Vector2(0, 0),"global_position":Vector2(0, 0),"factor":1.0,"button_index":2,"canceled":false,"pressed":false,"double_click":false,"script":null)
+]
+}
+pause={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194305,"key_label":0,"unicode":0,"echo":false,"script":null)
 ]
 }
 

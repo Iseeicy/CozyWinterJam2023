@@ -13,7 +13,8 @@ enum GrappleType {
 enum State {
 	Shooting,
 	Locked,
-	MaxLength
+	MaxLength,
+	GoingBack
 }
 
 #
@@ -55,6 +56,12 @@ func _physics_process(delta):
 
 		var collision = move_and_collide(_impulse * delta)
 		if collision: lock(collision.get_position(), collision.get_normal(), collision.get_collider())
+	elif _state == State.GoingBack:
+		var aim_dir = (_ball.global_position - global_position).normalized()
+		
+		var collision = move_and_collide(aim_dir * _impulse.length() * delta)
+		if collision or (_ball.global_position - global_position).length() < 20:
+			finish_retract()
 	elif _state == State.Locked:
 		if _grapple_type == GrappleType.Pull:
 			_physics_process_grapple_pull(delta)
@@ -81,6 +88,8 @@ func shoot(type: GrappleType, origin_ball: PhysicsBody2D, aim_direction: Vector2
 
 	_state = State.Shooting
 	_grapple_type = type
+	$Audio/Throw.play()
+	$Audio/Chaining.play()
 
 func unshoot() -> void:
 	set_physics_process(false)
@@ -93,6 +102,7 @@ func unshoot() -> void:
 	if _state == State.Locked:
 		unlocked.emit(self, _locked_point, _locked_normal, _locked_collider)
 		
+	$Audio/Chaining.stop()
 	queue_free()
 
 func lock(point: Vector2, normal: Vector2, collider: Object) -> void:
@@ -115,13 +125,23 @@ func lock(point: Vector2, normal: Vector2, collider: Object) -> void:
 		_swing_joint.node_a = _swing_joint.get_path_to(static_bod)
 		_swing_joint.node_b = _swing_joint.get_path_to(_ball)
 
+	$Audio/Chaining.stop()
+	$Audio/Lock.play()
 	locked.emit(self, point, normal, collider)
 
 func hit_max_length():
 	_state = State.MaxLength
 
 	await get_tree().create_timer(max_grapple_length_timeout).timeout
+	retract()
+
+func retract():
+	_state = State.GoingBack
+
+func finish_retract():
 	_ball.get_parent().unthrow_grapple(self)
+	
+
 
 #
 #	Private Functions

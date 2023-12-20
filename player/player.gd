@@ -41,12 +41,16 @@ var grapple_b: Grapple3 = null
 func _unhandled_input(event):
 	if event.is_action_pressed("shoot_hook_a"):
 		throw_grapple_a()
+		get_viewport().set_input_as_handled()
 	if event.is_action_released("shoot_hook_a"):
 		unthrow_grapple_a()
+		get_viewport().set_input_as_handled()
 	if event.is_action_pressed("shoot_hook_b"):
 		throw_grapple_b()
+		get_viewport().set_input_as_handled()
 	if event.is_action_released("shoot_hook_b"):
 		unthrow_grapple_b()
+		get_viewport().set_input_as_handled()
 
 #
 #	Functions

@@ -5,6 +5,7 @@ extends AudioStreamPlayer2D
 #
 
 @export var rigidbody: RigidBody2D = null
+@export var volume_mult: float = 1.0
 @export var min_pitch: float = 0.9
 @export var max_pitch: float = 1.0
 @export var pitch_change_speed: float = 1.0
@@ -22,7 +23,7 @@ var old_vol: float = 0
 #
 
 func _physics_process(delta):
-	var vol = volume_velocity_curve.sample(clampf(rigidbody.linear_velocity.length() / 100, 0, 1))
+	var vol = volume_velocity_curve.sample(clampf(rigidbody.linear_velocity.length() / 100, 0, 1)) * volume_mult
 	volume_db = lerpf(old_vol, linear_to_db(vol), delta * volume_change_speed)
 	old_vol = vol
 
