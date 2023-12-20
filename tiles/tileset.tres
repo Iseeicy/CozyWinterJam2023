@@ -20,7 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://bm6xv07voopwg" path="res://tiles/HoleTile.png" id="12_4ecvw"]
 [ext_resource type="Texture2D" uid="uid://esh4v014on75" path="res://tiles/WallTileset.png" id="12_p3jcr"]
 [ext_resource type="Texture2D" uid="uid://clhd3wsdrtnu6" path="res://tiles/CrackTile.png" id="13_7k3mt"]
-[ext_resource type="Texture2D" path="res://tiles/SpikeWallTileset.png" id="17_6ocl2"]
+[ext_resource type="Texture2D" uid="uid://dv78if6ieuekk" path="res://tiles/SpikeWallTileset.png" id="17_6ocl2"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_m6ue1"]
 tile_data = PackedInt32Array(0, 12, 0, 1, 65548, 0, 2, 131084, 0)
