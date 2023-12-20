@@ -1,29 +1,17 @@
-[gd_scene load_steps=44 format=3 uid="uid://dswcv711cp8pt"]
+[gd_scene load_steps=32 format=3 uid="uid://dswcv711cp8pt"]
 
 [ext_resource type="TileSet" uid="uid://b2fmxt6xo787g" path="res://tiles/tileset3.tres" id="1_bwbqf"]
-[ext_resource type="PackedScene" uid="uid://1gttfrmb27oj" path="res://tiles/doors/end_doorway.tscn" id="2_ufj2e"]
 [ext_resource type="PackedScene" uid="uid://c6glfm0fwaos8" path="res://main_camera.tscn" id="3_484mi"]
-[ext_resource type="PackedScene" uid="uid://datx4kw3ovnmj" path="res://tiles/doors/green_present_door.tscn" id="3_gy4g2"]
-[ext_resource type="PackedScene" uid="uid://cup1dcohjod8k" path="res://tiles/doors/pink_present_door.tscn" id="4_edwg2"]
 [ext_resource type="Script" path="res://tile_interactor.gd" id="4_gq56x"]
 [ext_resource type="AudioStream" uid="uid://ctkpsi4vsqsep" path="res://addons/netengine5/net.bobbo.text-reader/sounds/jam/eng.ogg" id="5_ayf3t"]
-[ext_resource type="PackedScene" uid="uid://cxrqlvdfabkof" path="res://tiles/doors/magenta_present_door.tscn" id="5_dd8dq"]
 [ext_resource type="Script" path="res://tiles/rules/crack_rule.gd" id="6_o77dl"]
-[ext_resource type="PackedScene" uid="uid://bm3ypsntq3mgw" path="res://tiles/doors/blue_present_door.tscn" id="6_osrnb"]
-[ext_resource type="PackedScene" uid="uid://by5cg75qolhp3" path="res://tiles/doors/cyan_present_door.tscn" id="7_1q2wb"]
 [ext_resource type="Script" path="res://tiles/rules/spike_rule.gd" id="7_nlxnd"]
-[ext_resource type="PackedScene" uid="uid://77din3vkfa12" path="res://tiles/doors/mint_present_door.tscn" id="8_dowba"]
 [ext_resource type="Script" path="res://tiles/rules/pit_rule.gd" id="8_pmou2"]
-[ext_resource type="PackedScene" uid="uid://bthhga82uv0i0" path="res://tiles/doors/yellow_present_door.tscn" id="9_74n3m"]
 [ext_resource type="Script" path="res://tiles/rules/snow_rule.gd" id="9_bvsxq"]
-[ext_resource type="PackedScene" uid="uid://c8wt32dfre2gk" path="res://tiles/doors/orange_present_door.tscn" id="10_mv0re"]
 [ext_resource type="Script" path="res://tiles/rules/icicle_rule.gd" id="10_oqpc5"]
-[ext_resource type="PackedScene" uid="uid://d3xs6sjqrj8qf" path="res://tiles/doors/red_present_door.tscn" id="11_eafw5"]
 [ext_resource type="Script" path="res://tiles/rules/electric_wall_rule.gd" id="11_k7qre"]
-[ext_resource type="AudioStream" path="res://sounds/music_3.ogg" id="12_k7gnh"]
-[ext_resource type="PackedScene" uid="uid://d1yydt2bvfxht" path="res://tiles/doors/charcoal_present_door.tscn" id="12_qp4cl"]
+[ext_resource type="AudioStream" uid="uid://hv5tmgyyv01d" path="res://sounds/music_3.ogg" id="12_k7gnh"]
 [ext_resource type="Script" path="res://tiles/rules/present_rule.gd" id="12_tm0j0"]
-[ext_resource type="PackedScene" uid="uid://yf81cefj0arc" path="res://tiles/checkpoint/checkpoint.tscn" id="13_dm3ew"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x3b0b"]
 size = Vector2(256, 192)
@@ -257,125 +245,6 @@ metadata/_edit_group_ = true
 position = Vector2(-74.5, 17)
 shape = SubResource("RectangleShape2D_lhsin")
 
-[node name="EndDoorway" parent="TileMap" instance=ExtResource("2_ufj2e")]
-position = Vector2(168, -2824)
-
-[node name="GreenPresentDoor" parent="TileMap" instance=ExtResource("3_gy4g2")]
-position = Vector2(168, -1256)
-
-[node name="PinkPresentDoor" parent="TileMap" instance=ExtResource("4_edwg2")]
-position = Vector2(168, -2680)
-required_currency = 1
-
-[node name="MagentaPresentDoor" parent="TileMap" instance=ExtResource("5_dd8dq")]
-position = Vector2(168, -2664)
-required_currency = 4
-
-[node name="BluePresentDoor" parent="TileMap" instance=ExtResource("6_osrnb")]
-position = Vector2(168, -2648)
-
-[node name="CyanPresentDoor" parent="TileMap" instance=ExtResource("7_1q2wb")]
-position = Vector2(168, -2632)
-required_currency = 4
-
-[node name="MintPresentDoor" parent="TileMap" instance=ExtResource("8_dowba")]
-position = Vector2(168, -2616)
-
-[node name="_Node2D_644654" parent="TileMap" instance=ExtResource("3_gy4g2")]
-position = Vector2(168, -2600)
-
-[node name="YellowPresentDoor" parent="TileMap" instance=ExtResource("9_74n3m")]
-position = Vector2(168, -2584)
-required_currency = 4
-
-[node name="OrangePresentDoor" parent="TileMap" instance=ExtResource("10_mv0re")]
-position = Vector2(168, -2568)
-required_currency = 2
-
-[node name="RedPresentDoor" parent="TileMap" instance=ExtResource("11_eafw5")]
-position = Vector2(168, -2552)
-
-[node name="CharcoalPresentDoor" parent="TileMap" instance=ExtResource("12_qp4cl")]
-position = Vector2(168, -2520)
-required_currency = 1
-
-[node name="CheckPoint" parent="TileMap" instance=ExtResource("13_dm3ew")]
-position = Vector2(168, -2376)
-
-[node name="_Area2D_644655" parent="TileMap" instance=ExtResource("13_dm3ew")]
-position = Vector2(168, -1432)
-
-[node name="_Node2D_644656" parent="TileMap" instance=ExtResource("5_dd8dq")]
-position = Vector2(168, -1400)
-required_currency = 4
-
-[node name="_Node2D_644657" parent="TileMap" instance=ExtResource("7_1q2wb")]
-position = Vector2(168, -1352)
-required_currency = 4
-
-[node name="_Node2D_644658" parent="TileMap" instance=ExtResource("6_osrnb")]
-position = Vector2(168, -1304)
-
-[node name="_Node2D_644659" parent="TileMap" instance=ExtResource("8_dowba")]
-position = Vector2(168, -2184)
-
-[node name="_Area2D_644660" parent="TileMap" instance=ExtResource("13_dm3ew")]
-position = Vector2(168, -1688)
-
-[node name="_Node2D_644661" parent="TileMap" instance=ExtResource("4_edwg2")]
-position = Vector2(168, -1576)
-required_currency = 1
-
-[node name="_Node2D_644662" parent="TileMap" instance=ExtResource("5_dd8dq")]
-position = Vector2(-8, -264)
-required_currency = 4
-
-[node name="_Node2D_644663" parent="TileMap" instance=ExtResource("7_1q2wb")]
-position = Vector2(632, -1096)
-required_currency = 4
-
-[node name="_Area2D_644664" parent="TileMap" instance=ExtResource("13_dm3ew")]
-position = Vector2(1112, -968)
-
-[node name="_Node2D_644665" parent="TileMap" instance=ExtResource("6_osrnb")]
-position = Vector2(1112, -888)
-
-[node name="_Area2D_644666" parent="TileMap" instance=ExtResource("13_dm3ew")]
-position = Vector2(-312, -1208)
-
-[node name="_Node2D_644667" parent="TileMap" instance=ExtResource("3_gy4g2")]
-position = Vector2(-296, -1144)
-
-[node name="_Node2D_644668" parent="TileMap" instance=ExtResource("3_gy4g2")]
-position = Vector2(632, -920)
-
-[node name="_Area2D_644669" parent="TileMap" instance=ExtResource("13_dm3ew")]
-position = Vector2(696, -856)
-
-[node name="_Area2D_644670" parent="TileMap" instance=ExtResource("13_dm3ew")]
-position = Vector2(168, -904)
-
-[node name="_Node2D_644671" parent="TileMap" instance=ExtResource("9_74n3m")]
-position = Vector2(168, -824)
-required_currency = 4
-
-[node name="_Node2D_644672" parent="TileMap" instance=ExtResource("10_mv0re")]
-position = Vector2(168, -744)
-required_currency = 2
-
-[node name="_Node2D_644673" parent="TileMap" instance=ExtResource("11_eafw5")]
-position = Vector2(168, -664)
-
-[node name="_Area2D_644674" parent="TileMap" instance=ExtResource("13_dm3ew")]
-position = Vector2(168, -376)
-
-[node name="_Node2D_644675" parent="TileMap" instance=ExtResource("10_mv0re")]
-position = Vector2(168, -312)
-required_currency = 2
-
-[node name="_Node2D_644676" parent="TileMap" instance=ExtResource("11_eafw5")]
-position = Vector2(-8, -88)
-
 [node name="TileInteractor" type="Node" parent="." node_paths=PackedStringArray("tile_map")]
 script = ExtResource("4_gq56x")
 tile_map = NodePath("../TileMap")
@@ -389,19 +258,19 @@ volume_db = 5.0
 autoplay = true
 bus = &"Music"
 
-[connection signal="area_entered" from="TileMap/@Area2D@776108" to="TileMap/@Area2D@776108" method="_on_area_entered" flags=18]
-[connection signal="body_entered" from="TileMap/@Area2D@776108" to="TileMap/@Area2D@776108" method="_on_body_entered" flags=18]
-[connection signal="area_entered" from="TileMap/@Area2D@776109" to="TileMap/@Area2D@776109" method="_on_area_entered" flags=18]
-[connection signal="body_entered" from="TileMap/@Area2D@776109" to="TileMap/@Area2D@776109" method="_on_body_entered" flags=18]
-[connection signal="area_entered" from="TileMap/@Area2D@776114" to="TileMap/@Area2D@776114" method="_on_area_entered" flags=18]
-[connection signal="body_entered" from="TileMap/@Area2D@776114" to="TileMap/@Area2D@776114" method="_on_body_entered" flags=18]
-[connection signal="area_entered" from="TileMap/@Area2D@776118" to="TileMap/@Area2D@776118" method="_on_area_entered" flags=18]
-[connection signal="body_entered" from="TileMap/@Area2D@776118" to="TileMap/@Area2D@776118" method="_on_body_entered" flags=18]
-[connection signal="area_entered" from="TileMap/@Area2D@776120" to="TileMap/@Area2D@776120" method="_on_area_entered" flags=18]
-[connection signal="body_entered" from="TileMap/@Area2D@776120" to="TileMap/@Area2D@776120" method="_on_body_entered" flags=18]
-[connection signal="area_entered" from="TileMap/@Area2D@776123" to="TileMap/@Area2D@776123" method="_on_area_entered" flags=18]
-[connection signal="body_entered" from="TileMap/@Area2D@776123" to="TileMap/@Area2D@776123" method="_on_body_entered" flags=18]
-[connection signal="area_entered" from="TileMap/@Area2D@776124" to="TileMap/@Area2D@776124" method="_on_area_entered" flags=18]
-[connection signal="body_entered" from="TileMap/@Area2D@776124" to="TileMap/@Area2D@776124" method="_on_body_entered" flags=18]
-[connection signal="area_entered" from="TileMap/@Area2D@776128" to="TileMap/@Area2D@776128" method="_on_area_entered" flags=18]
-[connection signal="body_entered" from="TileMap/@Area2D@776128" to="TileMap/@Area2D@776128" method="_on_body_entered" flags=18]
+[connection signal="area_entered" from="TileMap/CheckPoint" to="TileMap/CheckPoint" method="_on_area_entered" flags=18]
+[connection signal="body_entered" from="TileMap/CheckPoint" to="TileMap/CheckPoint" method="_on_body_entered" flags=18]
+[connection signal="area_entered" from="TileMap/@Area2D@793420" to="TileMap/@Area2D@793420" method="_on_area_entered" flags=18]
+[connection signal="body_entered" from="TileMap/@Area2D@793420" to="TileMap/@Area2D@793420" method="_on_body_entered" flags=18]
+[connection signal="area_entered" from="TileMap/@Area2D@793425" to="TileMap/@Area2D@793425" method="_on_area_entered" flags=18]
+[connection signal="body_entered" from="TileMap/@Area2D@793425" to="TileMap/@Area2D@793425" method="_on_body_entered" flags=18]
+[connection signal="area_entered" from="TileMap/@Area2D@793429" to="TileMap/@Area2D@793429" method="_on_area_entered" flags=18]
+[connection signal="body_entered" from="TileMap/@Area2D@793429" to="TileMap/@Area2D@793429" method="_on_body_entered" flags=18]
+[connection signal="area_entered" from="TileMap/@Area2D@793431" to="TileMap/@Area2D@793431" method="_on_area_entered" flags=18]
+[connection signal="body_entered" from="TileMap/@Area2D@793431" to="TileMap/@Area2D@793431" method="_on_body_entered" flags=18]
+[connection signal="area_entered" from="TileMap/@Area2D@793434" to="TileMap/@Area2D@793434" method="_on_area_entered" flags=18]
+[connection signal="body_entered" from="TileMap/@Area2D@793434" to="TileMap/@Area2D@793434" method="_on_body_entered" flags=18]
+[connection signal="area_entered" from="TileMap/@Area2D@793435" to="TileMap/@Area2D@793435" method="_on_area_entered" flags=18]
+[connection signal="body_entered" from="TileMap/@Area2D@793435" to="TileMap/@Area2D@793435" method="_on_body_entered" flags=18]
+[connection signal="area_entered" from="TileMap/@Area2D@793439" to="TileMap/@Area2D@793439" method="_on_area_entered" flags=18]
+[connection signal="body_entered" from="TileMap/@Area2D@793439" to="TileMap/@Area2D@793439" method="_on_body_entered" flags=18]
