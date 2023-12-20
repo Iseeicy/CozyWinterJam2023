@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://yf81cefj0arc"]
+[gd_scene load_steps=8 format=3 uid="uid://yf81cefj0arc"]
 
 [ext_resource type="Script" path="res://tiles/checkpoint/checkpoint.gd" id="1_x27id"]
 [ext_resource type="Texture2D" uid="uid://beq4ou82uti45" path="res://tiles/checkpoint/ChristmasTreeCheckpoint.png" id="2_iy8k8"]
+[ext_resource type="AudioStream" uid="uid://ipmwp0v5l65h" path="res://sounds/tree_get.ogg" id="3_4jpaf"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rtk5o"]
 atlas = ExtResource("2_iy8k8")
@@ -47,6 +48,10 @@ autoplay = "down"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_ukpjh")
+
+[node name="LightUpAudio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_4jpaf")
+volume_db = -5.0
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
