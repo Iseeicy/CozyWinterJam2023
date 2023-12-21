@@ -6,7 +6,7 @@ class_name CrackRule
 #
 
 ## When the player touches a crack, after this many seconds, the crack will become a pit.
-@export var time_until_crumble: float = 0.5
+@export var time_until_crumble: float = 2.0
 
 ## The sound to play when crumbling begins
 @export var crumble_start_sound: AudioStream = null
@@ -32,7 +32,7 @@ func enter_tile(tile_map: TileMap, layer: int, position: Vector2i, _body: RigidB
 	set_is_handling(position, true)
 	
 	play_oneshot_at_tile(tile_map, position, crumble_start_sound)
-	await tile_map.get_tree().create_timer(0.5).timeout
+	await tile_map.get_tree().create_timer(time_until_crumble).timeout
 	
 	play_oneshot_at_tile(tile_map, position, crumble_complete_sound)
 	_save_original_tile_state(tile_map, layer, position)
