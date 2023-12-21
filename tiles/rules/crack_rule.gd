@@ -5,14 +5,18 @@ class_name CrackRule
 #   Exports
 #
 
-## When the player touches a crack, after this many seconds, the crack will become a pit.
-@export var time_until_crumble: float = 2.0
+@export var crumble_shake_time: float = 0.5
+
+@export var crumble_shake_count: float = 4
 
 ## The sound to play when crumbling begins
 @export var crumble_start_sound: AudioStream = null
 
 ## The sound to play when crumbling has completed
 @export var crumble_complete_sound: AudioStream = null
+
+## The scene to spawn and control for crack particles
+@export var crack_particles_scene: PackedScene = null
 
 #
 #   Private Variables
@@ -32,8 +36,15 @@ func enter_tile(tile_map: TileMap, layer: int, position: Vector2i, _body: RigidB
 	set_is_handling(position, true)
 	
 	play_oneshot_at_tile(tile_map, position, crumble_start_sound)
-	await tile_map.get_tree().create_timer(time_until_crumble).timeout
+	var particle = crack_particles_scene.instantiate()
+	tile_map.add_child(particle)
+	particle.position = tile_map.map_to_local(position)
 	
+	for x in range(0, crumble_shake_count):
+		particle.emitting = true
+		await tile_map.get_tree().create_timer(crumble_shake_time).timeout
+	
+	particle.queue_free()
 	play_oneshot_at_tile(tile_map, position, crumble_complete_sound)
 	_save_original_tile_state(tile_map, layer, position)
 	
