@@ -12,6 +12,8 @@ class_name CrackRule
 ## The sound to play when crumbling begins
 @export var crumble_start_sound: AudioStream = null
 
+@export var crumble_tick_sound: AudioStream = null
+
 ## The sound to play when crumbling has completed
 @export var crumble_complete_sound: AudioStream = null
 
@@ -35,16 +37,18 @@ func enter_tile(tile_map: TileMap, layer: int, position: Vector2i, _body: RigidB
 	if get_is_handling(position): return
 	set_is_handling(position, true)
 	
-	play_oneshot_at_tile(tile_map, position, crumble_start_sound)
+	var crumble_start_sfx = play_oneshot_at_tile(tile_map, position, crumble_start_sound)
 	var particle = crack_particles_scene.instantiate()
 	tile_map.add_child(particle)
 	particle.position = tile_map.map_to_local(position)
 	
 	for x in range(0, crumble_shake_count):
+		play_oneshot_at_tile(tile_map, position, crumble_tick_sound)
 		particle.emitting = true
 		await tile_map.get_tree().create_timer(crumble_shake_time).timeout
 	
 	particle.queue_free()
+	crumble_start_sfx.stop()
 	play_oneshot_at_tile(tile_map, position, crumble_complete_sound)
 	_save_original_tile_state(tile_map, layer, position)
 	
