@@ -1,0 +1,52 @@
+[gd_resource type="Resource" script_class="PackedDialogGraph" load_steps=4 format=3 uid="uid://c3vgv1vhn5b5c"]
+
+[ext_resource type="Resource" uid="uid://cmpfaetr774wm" path="res://addons/netengine5/net.bobbo.dialog-graph/nodes/entry/entry_desc.tres" id="1_hmtin"]
+[ext_resource type="Script" path="res://addons/netengine5/net.bobbo.dialog-graph/packed_dialog_graph.gd" id="2_2oplk"]
+[ext_resource type="Resource" uid="uid://bsr7sku2bwkax" path="res://addons/netengine5/net.bobbo.dialog-graph/nodes/dialog_text/dialog_text_desc.tres" id="2_pmkh6"]
+
+[resource]
+script = ExtResource("2_2oplk")
+nodes = Array[Dictionary]([{
+"_d": ExtResource("1_hmtin"),
+"_i": 0,
+"_p": Vector2(0, 0)
+}, {
+"_d": ExtResource("2_pmkh6"),
+"_i": 1,
+"_p": Vector2(160, -20),
+"t": Array[String](["It was the night before christmas, day yet to arrive...
+
+...while two baubles stirred, now [wave]strangely[/wave] alive."])
+}, {
+"_d": ExtResource("2_pmkh6"),
+"_i": 2,
+"_p": Vector2(480, -20),
+"t": Array[String](["Saint Nick was not there, yet they could feel his presence...
+
+...he must have summoned them here, to find his [wave]lost presents![/wave]"])
+}, {
+"_d": ExtResource("2_pmkh6"),
+"_i": 3,
+"_p": Vector2(840, 0),
+"t": Array[String](["So off the pair went, held together by chain...
+
+
+...but the pair must be wary: 
+[shake]adventure begets pain.[/shake]"])
+}])
+connections = Array[Dictionary]([{
+"from_id": 0,
+"from_port": 0,
+"to_id": 1,
+"to_port": 0
+}, {
+"from_id": 1,
+"from_port": 0,
+"to_id": 2,
+"to_port": 0
+}, {
+"from_id": 2,
+"from_port": 0,
+"to_id": 3,
+"to_port": 0
+}])
