@@ -3,8 +3,8 @@
 [ext_resource type="Script" path="res://game_entry.gd" id="1_k30vb"]
 [ext_resource type="PackedScene" uid="uid://sbg70yk34nwu" path="res://splash_screen.tscn" id="2_oj260"]
 [ext_resource type="PackedScene" uid="uid://dswcv711cp8pt" path="res://main_level.tscn" id="2_pvwe0"]
-[ext_resource type="PackedScene" path="res://main_menu.tscn" id="3_l4ylh"]
-[ext_resource type="PackedScene" uid="uid://civu7avrxmpnb" path="res://intro_cutscene.tscn" id="5_mhfb1"]
+[ext_resource type="PackedScene" uid="uid://ba7sfyxrhrekb" path="res://main_menu.tscn" id="3_l4ylh"]
+[ext_resource type="PackedScene" uid="uid://cd61dwt110dxr" path="res://intro_cutscene_2.tscn" id="5_p2s7e"]
 
 [node name="GameEntry" type="Node"]
 script = ExtResource("1_k30vb")
@@ -15,7 +15,7 @@ main_level_scene = ExtResource("2_pvwe0")
 [node name="MainMenu" parent="." instance=ExtResource("3_l4ylh")]
 visible = false
 
-[node name="IntroCutscene" parent="." instance=ExtResource("5_mhfb1")]
+[node name="IntroCutscene" parent="." instance=ExtResource("5_p2s7e")]
 visible = false
 
 [connection signal="completed" from="SplashScreen" to="." method="_on_splash_screen_completed"]

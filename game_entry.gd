@@ -27,8 +27,6 @@ func _on_main_menu_start_game():
 func _on_intro_cutscene_cutscene_complete():
 	$IntroCutscene.hide()
 	var level = main_level_scene.instantiate()
-
-	print("tets")
 	_deffered_load_level.call_deferred(level)
 		
 
