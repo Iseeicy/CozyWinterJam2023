@@ -14,16 +14,16 @@ nodes = Array[Dictionary]([{
 "_d": ExtResource("2_pmkh6"),
 "_i": 1,
 "_p": Vector2(160, -20),
-"t": Array[String](["It was the night before christmas, day yet to arrive...
+"t": Array[String](["It was the night before Christmas, day yet to arrive...
 
-...while two baubles stirred, now [wave]strangely[/wave] alive."])
+...while two baubles stirred, now [wave][color=yellow]strangely[/color][/wave] alive."])
 }, {
 "_d": ExtResource("2_pmkh6"),
 "_i": 2,
 "_p": Vector2(480, -20),
 "t": Array[String](["Saint Nick was not there, yet they could feel his presence...
 
-...he must have summoned them here, to find his [wave]lost presents![/wave]"])
+...he must have summoned them here, to find his [wave][color=yellow]lost presents![/color][/wave]"])
 }, {
 "_d": ExtResource("2_pmkh6"),
 "_i": 3,
@@ -32,7 +32,7 @@ nodes = Array[Dictionary]([{
 
 
 ...but the pair must be wary: 
-[shake]adventure begets pain.[/shake]"])
+[shake]adventure begets [color=red]pain.[/color][/shake]"])
 }])
 connections = Array[Dictionary]([{
 "from_id": 0,

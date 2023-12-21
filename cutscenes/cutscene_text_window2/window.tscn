@@ -7,14 +7,13 @@
 [ext_resource type="FontFile" uid="uid://c0rtnk087j4a6" path="res://fonts/terminal-grotesque.ttf" id="4_llvn4"]
 [ext_resource type="Script" path="res://addons/netengine5/net.bobbo.text-window/text_window_state_machine.gd" id="5_d84ko"]
 [ext_resource type="Script" path="res://addons/netengine5/net.bobbo.text-window/states/closed.gd" id="6_h8ps4"]
+[ext_resource type="Texture2D" uid="uid://bnxx3kynpakoh" path="res://tiles/snow_flake.png" id="6_xjccm"]
 [ext_resource type="Script" path="res://addons/netengine5/net.bobbo.text-window/states/open.gd" id="7_veulx"]
 [ext_resource type="Script" path="res://addons/netengine5/net.bobbo.text-window/states/dialog.gd" id="8_37tqm"]
 [ext_resource type="Script" path="res://addons/netengine5/net.bobbo.text-window/states/showing.gd" id="9_odb8l"]
 [ext_resource type="Script" path="res://addons/netengine5/net.bobbo.text-window/states/shown.gd" id="10_psjsl"]
 [ext_resource type="Script" path="res://addons/netengine5/net.bobbo.text-window/states/choices.gd" id="11_e4rhc"]
 [ext_resource type="PackedScene" uid="uid://0i5wj6suuc8k" path="res://addons/netengine5/net.bobbo.text-window.dreams-of-being/choice_button.tscn" id="12_iil0x"]
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_etd7i"]
 
 [sub_resource type="Animation" id="Animation_723dj"]
 length = 0.001
@@ -150,10 +149,10 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -16.0
-offset_top = -16.0
-offset_right = -16.0
-offset_bottom = -16.0
+offset_left = -88.0
+offset_top = -71.0
+offset_right = -88.0
+offset_bottom = -71.0
 grow_horizontal = 0
 grow_vertical = 0
 size_flags_horizontal = 0
@@ -167,13 +166,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -8.0
-offset_top = -8.0
-offset_right = 8.0
-offset_bottom = 8.0
+offset_left = -29.0
+offset_top = -29.0
+offset_right = 29.0
+offset_bottom = 29.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = SubResource("PlaceholderTexture2D_etd7i")
+texture = ExtResource("6_xjccm")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="VBoxContainer/ContentsContainer/DialogContents/FinishIndicator"]
 autoplay = "dob_window_finish"
