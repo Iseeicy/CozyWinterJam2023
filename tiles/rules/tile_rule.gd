@@ -31,42 +31,42 @@ var _handling_dict: Dictionary = {}
 
 ## The ID of the source tile that this rule is for.
 func get_tile_id() -> int:
-    return -1
+	return -1
 
 func hit_tile(_tile_map: TileMap, _layer: int, _position: Vector2i, _body: RigidBody2D, _player: BallsPlayer) -> void:
-    return
+	return
 
 func enter_tile(_tile_map: TileMap, _layer: int, _position: Vector2i, _body: RigidBody2D, _player: BallsPlayer) -> void:
-    return
+	return
 
 func exit_tile(_tile_map: TileMap, _layer: int, _position: Vector2i, _body: RigidBody2D, _player: BallsPlayer) -> void:
-    return
+	return
 
 func grapple_locked_tile(_tile_map: TileMap, _layer: int, _position: Vector2i, _grapple: Grapple3, _point: Vector2, _normal: Vector2, _player: BallsPlayer) -> void:
-    return
+	return
 
 func grapple_unlocked_tile(_tile_map: TileMap, _layer: int, _position: Vector2i, _grapple: Grapple3, _point: Vector2, _normal: Vector2, _player: BallsPlayer) -> void:
-    return
+	return
 
 func reset() -> void:
-    return
+	return
 
 #
 #   Functions
 #
 
 func play_oneshot_at_tile(tile_map: TileMap, position: Vector2i, audio_stream: AudioStream) -> OneshotAudioStreamPlayer2D:
-    if not audio_stream: return null
-    var world_pos = tile_map.to_global(tile_map.map_to_local(position))
-    
-    return OneshotAudioStreamPlayer2D.quick_play_oneshot(
-        tile_map.get_parent(), 
-        audio_stream, 
-        world_pos
-    )
+	if not audio_stream: return null
+	var world_pos = tile_map.to_global(tile_map.map_to_local(position))
+	
+	return OneshotAudioStreamPlayer2D.quick_play_oneshot(
+		tile_map.get_parent(), 
+		audio_stream, 
+		world_pos
+	)
 
 func set_is_handling(tile_position: Vector2i, is_handling: bool) -> void:
-    _handling_dict[tile_position] = is_handling
+	_handling_dict[tile_position] = is_handling
 
 func get_is_handling(tile_position: Vector2i) -> bool:
-    return _handling_dict.get(tile_position, false)
+	return _handling_dict.get(tile_position, false)

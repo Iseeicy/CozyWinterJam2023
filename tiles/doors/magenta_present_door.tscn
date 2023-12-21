@@ -4,7 +4,7 @@
 
 [node name="MagentaPresentDoor" instance=ExtResource("1_hya2o")]
 currency_type = "magenta_present"
-required_currency = 6
+required_currency = 4
 
 [node name="PresentType" parent="SignSprite" index="0"]
 modulate = Color(1, 0, 1, 1)

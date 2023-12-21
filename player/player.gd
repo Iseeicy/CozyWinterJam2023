@@ -18,9 +18,13 @@ signal grapple_unlocked(grapple: Grapple3, point: Vector2, normal: Vector2, coll
 
 @export var player_chain_scene: PackedScene = null
 @export var grapple_scene: PackedScene = null
+@export var grapple_scene_b: PackedScene = null
 @export var explode_particle_scene: PackedScene = null
+@export var explode_particle_scene_b: PackedScene = null
 @export var zap_particles_scene: PackedScene = null
+@export var zap_particles_scene_b: PackedScene = null
 @export var fall_particles_scene: PackedScene = null
+@export var fall_particles_scene_b: PackedScene = null
 
 #
 #	Private Variables
@@ -74,7 +78,7 @@ func unthrow_grapple_a():
 func throw_grapple_b():
 	if grapple_b: return
 	
-	grapple_b = grapple_scene.instantiate()
+	grapple_b = grapple_scene_b.instantiate()
 	get_parent().add_child(grapple_b)
 	grapple_b.locked.connect(_on_grapple_locked.bind())
 
@@ -102,7 +106,8 @@ func kill(which_body: RigidBody2D, type: KillType) -> void:
 
 	if which_body.visible:
 		if type == KillType.Zap:
-			var particles = zap_particles_scene.instantiate()
+			var scene = zap_particles_scene if which_body == ball_a else zap_particles_scene_b
+			var particles = scene.instantiate()
 			get_parent().add_child(particles)
 			particles.global_position = which_body.global_position
 			for child in particles.get_children():
@@ -112,7 +117,8 @@ func kill(which_body: RigidBody2D, type: KillType) -> void:
 				particles.queue_free()
 			get_tree().create_timer(4).timeout.connect(kill_particle.bind())
 		elif type == KillType.Fall:
-			var particles = fall_particles_scene.instantiate()
+			var scene = fall_particles_scene if which_body == ball_a else fall_particles_scene_b
+			var particles = scene.instantiate()
 			get_parent().add_child(particles)
 			print("%s %s" % [particles.global_position, which_body.global_position])
 			particles.global_position = which_body.global_position
@@ -123,7 +129,8 @@ func kill(which_body: RigidBody2D, type: KillType) -> void:
 				particles.queue_free()
 			get_tree().create_timer(4).timeout.connect(kill_particle.bind())
 		else:
-			var particle = explode_particle_scene.instantiate()
+			var scene = explode_particle_scene if which_body == ball_a else explode_particle_scene_b
+			var particle = scene.instantiate()
 			get_parent().add_child(particle)
 			particle.global_position = which_body.global_position
 			particle.emitting = true

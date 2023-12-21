@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=3 uid="uid://dyb74ka0l7t1f"]
+[gd_scene load_steps=62 format=3 uid="uid://dyb74ka0l7t1f"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_uotpf"]
 [ext_resource type="PackedScene" uid="uid://cwtiblfoxxa76" path="res://player/player_chain.tscn" id="2_sj4gy"]
@@ -6,9 +6,13 @@
 [ext_resource type="PackedScene" uid="uid://yec300o05c8y" path="res://player/player_explode.tscn" id="3_h3m41"]
 [ext_resource type="Texture2D" uid="uid://csc8b76d3i0sb" path="res://player/rope_chunk.png" id="3_ulh7l"]
 [ext_resource type="Texture2D" uid="uid://blqqtr1tpka0s" path="res://player/ball_a.png" id="4_dlcqn"]
+[ext_resource type="PackedScene" uid="uid://cjtdlo8rspu8x" path="res://player/grapple_3_b.tscn" id="4_fu5yv"]
 [ext_resource type="PackedScene" uid="uid://d3ed5jeerijkj" path="res://player/player_zap_particles.tscn" id="4_q7q3s"]
 [ext_resource type="PackedScene" uid="uid://bmuqx1lgxhq2m" path="res://player/player_fall_particles.tscn" id="5_g8rny"]
+[ext_resource type="PackedScene" uid="uid://c0m2cjxtenuke" path="res://player/player_explode_b.tscn" id="5_ha5k5"]
 [ext_resource type="Texture2D" uid="uid://bkxtde3row3om" path="res://player/ball_b.png" id="5_rj30e"]
+[ext_resource type="PackedScene" uid="uid://donn7dm1t16uh" path="res://player/player_zap_particles_b.tscn" id="8_6ncxr"]
+[ext_resource type="PackedScene" uid="uid://b6e0mejcfn4f1" path="res://player/player_fall_particles_b.tscn" id="8_q17ef"]
 [ext_resource type="Script" path="res://player/ball_roll_audio.gd" id="9_ic7yi"]
 [ext_resource type="Script" path="res://player/dink_audio.gd" id="10_10bli"]
 [ext_resource type="AudioStream" uid="uid://bch1tpe20vf15" path="res://sounds/dinks/dink_hard_1.ogg" id="10_57n3c"]
@@ -157,9 +161,13 @@ stream_0/weight = 1.0
 script = ExtResource("1_uotpf")
 player_chain_scene = ExtResource("2_sj4gy")
 grapple_scene = ExtResource("2_xx7ut")
+grapple_scene_b = ExtResource("4_fu5yv")
 explode_particle_scene = ExtResource("3_h3m41")
+explode_particle_scene_b = ExtResource("5_ha5k5")
 zap_particles_scene = ExtResource("4_q7q3s")
+zap_particles_scene_b = ExtResource("8_6ncxr")
 fall_particles_scene = ExtResource("5_g8rny")
+fall_particles_scene_b = ExtResource("8_q17ef")
 metadata/_edit_group_ = true
 
 [node name="PlayerChain" type="Node2D" parent="."]

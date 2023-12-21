@@ -1,0 +1,62 @@
+[gd_scene load_steps=7 format=3 uid="uid://cikjgwl8n871g"]
+
+[sub_resource type="Gradient" id="Gradient_ddfsq"]
+offsets = PackedFloat32Array(0, 0.0349127, 0.102244, 0.137157, 0.493766, 0.758105)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0.0669522, 1, 1, 1, 1, 1, 1, 1, 0.947631, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_65uc6"]
+gradient = SubResource("Gradient_ddfsq")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_dq6u3"]
+emission_shape = 3
+emission_box_extents = Vector3(7, 7, 7)
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_min = 0.5
+scale_max = 1.5
+color_ramp = SubResource("GradientTexture1D_65uc6")
+turbulence_enabled = true
+turbulence_noise_speed = Vector3(16, 16, 0)
+turbulence_influence_max = 1.0
+sub_emitter_mode = 2
+sub_emitter_amount_at_end = 1
+
+[sub_resource type="Gradient" id="Gradient_p1xkm"]
+offsets = PackedFloat32Array(0, 0.0548628, 0.134663, 0.63591, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0.480263, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_d0cvs"]
+gradient = SubResource("Gradient_p1xkm")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_o6kf4"]
+emission_shape = 3
+emission_box_extents = Vector3(4, 4, 4)
+particle_flag_disable_z = true
+direction = Vector3(0, -1, 0)
+spread = 0.0
+gravity = Vector3(0, 250, 0)
+initial_velocity_min = 51.25
+initial_velocity_max = 71.75
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+angle_max = 305.0
+scale_min = 3.0
+scale_max = 4.0
+color = Color(0.721569, 0.921569, 0.945098, 1)
+color_ramp = SubResource("GradientTexture1D_d0cvs")
+
+[node name="CrackingParticles" type="GPUParticles2D"]
+position = Vector2(136, 8)
+emitting = false
+sub_emitter = NodePath("GPUParticles2D2")
+process_material = SubResource("ParticleProcessMaterial_dq6u3")
+lifetime = 0.18
+one_shot = true
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="."]
+emitting = false
+process_material = SubResource("ParticleProcessMaterial_o6kf4")
+lifetime = 0.3
+one_shot = true
