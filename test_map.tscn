@@ -1,21 +1,42 @@
-[gd_scene load_steps=17 format=3 uid="uid://brcbj8ipc8t1t"]
+[gd_scene load_steps=23 format=3 uid="uid://brcbj8ipc8t1t"]
 
-[ext_resource type="TileSet" path="res://tiles/tileset3.tres" id="1_oau23"]
+[ext_resource type="TileSet" uid="uid://b2fmxt6xo787g" path="res://tiles/tileset3.tres" id="1_oau23"]
+[ext_resource type="PackedScene" uid="uid://cikjgwl8n871g" path="res://tiles/cracking_particles.tscn" id="3_ayppw"]
 [ext_resource type="Script" path="res://tile_interactor.gd" id="3_s1tv3"]
+[ext_resource type="AudioStream" uid="uid://duoidd50vhrae" path="res://sounds/crack_crumble_finish.ogg" id="4_ku4r8"]
 [ext_resource type="Script" path="res://tiles/rules/crack_rule.gd" id="4_tpvkr"]
-[ext_resource type="AudioStream" uid="uid://ctkpsi4vsqsep" path="res://addons/netengine5/net.bobbo.text-reader/sounds/jam/eng.ogg" id="4_w7av3"]
+[ext_resource type="AudioStream" uid="uid://cxa4cien6wnob" path="res://sounds/crack_crumble_start.ogg" id="5_osq2c"]
 [ext_resource type="Script" path="res://tiles/rules/spike_rule.gd" id="6_vhkip"]
+[ext_resource type="AudioStream" uid="uid://b1pt3sa7fefui" path="res://sounds/crumble_tick.ogg" id="6_xntjo"]
 [ext_resource type="Script" path="res://tiles/rules/pit_rule.gd" id="7_4cm7s"]
 [ext_resource type="Script" path="res://tiles/rules/snow_rule.gd" id="8_t5hvh"]
 [ext_resource type="Script" path="res://tiles/rules/icicle_rule.gd" id="9_x68l6"]
 [ext_resource type="Script" path="res://tiles/rules/electric_wall_rule.gd" id="10_vgt1b"]
 [ext_resource type="PackedScene" uid="uid://c6glfm0fwaos8" path="res://main_camera.tscn" id="11_fmlpp"]
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_t2muq"]
+streams_count = 1
+stream_0/stream = ExtResource("4_ku4r8")
+stream_0/weight = 1.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_hiovn"]
+streams_count = 1
+stream_0/stream = ExtResource("5_osq2c")
+stream_0/weight = 1.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_afaax"]
+streams_count = 1
+stream_0/stream = ExtResource("6_xntjo")
+stream_0/weight = 1.0
+
 [sub_resource type="Resource" id="Resource_db8f1"]
 script = ExtResource("4_tpvkr")
-time_until_crumble = 0.5
-crumble_start_sound = ExtResource("4_w7av3")
-crumble_complete_sound = ExtResource("4_w7av3")
+crumble_shake_time = 0.5
+crumble_shake_count = 4.0
+crumble_start_sound = SubResource("AudioStreamRandomizer_hiovn")
+crumble_tick_sound = SubResource("AudioStreamRandomizer_afaax")
+crumble_complete_sound = SubResource("AudioStreamRandomizer_t2muq")
+crack_particles_scene = ExtResource("3_ayppw")
 
 [sub_resource type="Resource" id="Resource_1b2x8"]
 script = ExtResource("6_vhkip")
