@@ -1,24 +1,29 @@
 extends Node
 
+@export var splash_screen_scenes: Array[PackedScene] = []
 @export var main_level_scene: PackedScene = null
 var _level: Node2D = null
 
 func _ready():
 	PauseMenu.set_can_pause(false)
 	CheckpointManager.spawn_player_on_start = false
-	$SplashScreen.show()
 	$MainMenu.hide()
 	$IntroCutscene.hide()
 
-	$SplashScreen.run()
-	# $MainMenu.show()
+	await get_tree().create_timer(0.5).timeout
+	for splash_scene in splash_screen_scenes:
+		var splash = splash_scene.instantiate()
+		add_child(splash)
+		splash.run_splash_sequence()
 
-func _on_splash_screen_completed():
+		await splash.finished
+
+		splash.queue_free()
+		await get_tree().create_timer(0.5).timeout
+
 	$MainMenu.show()
 
-
 func _on_main_menu_start_game():
-	$SplashScreen.hide()
 	$MainMenu.hide()
 	
 	$IntroCutscene.show()

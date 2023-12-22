@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://pltwuyymn3cn"]
+[gd_scene load_steps=10 format=3 uid="uid://pltwuyymn3cn"]
 
 [ext_resource type="Script" path="res://game_entry.gd" id="1_k30vb"]
-[ext_resource type="PackedScene" uid="uid://sbg70yk34nwu" path="res://splash_screen.tscn" id="2_oj260"]
+[ext_resource type="PackedScene" uid="uid://cxci7ctkywm45" path="res://splash/trash_entity/trash_entity_splash.tscn" id="2_eu72t"]
 [ext_resource type="PackedScene" uid="uid://dswcv711cp8pt" path="res://main_level.tscn" id="2_pvwe0"]
-[ext_resource type="PackedScene" uid="uid://ba7sfyxrhrekb" path="res://main_menu.tscn" id="3_l4ylh"]
+[ext_resource type="PackedScene" path="res://main_menu.tscn" id="3_l4ylh"]
+[ext_resource type="PackedScene" uid="uid://bqccfifrooo67" path="res://splash/people_who_hate_games/people_who_hate_games_splash.tscn" id="3_ll6r5"]
 [ext_resource type="PackedScene" uid="uid://cd61dwt110dxr" path="res://intro_cutscene_2.tscn" id="5_p2s7e"]
 [ext_resource type="PackedScene" uid="uid://cch75rtm2opaa" path="res://outro_cutscene.tscn" id="6_udoor"]
 [ext_resource type="PackedScene" uid="uid://dmh1wy1nimnw8" path="res://credits.tscn" id="7_pn1nm"]
@@ -11,9 +12,8 @@
 
 [node name="GameEntry" type="Node"]
 script = ExtResource("1_k30vb")
+splash_screen_scenes = Array[PackedScene]([ExtResource("2_eu72t"), ExtResource("3_ll6r5")])
 main_level_scene = ExtResource("2_pvwe0")
-
-[node name="SplashScreen" parent="." instance=ExtResource("2_oj260")]
 
 [node name="MainMenu" parent="." instance=ExtResource("3_l4ylh")]
 visible = false
@@ -30,7 +30,6 @@ visible = false
 [node name="Controls" parent="." instance=ExtResource("8_bqtrb")]
 visible = false
 
-[connection signal="completed" from="SplashScreen" to="." method="_on_splash_screen_completed"]
 [connection signal="start_game" from="MainMenu" to="." method="_on_main_menu_start_game"]
 [connection signal="cutscene_complete" from="IntroCutscene" to="." method="_on_intro_cutscene_cutscene_complete"]
 [connection signal="cutscene_complete" from="OutroCutscene" to="." method="_on_outro_cutscene_cutscene_complete"]
