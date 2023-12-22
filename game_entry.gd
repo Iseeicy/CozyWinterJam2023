@@ -27,9 +27,9 @@ func _on_main_menu_start_game():
 
 func _on_intro_cutscene_cutscene_complete():
 	$IntroCutscene.hide()
-	var level = main_level_scene.instantiate()
-	_deffered_load_level.call_deferred(level)
-		
+	await get_tree().create_timer(2.0).timeout
+	$Controls.show()
+	
 
 func _deffered_load_level(level):
 	await get_tree().create_timer(2.0).timeout
@@ -51,3 +51,15 @@ func _on_level_complete():
 	
 	$OutroCutscene.show()
 	$OutroCutscene.run()
+
+
+func _on_outro_cutscene_cutscene_complete():
+	$OutroCutscene.hide()
+	await get_tree().create_timer(4.0).timeout
+	$Credits.show()
+
+
+func _on_controls_finished():
+	$Controls.hide()
+	var level = main_level_scene.instantiate()
+	_deffered_load_level.call_deferred(level)

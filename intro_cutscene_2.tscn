@@ -10,7 +10,6 @@ script = ExtResource("1_mvqto")
 dialog = ExtResource("2_eey16")
 
 [node name="CutsceneTextWindow" parent="." instance=ExtResource("2_4f1hr")]
-visible = false
 
 [node name="DialogRunner" parent="." node_paths=PackedStringArray("text_window") instance=ExtResource("3_bkham")]
 text_window = NodePath("../CutsceneTextWindow")

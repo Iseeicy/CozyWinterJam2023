@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="TextSounds" load_steps=4 format=3 uid="uid://3ytn83c8wy60"]
+
+[ext_resource type="AudioStream" uid="uid://u83b0e2spfno" path="res://sounds/area_title_talk.ogg" id="1_vp5ch"]
+[ext_resource type="Script" path="res://addons/netengine5/net.bobbo.text-reader/text_sounds.gd" id="2_w61tv"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_xsvmw"]
+streams_count = 1
+stream_0/stream = ExtResource("1_vp5ch")
+stream_0/weight = 1.0
+
+[resource]
+script = ExtResource("2_w61tv")
+default = SubResource("AudioStreamRandomizer_xsvmw")

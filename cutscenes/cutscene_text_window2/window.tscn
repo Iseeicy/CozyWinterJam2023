@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bq7kmysjboamr"]
+[gd_scene load_steps=19 format=3 uid="uid://bq7kmysjboamr"]
 
 [ext_resource type="Script" path="res://addons/netengine5/net.bobbo.text-window/text_window.gd" id="1_r03gv"]
 [ext_resource type="Theme" uid="uid://ekn67a0jtwok" path="res://addons/netengine5/net.bobbo.text-window.dreams-of-being/window_theme.tres" id="2_bmk1h"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://addons/netengine5/net.bobbo.text-window.dreams-of-being/finish_indicator.gd" id="4_3e1cs"]
 [ext_resource type="FontFile" uid="uid://c0rtnk087j4a6" path="res://fonts/terminal-grotesque.ttf" id="4_llvn4"]
 [ext_resource type="Script" path="res://addons/netengine5/net.bobbo.text-window/text_window_state_machine.gd" id="5_d84ko"]
+[ext_resource type="Resource" uid="uid://3ytn83c8wy60" path="res://text_sounds.tres" id="5_p6rdx"]
 [ext_resource type="Script" path="res://addons/netengine5/net.bobbo.text-window/states/closed.gd" id="6_h8ps4"]
 [ext_resource type="Texture2D" uid="uid://bnxx3kynpakoh" path="res://tiles/snow_flake.png" id="6_xjccm"]
 [ext_resource type="Script" path="res://addons/netengine5/net.bobbo.text-window/states/open.gd" id="7_veulx"]
@@ -54,6 +55,7 @@ _data = {
 }
 
 [node name="CutsceneTextWindow" type="Control"]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -140,7 +142,8 @@ text = "This is basic text for the dialog box!"
 scroll_following = true
 
 [node name="TextSpeaker" parent="VBoxContainer/ContentsContainer/DialogContents/MarginContainer2/MarginContainer/TextReaderLabel" index="2" node_paths=PackedStringArray("audio_origin_node")]
-audio_origin_node = NodePath("@Node@86122")
+audio_origin_node = NodePath("@Node@18918")
+default_sounds = ExtResource("5_p6rdx")
 
 [node name="FinishIndicator" type="Control" parent="VBoxContainer/ContentsContainer/DialogContents"]
 layout_mode = 1
