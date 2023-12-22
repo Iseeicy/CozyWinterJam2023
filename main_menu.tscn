@@ -1,58 +1,106 @@
-[gd_scene load_steps=2 format=3 uid="uid://ba7sfyxrhrekb"]
+[gd_scene load_steps=8 format=3 uid="uid://8wu8vnmbq5f5"]
 
 [ext_resource type="Script" path="res://main_menu.gd" id="1_1hth1"]
+[ext_resource type="Texture2D" uid="uid://cl87khyysf3vu" path="res://tiles/spritesheets/main_screen_layout_2.png" id="2_pv5ut"]
+[ext_resource type="Texture2D" uid="uid://bnxx3kynpakoh" path="res://tiles/snow_flake.png" id="2_rrq3x"]
+[ext_resource type="FontFile" uid="uid://c0rtnk087j4a6" path="res://fonts/terminal-grotesque.ttf" id="3_vw81a"]
 
-[node name="MainMenu" type="Control"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[sub_resource type="Gradient" id="Gradient_o7i6t"]
+offsets = PackedFloat32Array(0.179775, 0.778075, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.454902, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_gj6b8"]
+gradient = SubResource("Gradient_o7i6t")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_5ys1l"]
+emission_shape = 3
+emission_box_extents = Vector3(200, 1, 1)
+particle_flag_disable_z = true
+gravity = Vector3(0, 400, 0)
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+angle_min = -199.5
+angle_max = 240.0
+scale_min = 0.5
+scale_max = 5.0
+color = Color(1, 1, 1, 0.643137)
+color_ramp = SubResource("GradientTexture1D_gj6b8")
+turbulence_enabled = true
+turbulence_noise_speed = Vector3(10, 5, 2)
+turbulence_influence_min = 0.01
+
+[node name="MainMenu" type="CanvasLayer"]
 script = ExtResource("1_1hth1")
 
-[node name="Title" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = 5
+[node name="TextureRect" type="TextureRect" parent="."]
+anchors_preset = 8
 anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -79.5
-offset_top = 60.0
-offset_right = 79.5
-offset_bottom = 86.0
-grow_horizontal = 2
-theme_override_font_sizes/font_size = 56
-text = "Unnamed Ball Game"
-
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = 14
 anchor_top = 0.5
-anchor_right = 1.0
+anchor_right = 0.5
 anchor_bottom = 0.5
+offset_left = -192.0
+offset_top = -112.0
+offset_right = 192.0
+offset_bottom = 112.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 20
-alignment = 1
+scale = Vector2(3, 3)
+pivot_offset = Vector2(192, 112)
+texture = ExtResource("2_pv5ut")
 
-[node name="NewGameButton" type="Button" parent="HBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 20
+[node name="NewGameButton" type="Button" parent="."]
+custom_minimum_size = Vector2(144, 0)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 192.0
+offset_top = 192.0
+offset_right = 336.0
+offset_bottom = 241.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_vw81a")
+theme_override_font_sizes/font_size = 40
 text = "Start"
 
-[node name="QuitButton" type="Button" parent="HBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 20
+[node name="QuitButton" type="Button" parent="."]
+custom_minimum_size = Vector2(144, 0)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -384.0
+offset_top = 192.0
+offset_right = -240.0
+offset_bottom = 241.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_vw81a")
+theme_override_font_sizes/font_size = 40
 text = "Quit"
 
-[node name="ConfirmationDialog" type="ConfirmationDialog" parent="HBoxContainer/QuitButton"]
+[node name="ConfirmationDialog" type="ConfirmationDialog" parent="QuitButton"]
 initial_position = 2
 size = Vector2i(254, 100)
 ok_button_text = "Quit"
 dialog_text = "Are you sure you want to quit?"
 cancel_button_text = "Stay"
 
-[connection signal="pressed" from="HBoxContainer/NewGameButton" to="." method="_on_new_game_button_pressed"]
-[connection signal="pressed" from="HBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
-[connection signal="canceled" from="HBoxContainer/QuitButton/ConfirmationDialog" to="." method="_on_confirmation_dialog_canceled"]
-[connection signal="confirmed" from="HBoxContainer/QuitButton/ConfirmationDialog" to="." method="_on_confirmation_dialog_confirmed"]
+[node name="Snow" type="GPUParticles2D" parent="."]
+position = Vector2(564, 67)
+scale = Vector2(3, 3)
+amount = 100
+process_material = SubResource("ParticleProcessMaterial_5ys1l")
+texture = ExtResource("2_rrq3x")
+lifetime = 5.0
+trail_lifetime = 0.1
+trail_sections = 2
+trail_section_subdivisions = 2
+
+[connection signal="pressed" from="NewGameButton" to="." method="_on_new_game_button_pressed"]
+[connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="canceled" from="QuitButton/ConfirmationDialog" to="." method="_on_confirmation_dialog_canceled"]
+[connection signal="confirmed" from="QuitButton/ConfirmationDialog" to="." method="_on_confirmation_dialog_confirmed"]

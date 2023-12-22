@@ -1,14 +1,14 @@
-extends Control
+extends CanvasLayer
 
 signal start_game()
 
 
 func _on_quit_button_pressed():
-	$HBoxContainer/QuitButton/ConfirmationDialog.show()
+	$QuitButton/ConfirmationDialog.show()
 
 
 func _on_confirmation_dialog_canceled():
-	$HBoxContainer/QuitButton/ConfirmationDialog.hide()
+	$QuitButton/ConfirmationDialog.hide()
 
 
 func _on_confirmation_dialog_confirmed():
