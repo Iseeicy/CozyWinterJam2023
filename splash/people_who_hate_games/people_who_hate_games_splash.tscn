@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://bqccfifrooo67"]
+
+[ext_resource type="Script" path="res://splash/people_who_hate_games/people_who_hate_games_splash.gd" id="1_r6veb"]
+[ext_resource type="Texture2D" uid="uid://cbai1o0pgx423" path="res://splash/people_who_hate_games/splash.png" id="2_r4jcj"]
+[ext_resource type="AudioStream" uid="uid://b8kg1ku1pf8d8" path="res://splash/people_who_hate_games/people_who_hate_games_splash.ogg" id="3_h5c44"]
+
+[node name="PeopleWhoHateGamesSplash" type="CanvasLayer"]
+script = ExtResource("1_r6veb")
+
+[node name="Logo" type="TextureRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -215.0
+offset_top = -104.0
+offset_right = 215.0
+offset_bottom = 104.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(180, 116)
+texture = ExtResource("2_r4jcj")
+
+[node name="SplashSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_h5c44")
+volume_db = 10.0
+panning_strength = 0.0

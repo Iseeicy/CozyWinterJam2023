@@ -1,7 +1,7 @@
 extends SplashScreen
 
 
-func _run_splash_sequence():
+func run_splash_sequence():
 	$AnimationPlayer.play("trash_splash")
 	return
 	# $LogoLight.hide()

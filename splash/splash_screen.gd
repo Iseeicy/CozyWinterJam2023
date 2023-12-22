@@ -13,22 +13,17 @@ signal finished()
 #
 
 func _ready():
-	visibility_changed.connect(_run_splash_sequence.bind())
-
 	if get_tree().current_scene == self and visible:
-		_run_splash_sequence()
+		run_splash_sequence()
+
+func _input(event):
+	if event.is_action_pressed("pause"):
+		finished.emit()
 
 #
 #	Virtual Functions
 #
 
 ## Runs this splash sequence. Meant to be overridden. Does nothing by default.
-func _run_splash_sequence():
+func run_splash_sequence():
 	finished.emit()
-
-#
-#	Signals
-#
-
-func _on_visibility_changed():
-	if visible: _run_splash_sequence()
