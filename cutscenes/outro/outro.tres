@@ -1,0 +1,67 @@
+[gd_resource type="Resource" script_class="PackedDialogGraph" load_steps=4 format=3 uid="uid://vkyy7t0hjgfp"]
+
+[ext_resource type="Resource" uid="uid://cmpfaetr774wm" path="res://addons/netengine5/net.bobbo.dialog-graph/nodes/entry/entry_desc.tres" id="1_xkcco"]
+[ext_resource type="Resource" uid="uid://bsr7sku2bwkax" path="res://addons/netengine5/net.bobbo.dialog-graph/nodes/dialog_text/dialog_text_desc.tres" id="2_lk5hg"]
+[ext_resource type="Script" path="res://addons/netengine5/net.bobbo.dialog-graph/packed_dialog_graph.gd" id="3_4il2q"]
+
+[resource]
+script = ExtResource("3_4il2q")
+nodes = Array[Dictionary]([{
+"_d": ExtResource("1_xkcco"),
+"_i": 0,
+"_p": Vector2(0, 0)
+}, {
+"_d": ExtResource("2_lk5hg"),
+"_i": 1,
+"_p": Vector2(160, -60),
+"t": Array[String](["Approaching the entrance, all battered and sick...
+
+...a portly outline shone through:
+it was old [color=yellow]Saint Nick[/color]!"])
+}, {
+"_d": ExtResource("2_lk5hg"),
+"_i": 2,
+"_p": Vector2(540, 20),
+"t": Array[String](["\"[color=red]I must say[/color]\" said Saint Nick,
+\"[color=red]You've performed quite a feat![/color]\"
+
+\"[color=red]To come all this way![/color]\"
+\"[color=red]Without hands![/color]\"
+\"[color=red]...or feet![/color]\""])
+}, {
+"_d": ExtResource("2_lk5hg"),
+"_i": 3,
+"_p": Vector2(920.857, -8.24053),
+"t": Array[String](["\"[color=green]We know[/color]\" said the baubles, beaming with pride...
+
+\"[color=green]...but it was painful and rough, we often nearly died![/color]\""])
+}, {
+"_d": ExtResource("2_lk5hg"),
+"_i": 4,
+"_p": Vector2(1289.2, 34.1677),
+"t": Array[String](["\"[color=red]What? [wave]Ho![/wave][/color]\" laughed Saint Nick, \"[color=red]It seems you learned [wave]quite[/wave] a lesson...[/color]\"
+
+\"[color=red]...for without a good effort
+[shake]the satisfaction would lessen.[/shake][/color]\""])
+}])
+connections = Array[Dictionary]([{
+"from_id": 0,
+"from_port": 0,
+"to_id": 1,
+"to_port": 0
+}, {
+"from_id": 1,
+"from_port": 0,
+"to_id": 2,
+"to_port": 0
+}, {
+"from_id": 2,
+"from_port": 0,
+"to_id": 3,
+"to_port": 0
+}, {
+"from_id": 3,
+"from_port": 0,
+"to_id": 4,
+"to_port": 0
+}])

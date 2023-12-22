@@ -1,0 +1,17 @@
+[gd_scene load_steps=5 format=3 uid="uid://cd61dwt110dxr"]
+
+[ext_resource type="Script" path="res://intro_cutscene_2.gd" id="1_mvqto"]
+[ext_resource type="PackedScene" uid="uid://bq7kmysjboamr" path="res://cutscenes/cutscene_text_window2/window.tscn" id="2_4f1hr"]
+[ext_resource type="Resource" uid="uid://c3vgv1vhn5b5c" path="res://cutscenes/intro2/intro2.tres" id="2_eey16"]
+[ext_resource type="PackedScene" uid="uid://bo807ocm0385q" path="res://addons/netengine5/net.bobbo.dialog-graph/dialog_runner/dialog_runner.tscn" id="3_bkham"]
+
+[node name="IntroCutscene2" type="CanvasLayer"]
+script = ExtResource("1_mvqto")
+dialog = ExtResource("2_eey16")
+
+[node name="CutsceneTextWindow" parent="." instance=ExtResource("2_4f1hr")]
+
+[node name="DialogRunner" parent="." node_paths=PackedStringArray("text_window") instance=ExtResource("3_bkham")]
+text_window = NodePath("../CutsceneTextWindow")
+
+[connection signal="transitioned" from="DialogRunner" to="." method="_on_dialog_runner_transitioned"]

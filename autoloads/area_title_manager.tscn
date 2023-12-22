@@ -1,28 +1,18 @@
-[gd_scene load_steps=12 format=3 uid="uid://djbp28pwviyx6"]
+[gd_scene load_steps=9 format=3 uid="uid://djbp28pwviyx6"]
 
 [ext_resource type="Script" path="res://autoloads/area_title_manager.gd" id="1_m1ybq"]
 [ext_resource type="Script" path="res://addons/netengine5/net.bobbo.text-reader/examples/text_reader_label.gd" id="2_f8etc"]
 [ext_resource type="Script" path="res://addons/netengine5/net.bobbo.text-reader/text_reader_settings.gd" id="2_p3qkn"]
 [ext_resource type="FontFile" uid="uid://c0rtnk087j4a6" path="res://fonts/terminal-grotesque.ttf" id="2_sxquh"]
-[ext_resource type="AudioStream" uid="uid://u83b0e2spfno" path="res://sounds/area_title_talk.ogg" id="3_bmg7c"]
+[ext_resource type="Resource" uid="uid://3ytn83c8wy60" path="res://text_sounds.tres" id="3_qdytw"]
 [ext_resource type="Script" path="res://addons/netengine5/net.bobbo.text-reader/text_reader.gd" id="3_yd6x2"]
 [ext_resource type="Script" path="res://addons/netengine5/net.bobbo.text-reader/text_speaker.gd" id="4_0ugvn"]
-[ext_resource type="Script" path="res://addons/netengine5/net.bobbo.text-reader/text_sounds.gd" id="4_vt7fo"]
-
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_xsvmw"]
-streams_count = 1
-stream_0/stream = ExtResource("3_bmg7c")
-stream_0/weight = 1.0
-
-[sub_resource type="Resource" id="Resource_s3sxh"]
-script = ExtResource("4_vt7fo")
-default = SubResource("AudioStreamRandomizer_xsvmw")
 
 [sub_resource type="Resource" id="Resource_ks2oi"]
 script = ExtResource("2_p3qkn")
 char_show_delay = 0.06
 punctuation_show_delay = 0.4
-sounds = SubResource("Resource_s3sxh")
+sounds = ExtResource("3_qdytw")
 
 [node name="AreaTitleManager" type="CanvasLayer"]
 script = ExtResource("1_m1ybq")
@@ -55,7 +45,7 @@ script = ExtResource("3_yd6x2")
 
 [node name="TextSpeaker" type="Node" parent="TextReaderLabel" node_paths=PackedStringArray("audio_origin_node")]
 script = ExtResource("4_0ugvn")
-audio_origin_node = NodePath("@Node@800183")
+audio_origin_node = NodePath("@Node@70796")
 
 [node name="FadeOutTimer" type="Timer" parent="."]
 wait_time = 5.0

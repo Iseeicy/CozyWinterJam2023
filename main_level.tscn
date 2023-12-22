@@ -1,14 +1,13 @@
 [gd_scene load_steps=48 format=3 uid="uid://dswcv711cp8pt"]
 
 [ext_resource type="TileSet" uid="uid://b2fmxt6xo787g" path="res://tiles/tileset3.tres" id="1_bwbqf"]
+[ext_resource type="Script" path="res://main_level.gd" id="1_h04wi"]
 [ext_resource type="PackedScene" uid="uid://cgdrvke5ae56g" path="res://area_title.tscn" id="2_f8wi4"]
 [ext_resource type="PackedScene" uid="uid://c6glfm0fwaos8" path="res://main_camera.tscn" id="3_484mi"]
-[ext_resource type="PackedScene" uid="uid://cikjgwl8n871g" path="res://tiles/cracking_particles.tscn" id="4_2l5ms"]
 [ext_resource type="Script" path="res://tile_interactor.gd" id="4_gq56x"]
 [ext_resource type="AudioStream" uid="uid://duoidd50vhrae" path="res://sounds/crack_crumble_finish.ogg" id="5_n0c4g"]
 [ext_resource type="AudioStream" uid="uid://cxa4cien6wnob" path="res://sounds/crack_crumble_start.ogg" id="6_m1k54"]
 [ext_resource type="Script" path="res://tiles/rules/crack_rule.gd" id="6_o77dl"]
-[ext_resource type="AudioStream" uid="uid://b1pt3sa7fefui" path="res://sounds/crumble_tick.ogg" id="7_60alo"]
 [ext_resource type="Script" path="res://tiles/rules/spike_rule.gd" id="7_nlxnd"]
 [ext_resource type="Script" path="res://tiles/rules/pit_rule.gd" id="8_pmou2"]
 [ext_resource type="Script" path="res://tiles/rules/snow_rule.gd" id="9_bvsxq"]
@@ -16,6 +15,7 @@
 [ext_resource type="Script" path="res://tiles/rules/electric_wall_rule.gd" id="11_k7qre"]
 [ext_resource type="AudioStream" uid="uid://hv5tmgyyv01d" path="res://sounds/music_3.ogg" id="12_k7gnh"]
 [ext_resource type="Script" path="res://tiles/rules/present_rule.gd" id="12_tm0j0"]
+[ext_resource type="Script" path="res://player_trigger.gd" id="16_p75rq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x3b0b"]
 size = Vector2(256, 192)
@@ -90,19 +90,12 @@ streams_count = 1
 stream_0/stream = ExtResource("6_m1k54")
 stream_0/weight = 1.0
 
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_afaax"]
-streams_count = 1
-stream_0/stream = ExtResource("7_60alo")
-stream_0/weight = 1.0
-
 [sub_resource type="Resource" id="Resource_nm8ip"]
 script = ExtResource("6_o77dl")
 crumble_shake_time = 0.5
 crumble_shake_count = 4.0
 crumble_start_sound = SubResource("AudioStreamRandomizer_hiovn")
-crumble_tick_sound = SubResource("AudioStreamRandomizer_afaax")
 crumble_complete_sound = SubResource("AudioStreamRandomizer_t2muq")
-crack_particles_scene = ExtResource("4_2l5ms")
 
 [sub_resource type="Resource" id="Resource_1b2x8"]
 script = ExtResource("7_nlxnd")
@@ -123,7 +116,12 @@ script = ExtResource("11_k7qre")
 [sub_resource type="Resource" id="Resource_ths2v"]
 script = ExtResource("12_tm0j0")
 
-[node name="Node2D2" type="Node2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wefiy"]
+size = Vector2(96, 48)
+
+[node name="MainLevel" type="Node2D" node_paths=PackedStringArray("debug_spawnpoint")]
+script = ExtResource("1_h04wi")
+debug_spawnpoint = NodePath("DebugSpawnPoint")
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource("1_bwbqf")
@@ -380,22 +378,24 @@ volume_db = 5.0
 autoplay = true
 bus = &"Music"
 
-[connection signal="area_entered" from="TileMap/CheckPoint" to="TileMap/CheckPoint" method="_on_area_entered" flags=18]
-[connection signal="body_entered" from="TileMap/CheckPoint" to="TileMap/CheckPoint" method="_on_body_entered" flags=18]
-[connection signal="area_entered" from="TileMap/@Area2D@76071" to="TileMap/@Area2D@76071" method="_on_area_entered" flags=18]
-[connection signal="body_entered" from="TileMap/@Area2D@76071" to="TileMap/@Area2D@76071" method="_on_body_entered" flags=18]
-[connection signal="area_entered" from="TileMap/@Area2D@76076" to="TileMap/@Area2D@76076" method="_on_area_entered" flags=18]
-[connection signal="body_entered" from="TileMap/@Area2D@76076" to="TileMap/@Area2D@76076" method="_on_body_entered" flags=18]
-[connection signal="area_entered" from="TileMap/@Area2D@76080" to="TileMap/@Area2D@76080" method="_on_area_entered" flags=18]
-[connection signal="body_entered" from="TileMap/@Area2D@76080" to="TileMap/@Area2D@76080" method="_on_body_entered" flags=18]
-[connection signal="area_entered" from="TileMap/@Area2D@76082" to="TileMap/@Area2D@76082" method="_on_area_entered" flags=18]
-[connection signal="body_entered" from="TileMap/@Area2D@76082" to="TileMap/@Area2D@76082" method="_on_body_entered" flags=18]
-[connection signal="area_entered" from="TileMap/@Area2D@76085" to="TileMap/@Area2D@76085" method="_on_area_entered" flags=18]
-[connection signal="body_entered" from="TileMap/@Area2D@76085" to="TileMap/@Area2D@76085" method="_on_body_entered" flags=18]
-[connection signal="area_entered" from="TileMap/@Area2D@76086" to="TileMap/@Area2D@76086" method="_on_area_entered" flags=18]
-[connection signal="body_entered" from="TileMap/@Area2D@76086" to="TileMap/@Area2D@76086" method="_on_body_entered" flags=18]
-[connection signal="area_entered" from="TileMap/@Area2D@76090" to="TileMap/@Area2D@76090" method="_on_area_entered" flags=18]
-[connection signal="body_entered" from="TileMap/@Area2D@76090" to="TileMap/@Area2D@76090" method="_on_body_entered" flags=18]
+[node name="EndLevelPlayerTrigger" type="Area2D" parent="."]
+position = Vector2(168, -2872)
+collision_layer = 0
+collision_mask = 4
+monitorable = false
+script = ExtResource("16_p75rq")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EndLevelPlayerTrigger"]
+position = Vector2(0, -8)
+shape = SubResource("RectangleShape2D_wefiy")
+
+[node name="DebugSpawnPoint" type="Node2D" parent="."]
+position = Vector2(168, -2720)
+
+[connection signal="body_entered" from="EndLevelPlayerTrigger" to="EndLevelPlayerTrigger" method="_on_body_entered" flags=18]
+[connection signal="body_exited" from="EndLevelPlayerTrigger" to="EndLevelPlayerTrigger" method="_on_body_exited" flags=18]
+[connection signal="player_entered" from="EndLevelPlayerTrigger" to="." method="_on_end_level_player_trigger_player_entered"]
 
 [editable path="TileMap/AreaTitles/AreaTitle"]
 [editable path="TileMap/AreaTitles/AreaTitle2"]

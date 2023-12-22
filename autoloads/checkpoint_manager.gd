@@ -16,19 +16,32 @@ func _ready():
 	await get_tree().root.ready
 	if spawn_player_on_start: _spawn_player()
 
-func _spawn_player():
+func _spawn_player(override_global_pos = null):
 	_current_player = _player_scene.instantiate()
 	get_tree().root.add_child(_current_player)
-	_current_player.respawn(get_spawn_point())
+	
+	var spawn_point
+	if override_global_pos:
+		spawn_point = override_global_pos
+	else:
+		spawn_point = get_spawn_point()
+	
+	_current_player.respawn(spawn_point)
 	player_spawned.emit(_current_player)
 
-func respawn():
-	if _current_player:
-		player_despawned.emit(_current_player)
-		_current_player.queue_free()
-		_current_player = null
+func despawn():
+	if not _current_player: return
 	
-	_spawn_player()
+	player_despawned.emit(_current_player)
+	_current_player.unthrow_grapple_a()
+	_current_player.unthrow_grapple_b()
+	_current_player.queue_free()
+	_current_player = null
+
+func respawn(override_global_pos = null):
+	if _current_player: despawn()
+		
+	_spawn_player(override_global_pos)
 	player_reset.emit()
 
 func flag_new_checkpoint(checkpoint: Checkpoint) -> void:
