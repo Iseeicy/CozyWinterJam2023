@@ -23,9 +23,11 @@ it was old [color=yellow]Saint Nick[/color]!"])
 "_i": 2,
 "_p": Vector2(540, 20),
 "t": Array[String](["\"[color=red]I must say[/color]\" said Saint Nick,
-\"[color=red]You've performed quite a feat!
+\"[color=red]You've performed quite a feat![/color]\"
 
-To come all this way, without hands or feet![/color]\""])
+\"[color=red]To come all this way![/color]\"
+\"[color=red]Without hands![/color]\"
+\"[color=red]...or feet![/color]\""])
 }, {
 "_d": ExtResource("2_lk5hg"),
 "_i": 3,

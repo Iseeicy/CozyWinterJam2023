@@ -1,6 +1,7 @@
 extends Node
 
 @export var main_level_scene: PackedScene = null
+var _level: Node2D = null
 
 func _ready():
 	PauseMenu.set_can_pause(false)
@@ -31,7 +32,22 @@ func _on_intro_cutscene_cutscene_complete():
 		
 
 func _deffered_load_level(level):
+	await get_tree().create_timer(2.0).timeout
+	
+	_level = level
+	_level.level_completed.connect(_on_level_complete.bind())
+	
 	add_child(level)
 	PauseMenu.set_can_pause(true)
 	CheckpointManager.respawn()
 	
+func _on_level_complete():
+	CheckpointManager.despawn()
+	PauseMenu.set_can_pause(false)
+	_level.queue_free()
+	_level = null
+	
+	await get_tree().create_timer(2.0).timeout
+	
+	$OutroCutscene.show()
+	$OutroCutscene.run()
