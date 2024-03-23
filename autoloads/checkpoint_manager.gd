@@ -48,9 +48,10 @@ func flag_new_checkpoint(checkpoint: Checkpoint) -> void:
 	checkpoint_flagged.emit(checkpoint)
 	if _current_checkpoint == checkpoint: return
 	if _current_checkpoint: _current_checkpoint.set_flag_is_up(false)
-	
+
 	_current_checkpoint = checkpoint
-	_current_checkpoint.set_flag_is_up(true)
+	if _current_checkpoint.sprite != null:
+		_current_checkpoint.set_flag_is_up(true)
 
 func get_spawn_point() -> Vector2:
 	if not _current_checkpoint: return Vector2.ZERO

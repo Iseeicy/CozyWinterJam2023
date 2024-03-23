@@ -23,6 +23,7 @@ KnowledgeDB="*res://addons/netengine5/net.bobbo.knowledge/autoload/knowledge_db.
 GraphNodeDB="*res://addons/netengine5/net.bobbo.dialog-graph/autoload/graph_node_db.tscn"
 PresentManager="*res://autoloads/present_manager.gd"
 CheckpointManager="*res://autoloads/checkpoint_manager.gd"
+SaveManager="*res://autoloads/save_manager.gd"
 PauseMenu="*res://autoloads/pause_menu.tscn"
 GGS="*res://addons/ggs/classes/global/ggs.tscn"
 AreaTitleManager="*res://autoloads/area_title_manager.tscn"
@@ -31,6 +32,7 @@ AreaTitleManager="*res://autoloads/area_title_manager.tscn"
 
 window/size/viewport_height=672
 window/size/resizable=false
+window/size/always_on_top=true
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 
@@ -44,7 +46,7 @@ export/convert_text_resources_to_binary=false
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/ggs/plugin.cfg", "res://addons/netengine5/net.bobbo.character/plugin.cfg", "res://addons/netengine5/net.bobbo.dialog-graph/plugin.cfg", "res://addons/netengine5/net.bobbo.interactable/plugin.cfg", "res://addons/netengine5/net.bobbo.item/plugin.cfg", "res://addons/netengine5/net.bobbo.knowledge/plugin.cfg", "res://addons/netengine5/net.bobbo.player-controller/plugin.cfg", "res://addons/netengine5/net.bobbo.player-model/plugin.cfg", "res://addons/netengine5/net.bobbo.resource-field/plugin.cfg", "res://addons/netengine5/net.bobbo.state-machine/plugin.cfg", "res://addons/netengine5/net.bobbo.text-reader/plugin.cfg", "res://addons/netengine5/net.bobbo.text-window/plugin.cfg")
+enabled=PackedStringArray("res://addons/ggs/plugin.cfg")
 
 [input]
 

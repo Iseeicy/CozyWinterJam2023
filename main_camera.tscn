@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://c6glfm0fwaos8"]
 
 [ext_resource type="Script" path="res://main_camera.gd" id="1_xgfky"]
-[ext_resource type="Texture2D" uid="uid://bnxx3kynpakoh" path="res://tiles/snow_flake.png" id="2_jmdym"]
+[ext_resource type="Texture2D" uid="uid://bnxx3kynpakoh" path="res://autoloads/tiles/snow_flake.png" id="2_jmdym"]
 
 [sub_resource type="Gradient" id="Gradient_o7i6t"]
 offsets = PackedFloat32Array(0.179775, 0.778075, 1)

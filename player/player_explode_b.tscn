@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://c0m2cjxtenuke"]
 
-[ext_resource type="Texture2D" uid="uid://cuktrxe86us0" path="res://tiles/sources/ball_shatter_chunk_b.png" id="1_onexm"]
+[ext_resource type="Texture2D" uid="uid://cuktrxe86us0" path="res://autoloads/tiles/sources/ball_shatter_chunk_b.png" id="1_onexm"]
 
 [sub_resource type="Curve" id="Curve_f1m6x"]
 max_value = 100.0

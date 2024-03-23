@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://c7d50sfdnwdlo"]
 
-[ext_resource type="TileSet" uid="uid://dila20svsy5ke" path="res://tiles/tileset.tres" id="1_82nck"]
+[ext_resource type="TileSet" uid="uid://dila20svsy5ke" path="res://autoloads/tiles/tileset.tres" id="1_82nck"]
 [ext_resource type="PackedScene" uid="uid://j08dctpbcyt4" path="res://levels/player.tscn" id="2_gkmui"]
 
 [node name="test_level" type="TileMap"]

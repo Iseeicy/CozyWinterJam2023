@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=3 uid="uid://cjtdlo8rspu8x"]
 
 [ext_resource type="Script" path="res://player/grapple_3.gd" id="1_dyu10"]
-[ext_resource type="Texture2D" uid="uid://bman1qrmnmnp" path="res://tiles/sources/grapple_chunk_b.png" id="2_62jb5"]
+[ext_resource type="Texture2D" uid="uid://bman1qrmnmnp" path="res://autoloads/tiles/sources/grapple_chunk_b.png" id="2_62jb5"]
 [ext_resource type="Texture2D" uid="uid://2aagxf8ip3r2" path="res://player/grapple_end.png" id="3_dlct2"]
 [ext_resource type="AudioStream" uid="uid://rwrflstp44d2" path="res://sounds/grapple_throw.ogg" id="4_720s5"]
 [ext_resource type="AudioStream" uid="uid://dvvr51oyhl56x" path="res://sounds/grapple_hit.ogg" id="5_e3myo"]
