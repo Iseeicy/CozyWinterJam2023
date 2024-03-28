@@ -1,9 +1,9 @@
 [gd_scene load_steps=8 format=3 uid="uid://8wu8vnmbq5f5"]
 
 [ext_resource type="Script" path="res://main_menu.gd" id="1_1hth1"]
-[ext_resource type="Texture2D" uid="uid://cl87khyysf3vu" path="res://autoloads/tiles/spritesheets/main_screen_layout_2.png" id="2_hlvid"]
+[ext_resource type="Texture2D" uid="uid://cl87khyysf3vu" path="res://tiles/spritesheets/main_screen_layout_2.png" id="2_mgsk7"]
 [ext_resource type="FontFile" uid="uid://c0rtnk087j4a6" path="res://fonts/terminal-grotesque.ttf" id="3_vw81a"]
-[ext_resource type="Texture2D" uid="uid://bnxx3kynpakoh" path="res://autoloads/tiles/snow_flake.png" id="4_kcg64"]
+[ext_resource type="Texture2D" uid="uid://bnxx3kynpakoh" path="res://tiles/snow_flake.png" id="4_updsv"]
 
 [sub_resource type="Gradient" id="Gradient_o7i6t"]
 offsets = PackedFloat32Array(0.179775, 0.778075, 1)
@@ -46,7 +46,7 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(3, 3)
 pivot_offset = Vector2(192, 112)
-texture = ExtResource("2_hlvid")
+texture = ExtResource("2_mgsk7")
 
 [node name="NewGameButton" type="Button" parent="."]
 custom_minimum_size = Vector2(144, 0)
@@ -111,7 +111,7 @@ position = Vector2(564, 67)
 scale = Vector2(3, 3)
 amount = 100
 process_material = SubResource("ParticleProcessMaterial_5ys1l")
-texture = ExtResource("4_kcg64")
+texture = ExtResource("4_updsv")
 lifetime = 5.0
 trail_lifetime = 0.1
 trail_sections = 2

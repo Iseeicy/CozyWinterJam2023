@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=3 uid="uid://donn7dm1t16uh"]
 
-[ext_resource type="Texture2D" uid="uid://cuktrxe86us0" path="res://autoloads/tiles/sources/ball_shatter_chunk_b.png" id="1_fqpif"]
+[ext_resource type="Texture2D" uid="uid://cuktrxe86us0" path="res://tiles/sources/ball_shatter_chunk_b.png" id="1_fqpif"]
 [ext_resource type="Texture2D" uid="uid://c3hinbqbcc18e" path="res://player/zap_particle_1.png" id="2_gledx"]
 [ext_resource type="Texture2D" uid="uid://bmmbeq6m8q36i" path="res://player/zap_particle_2.png" id="3_k6rwh"]
 

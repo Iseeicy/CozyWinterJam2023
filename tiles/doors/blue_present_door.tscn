@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://bm3ypsntq3mgw"]
+
+[ext_resource type="PackedScene" uid="uid://cvxmq3cnyiif7" path="res://tiles/doors/doorway.tscn" id="1_evt6l"]
+
+[node name="BluePresentDoor" instance=ExtResource("1_evt6l")]
+currency_type = "blue_present"
+required_currency = 4
+
+[node name="PresentType" parent="SignSprite" index="0"]
+modulate = Color(0, 0, 1, 1)
