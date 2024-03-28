@@ -9,8 +9,7 @@ func _ready():
 	set_flag_is_up(false)
 
 func set_flag_is_up(is_up: bool):
-	if sprite != null:
-		sprite.animation = "up" if is_up else "down"
+	sprite.animation = "up" if is_up else "down"
 
 	if is_up == _is_up: return
 	_is_up = is_up

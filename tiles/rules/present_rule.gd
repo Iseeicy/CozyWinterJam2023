@@ -23,7 +23,7 @@ func get_tile_id() -> int:
 
 func enter_tile(tile_map: TileMap, layer: int, position: Vector2i, _body: RigidBody2D, _player: BallsPlayer) -> void:
 	play_oneshot_at_tile(tile_map, position, present_collect_sound)
-	print(layer)
+	
 	_save_original_tile_state(tile_map, layer, position)
 	PresentManager.collect_present(
 		tile_map.get_cell_tile_data(layer, position).get_custom_data("currency_type"), 
