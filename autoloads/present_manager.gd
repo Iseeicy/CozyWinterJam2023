@@ -35,7 +35,7 @@ func collect_present(type: String, tile_pos: Vector2i, world_position: Vector2) 
 	var col_arr = _held_collection.get(type, [])
 	col_arr.append(tile_pos)
 	_held_collection[type] = col_arr
-	
+
 	if _player:
 		var vis_pres: CollectedPresent = _collected_present_scene.instantiate()
 		_player.get_parent().add_child(vis_pres)

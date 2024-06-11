@@ -73,3 +73,4 @@ func _save_original_tile_state(tile_map: TileMap, layer: int, position: Vector2i
 	
 	layer_dict[position] = position_dict
 	_changed_tiles[layer] = layer_dict
+

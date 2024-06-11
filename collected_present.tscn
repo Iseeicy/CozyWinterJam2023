@@ -1,17 +1,17 @@
 [gd_scene load_steps=12 format=3 uid="uid://dbw2cts28qgdr"]
 
 [ext_resource type="Script" path="res://collected_present.gd" id="1_8hagx"]
-[ext_resource type="Texture2D" uid="uid://dnk0s0m4ycynf" path="res://tiles/present_grey.png" id="2_io0ka"]
+[ext_resource type="Texture2D" uid="uid://dnk0s0m4ycynf" path="res://tiles/present_grey.png" id="2_4qvcg"]
 [ext_resource type="AudioStream" uid="uid://cd6af6xhr4e0" path="res://sounds/present_grab.ogg" id="3_vsff3"]
 [ext_resource type="AudioStream" uid="uid://ch6cavuu6s3ir" path="res://sounds/present_show.ogg" id="4_jbfxf"]
 [ext_resource type="AudioStream" uid="uid://do88h335kaqfr" path="res://sounds/present_stash.ogg" id="5_2iag1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_akm8r"]
-atlas = ExtResource("2_io0ka")
+atlas = ExtResource("2_4qvcg")
 region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_l647j"]
-atlas = ExtResource("2_io0ka")
+atlas = ExtResource("2_4qvcg")
 region = Rect2(16, 0, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_qo42p"]

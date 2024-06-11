@@ -48,7 +48,7 @@ func flag_new_checkpoint(checkpoint: Checkpoint) -> void:
 	checkpoint_flagged.emit(checkpoint)
 	if _current_checkpoint == checkpoint: return
 	if _current_checkpoint: _current_checkpoint.set_flag_is_up(false)
-
+	
 	_current_checkpoint = checkpoint
 	_current_checkpoint.set_flag_is_up(true)
 
