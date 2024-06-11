@@ -32,7 +32,6 @@ AreaTitleManager="*res://autoloads/area_title_manager.tscn"
 
 window/size/viewport_height=672
 window/size/resizable=false
-window/size/always_on_top=true
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 

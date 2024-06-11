@@ -66,27 +66,29 @@ func _process(delta):
 
 func save_game():
 	# If we have a checkpoint to save to
-	if current_checkpoint != null:
-		var file = FileAccess.open(save_file_path, FileAccess.WRITE)
+	if current_checkpoint == null:
+		return
+	
+	var file = FileAccess.open(save_file_path, FileAccess.WRITE)
 		
-		var savable_dictionary = {}
+	var savable_dictionary = {}
 		
-		# Make the dictionary into a saveable format since JSON doesn't like 
-		# parsing parentheses from the Vector2s
-		for type in current_saved_collection.keys():
-			savable_dictionary[type] = []
-			
-			for present in current_saved_collection[type]:
-				savable_dictionary[type].append(str(present))
+	# Make the dictionary into a saveable format since JSON doesn't like 
+	# parsing parentheses from the Vector2s
+	for type in current_saved_collection.keys():
+		savable_dictionary[type] = []
 		
-		# Store all the data
-		file.store_string("C: " + str(current_checkpoint.global_position) + " P: " + \
-		str(savable_dictionary))
-		file.close()
+		for present in current_saved_collection[type]:
+			savable_dictionary[type].append(str(present))
 		
-		# Set up parameters needed for save text
-		start_time = -1
-		show_saved_text = true
+	# Store all the data
+	file.store_string("C: " + str(current_checkpoint.global_position) + " P: " + \
+	str(savable_dictionary))
+	file.close()
+		
+	# Set up parameters needed for save text
+	start_time = -1
+	show_saved_text = true
 
 func load_game():
 	var file = FileAccess.open(save_file_path, FileAccess.READ)
@@ -104,15 +106,14 @@ func load_game():
 
 # Check if the file exists and if it isn't empty
 func save_file_exists() -> bool:
-	if FileAccess.file_exists(save_file_path):
-		var file = FileAccess.open(save_file_path, FileAccess.READ)
-		var data = file.get_as_text()
-		file.close()
+	if not FileAccess.file_exists(save_file_path):
+		return false
 		
-		if not data.is_empty():
-			return true
-	
-	return false
+	var file = FileAccess.open(save_file_path, FileAccess.READ)
+	var data = file.get_as_text()
+	file.close()
+		
+	return not data.is_empty()
 
 func on_checkpoint_flagged(checkpoint: Checkpoint):
 	# Set the current checkpoint
@@ -138,37 +139,39 @@ func on_scene_ready_for_load():
 	saved_text = get_node("/root/GameEntry/Saved Text/Text")
 	
 	# If we actually loaded any data
-	if load_position != Vector2.ZERO:
-		# Get a dictionary that we can actually load
-		var loadable_dictionary = {}
-		for type in current_saved_collection.keys():
-			loadable_dictionary[type] = []
+	if load_position == Vector2.ZERO:
+		return
+	
+	# Get a dictionary that we can actually load
+	var loadable_dictionary = {}
+	for type in current_saved_collection.keys():
+		loadable_dictionary[type] = []
+		
+		# This is just converting the string verion of the positions back 
+		# into Vector2s
+		for present in current_saved_collection[type]:
+			var temp = present.substr(1, len(present) - 2)
+			var position = temp.split(", ")
 			
-			# This is just converting the string verion of the positions back 
-			# into Vector2s
-			for present in current_saved_collection[type]:
-				var temp = present.substr(1, len(present) - 2)
-				var position = temp.split(", ")
-				
-				loadable_dictionary[type].append(Vector2(float(position[0]), float(position[1])))
-		
-		# Set the current saved collection to the valid dictionary
-		current_saved_collection = loadable_dictionary
-		
-		# Set the currently collected presents
-		for type in current_saved_collection.keys():
-			var arr = PresentManager._saved_collection.get(type, [])
-			arr.append_array(current_saved_collection[type])
-			PresentManager._saved_collection[type] = arr
-		
-		# Tell people that the collection was updated
-		PresentManager.collected_updated.emit(PresentManager.get_held_collected(), \
-		PresentManager.get_saved_collected())
-		
-		# Make all the presents we just set as collected stop existing
-		for type in current_saved_collection.keys():
-			for present in current_saved_collection[type]:
-				get_node("/root/GameEntry/MainLevel/TileMap").set_cell(3, present, -1)
-		
-		# Respawn the player at the position we want to load them at
-		CheckpointManager.respawn(load_position)
+			loadable_dictionary[type].append(Vector2(float(position[0]), float(position[1])))
+	
+	# Set the current saved collection to the valid dictionary
+	current_saved_collection = loadable_dictionary
+	
+	# Set the currently collected presents
+	for type in current_saved_collection.keys():
+		var arr = PresentManager._saved_collection.get(type, [])
+		arr.append_array(current_saved_collection[type])
+		PresentManager._saved_collection[type] = arr
+	
+	# Tell people that the collection was updated
+	PresentManager.collected_updated.emit(PresentManager.get_held_collected(), \
+	PresentManager.get_saved_collected())
+	
+	# Make all the presents we just set as collected stop existing
+	for type in current_saved_collection.keys():
+		for present in current_saved_collection[type]:
+			get_node("/root/GameEntry/MainLevel/TileMap").set_cell(3, present, -1)
+	
+	# Respawn the player at the position we want to load them at
+	CheckpointManager.respawn(load_position)

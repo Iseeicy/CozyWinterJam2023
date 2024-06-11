@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://dswcv711cp8pt" path="res://main_level.tscn" id="2_pvwe0"]
 [ext_resource type="PackedScene" uid="uid://8wu8vnmbq5f5" path="res://main_menu.tscn" id="3_l4ylh"]
 [ext_resource type="PackedScene" uid="uid://bqccfifrooo67" path="res://splash/people_who_hate_games/people_who_hate_games_splash.tscn" id="3_ll6r5"]
-[ext_resource type="PackedScene" uid="uid://fw74pdadm6ca" path="res://Saved Text.tscn" id="5_dt6rn"]
+[ext_resource type="PackedScene" uid="uid://fw74pdadm6ca" path="res://saved_text.tscn" id="5_dt6rn"]
 [ext_resource type="PackedScene" uid="uid://cd61dwt110dxr" path="res://intro_cutscene_2.tscn" id="5_p2s7e"]
 [ext_resource type="PackedScene" uid="uid://cch75rtm2opaa" path="res://outro_cutscene.tscn" id="6_udoor"]
 [ext_resource type="PackedScene" uid="uid://dmh1wy1nimnw8" path="res://credits.tscn" id="7_pn1nm"]
