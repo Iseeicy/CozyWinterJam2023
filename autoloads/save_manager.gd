@@ -5,7 +5,7 @@ extends Node
 #
 
 ## This is where the save file is stored
-var save_file_path = "user://save_game.data"
+var save_file_path = "user://save_game.tres"
 
 ## These store the current checkpoint and collected presents of the player
 var current_checkpoint: Checkpoint = null
@@ -41,79 +41,69 @@ func _process(delta):
 	if start_time == -1:
 		start_time = Time.get_ticks_msec()
 	
-	if show_saved_text:
-		# Fade text up
-		saved_text.add_theme_color_override("font_color", lerp(Color(1, 1, 1, 0), Color(1, 1, 1, 1)\
-		, (Time.get_ticks_msec() - start_time) / time_text_fade))
+	if saved_text != null:
+		if show_saved_text:
+			# Fade text up
+			saved_text.add_theme_color_override("font_color", lerp(Color(1, 1, 1, 0), Color(1, 1, 1, 1)\
+			, (Time.get_ticks_msec() - start_time) / time_text_fade))
 
-		if Time.get_ticks_msec() - start_time >= time_text_fade:
-			# Set up the fade down and stop us from fading up again
-			start_time = -1
-			show_saved_text = false
-			get_rid_of_saved_text = true
-			saved_text.add_theme_color_override("font_color", Color(1, 1, 1, 1))
-	
-	elif saved_text != null and get_rid_of_saved_text:
-		# Make the fade back 3 times longer to let the user have a chance to read it
-		# Fade text down
-		saved_text.add_theme_color_override("font_color", lerp(Color(1, 1, 1, 1), Color(1, 1, 1, 0)\
-		, (Time.get_ticks_msec() - start_time) / time_text_fade / 3))
+			if Time.get_ticks_msec() - start_time >= time_text_fade:
+				# Set up the fade down and stop us from fading up again
+				start_time = -1
+				show_saved_text = false
+				get_rid_of_saved_text = true
+				saved_text.add_theme_color_override("font_color", Color(1, 1, 1, 1))
+		elif get_rid_of_saved_text:
+			# Make the fade back 3 times longer to let the user have a chance to read it
+			# Fade text down
+			saved_text.add_theme_color_override("font_color", lerp(Color(1, 1, 1, 1), Color(1, 1, 1, 0)\
+			, (Time.get_ticks_msec() - start_time) / time_text_fade / 3))
 
-		if Time.get_ticks_msec() - start_time >= time_text_fade * 3:
-			# Make sure we don't fade down again
-			get_rid_of_saved_text = false
-			saved_text.add_theme_color_override("font_color", Color(1, 1, 1, 0))
+			if Time.get_ticks_msec() - start_time >= time_text_fade * 3:
+				# Make sure we don't fade down again
+				get_rid_of_saved_text = false
+				saved_text.add_theme_color_override("font_color", Color(1, 1, 1, 0))
 
 func save_game():
 	# If we have a checkpoint to save to
 	if current_checkpoint == null:
 		return
 	
-	var file = FileAccess.open(save_file_path, FileAccess.WRITE)
-		
-	var savable_dictionary = {}
-		
-	# Make the dictionary into a saveable format since JSON doesn't like 
-	# parsing parentheses from the Vector2s
-	for type in current_saved_collection.keys():
-		savable_dictionary[type] = []
-		
-		for present in current_saved_collection[type]:
-			savable_dictionary[type].append(str(present))
-		
+	var save_game : SaveFile
+	
+	if save_file_exists():
+		save_game = ResourceLoader.load(save_file_path)
+	else:
+		save_game = SaveFile.new()
+	
 	# Store all the data
-	file.store_string("C: " + str(current_checkpoint.global_position) + " P: " + \
-	str(savable_dictionary))
-	file.close()
-		
+	save_game.checkpoint_pos = current_checkpoint.global_position
+	save_game.collected_presents = current_saved_collection
+	
+	var err = ResourceSaver.save(save_game, save_file_path)
+	
+	if (err != OK):
+		printerr("ERROR: Something went wrong when saving! Error Code: " + str(err))
+		return
+
 	# Set up parameters needed for save text
 	start_time = -1
 	show_saved_text = true
 
 func load_game():
-	var file = FileAccess.open(save_file_path, FileAccess.READ)
-	var data = file.get_as_text()
+	if not save_file_exists():
+		printerr("ERROR: Save File not Found!")
+		return
 	
-	# Get position data from file
-	var position_vector = data.substr(4, data.find(")") - 4)
-	var position = position_vector.split(", ")
+	var save_game : SaveFile = ResourceLoader.load(save_file_path)
 	
-	# Create position vector and get dictionary from file for presents
-	load_position = Vector2(float(position[0]), float(position[1]))
-	current_saved_collection = JSON.parse_string(data.substr(data.find("{")))
-	
-	file.close()
+	# Load all the data
+	load_position = save_game.checkpoint_pos
+	current_saved_collection = save_game.collected_presents
 
 # Check if the file exists and if it isn't empty
 func save_file_exists() -> bool:
-	if not FileAccess.file_exists(save_file_path):
-		return false
-		
-	var file = FileAccess.open(save_file_path, FileAccess.READ)
-	var data = file.get_as_text()
-	file.close()
-		
-	return not data.is_empty()
+	return ResourceLoader.exists(save_file_path)
 
 func on_checkpoint_flagged(checkpoint: Checkpoint):
 	# Set the current checkpoint
@@ -141,22 +131,6 @@ func on_scene_ready_for_load():
 	# If we actually loaded any data
 	if load_position == Vector2.ZERO:
 		return
-	
-	# Get a dictionary that we can actually load
-	var loadable_dictionary = {}
-	for type in current_saved_collection.keys():
-		loadable_dictionary[type] = []
-		
-		# This is just converting the string verion of the positions back 
-		# into Vector2s
-		for present in current_saved_collection[type]:
-			var temp = present.substr(1, len(present) - 2)
-			var position = temp.split(", ")
-			
-			loadable_dictionary[type].append(Vector2(float(position[0]), float(position[1])))
-	
-	# Set the current saved collection to the valid dictionary
-	current_saved_collection = loadable_dictionary
 	
 	# Set the currently collected presents
 	for type in current_saved_collection.keys():
