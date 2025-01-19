@@ -17,15 +17,16 @@ var load_position: Vector2
 ## These bools handle the save text fading up and down and also whether or not 
 ## we're ready for saving
 var ready_to_save: bool = false
-var show_saved_text = false
-var get_rid_of_saved_text = false
+var show_saved_text: bool = false
+var get_rid_of_saved_text: bool = false
+var loaded: bool = false
 
 ## This is when we start fading up or down
 var start_time: float = -1
 
 ## This is the time it takes for the save text to fade up and a third of the
 ## time it takes for it to fade down
-var time_text_fade = 1500
+var time_text_fade: int = 1500
 
 ## This is a reference to the actual text to display
 var saved_text: Label
@@ -100,19 +101,25 @@ func load_game():
 	# Load all the data
 	load_position = save_game.checkpoint_pos
 	current_saved_collection = save_game.collected_presents
+	
+	loaded = true
 
 # Check if the file exists and if it isn't empty
 func save_file_exists() -> bool:
 	return ResourceLoader.exists(save_file_path)
 
 func on_checkpoint_flagged(checkpoint: Checkpoint):
+	if (current_checkpoint == checkpoint and not ready_to_save) or loaded:
+		if loaded:
+			loaded = false
+			current_checkpoint = checkpoint
+		return
+	
 	# Set the current checkpoint
 	current_checkpoint = checkpoint
 	
-	# If we re ready to save and have presents to save then we should save
-	if len(current_saved_collection) > 0 and ready_to_save:
-		save_game()
-		ready_to_save = false
+	save_game()
+	ready_to_save = false
 
 func on_collection_saved(held: Dictionary, saved: Dictionary):
 	# If we actually collected presents then get us ready to save
