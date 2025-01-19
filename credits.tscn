@@ -57,16 +57,16 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -387.0
+offset_left = -452.0
 offset_top = -80.0
-offset_right = 387.0
+offset_right = 453.0
 offset_bottom = -30.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_fonts/normal_font = ExtResource("1_emasx")
 theme_override_font_sizes/normal_font_size = 30
 bbcode_enabled = true
-text = "[center][font_size=16](created by[/font_size] [color=yellow]Holly [font_size=14](from the nexus?)[/font_size][/color], [color=green]Jay Jan-Carol[/color], [font_size=16]and[/font_size] [color=#a0d6b4]NightmareFluid[/color][font_size=16])[/font_size][/center]"
+text = "[center][font_size=16](created by[/font_size] [color=yellow]Holly [font_size=14](from the nexus?)[/font_size][/color], [color=green]Jay Jan-Carol[/color], [color=#a0d6b4]NightmareFluid[/color], [font_size=16]and [/font_size][color=#ffde61]ButterAleks [font_size=14](save system)[/font_size][/color][font_size=16])[/font_size][/center]"
 
 [node name="Label4" type="Label" parent="."]
 layout_mode = 1

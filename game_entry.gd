@@ -1,5 +1,8 @@
 extends Node
 
+# This will tell everybody listening that the main level has loaded
+signal level_loaded()
+
 @export var splash_screen_scenes: Array[PackedScene] = []
 @export var main_level_scene: PackedScene = null
 var _level: Node2D = null
@@ -28,7 +31,16 @@ func _on_main_menu_start_game():
 	
 	$IntroCutscene.show()
 	$IntroCutscene.run()
+
+# When we're meant to load the game
+func _on_load_game():
+	$MainMenu.hide()
 	
+	var level = main_level_scene.instantiate()
+	_deffered_load_level.call_deferred(level)
+	
+	# Tell the save manager to load
+	SaveManager.load_game()
 
 func _on_intro_cutscene_cutscene_complete():
 	$IntroCutscene.hide()
@@ -43,9 +55,13 @@ func _deffered_load_level(level):
 	_level.level_completed.connect(_on_level_complete.bind())
 	
 	add_child(level)
+
 	PauseMenu.set_can_pause(true)
 	CheckpointManager.respawn()
 	
+	# Tell people that the level loaded when everything is set up
+	level_loaded.emit()
+
 func _on_level_complete():
 	CheckpointManager.despawn()
 	PauseMenu.set_can_pause(false)

@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://fw74pdadm6ca"]
+
+[ext_resource type="FontFile" uid="uid://c0rtnk087j4a6" path="res://fonts/terminal-grotesque.ttf" id="1_0ft18"]
+
+[node name="Saved Text" type="CanvasLayer"]
+
+[node name="Text" type="Label" parent="."]
+offset_top = 549.0
+offset_right = 322.0
+offset_bottom = 673.0
+theme_override_colors/font_color = Color(1, 1, 1, 0)
+theme_override_fonts/font = ExtResource("1_0ft18")
+theme_override_font_sizes/font_size = 80
+text = "Saved"
+horizontal_alignment = 1
+vertical_alignment = 1
